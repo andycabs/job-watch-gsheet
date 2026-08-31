@@ -1,0 +1,3451 @@
+{
+ "name": "Candidates to probe",
+ "description": "Company names to resolve against the supported job boards. Anything that resolves becomes a directory entry; anything that does not is dropped. This file is an input, not shipped data.",
+ "candidates": [
+  {
+   "name": "Invisible Technologies",
+   "category": "ai",
+   "description": "AI training/ops, work-from-anywhere, fast growth",
+   "ats": "greenhouse",
+   "slug": "invisibletech"
+  },
+  {
+   "name": "Turing",
+   "category": "ai",
+   "description": "Remote engineering marketplace, AI data services",
+   "ats": "greenhouse",
+   "slug": "turing"
+  },
+  {
+   "name": "Zapier",
+   "category": "devtools",
+   "description": "Fully remote since 2011, 40+ countries, salary parity",
+   "ats": "ashby",
+   "slug": "zapier"
+  },
+  {
+   "name": "DuckDuckGo",
+   "category": "consumer",
+   "description": "Fully remote privacy company",
+   "ats": "ashby",
+   "slug": "duck-duck-go"
+  },
+  {
+   "name": "GameChanger",
+   "category": "consumer",
+   "description": "Fully remote sportstech (DICK'S subsidiary)",
+   "ats": "ashby",
+   "slug": "gamechanger"
+  },
+  {
+   "name": "Camunda",
+   "category": "devtools",
+   "description": "Process automation, fully remote since 2012",
+   "ats": "ashby",
+   "slug": "camunda"
+  },
+  {
+   "name": "Canonical",
+   "category": "devtools",
+   "description": "Ubuntu; remote-first since inception",
+   "ats": "greenhouse",
+   "slug": "canonical"
+  },
+  {
+   "name": "Elastic",
+   "category": "devtools",
+   "description": "Distributed by design, 40+ countries",
+   "ats": "greenhouse",
+   "slug": "elastic"
+  },
+  {
+   "name": "GitLab",
+   "category": "devtools",
+   "description": "All-remote, 65+ countries, public handbook",
+   "ats": "greenhouse",
+   "slug": "gitlab"
+  },
+  {
+   "name": "Grafana Labs",
+   "category": "devtools",
+   "description": "Fully remote observability, fast growth",
+   "ats": "greenhouse",
+   "slug": "grafanalabs"
+  },
+  {
+   "name": "InfluxData",
+   "category": "devtools",
+   "description": "Time-series DB, remote-first",
+   "ats": "ashby",
+   "slug": "influxdata"
+  },
+  {
+   "name": "Mattermost",
+   "category": "devtools",
+   "description": "Open-source collaboration, all-remote",
+   "ats": "greenhouse",
+   "slug": "mattermost"
+  },
+  {
+   "name": "Neon",
+   "category": "devtools",
+   "description": "Serverless Postgres, remote-first",
+   "ats": "lever",
+   "slug": "neon"
+  },
+  {
+   "name": "Netlify",
+   "category": "devtools",
+   "description": "Remote-first web platform",
+   "ats": "greenhouse",
+   "slug": "netlify"
+  },
+  {
+   "name": "Percona",
+   "category": "devtools",
+   "description": "Open-source database services, fully remote",
+   "ats": "ashby",
+   "slug": "percona"
+  },
+  {
+   "name": "Prisma",
+   "category": "devtools",
+   "description": "ORM/data layer, remote-first",
+   "ats": "greenhouse",
+   "slug": "prisma"
+  },
+  {
+   "name": "Render",
+   "category": "devtools",
+   "description": "Cloud platform, remote",
+   "ats": "ashby",
+   "slug": "render"
+  },
+  {
+   "name": "Sourcegraph",
+   "category": "devtools",
+   "description": "All-remote code intelligence",
+   "ats": "greenhouse",
+   "slug": "sourcegraph91"
+  },
+  {
+   "name": "Supabase",
+   "category": "devtools",
+   "description": "Open-source Firebase alt, fully remote, fast growth",
+   "ats": "ashby",
+   "slug": "supabase"
+  },
+  {
+   "name": "Tailscale",
+   "category": "devtools",
+   "description": "Fully remote networking, rapid growth",
+   "ats": "greenhouse",
+   "slug": "tailscale"
+  },
+  {
+   "name": "Timescale",
+   "category": "devtools",
+   "description": "Fully remote database company",
+   "ats": "ashby",
+   "slug": "tigerdata"
+  },
+  {
+   "name": "Vercel",
+   "category": "devtools",
+   "description": "Remote-friendly, frontend cloud, strong growth",
+   "ats": "greenhouse",
+   "slug": "vercel"
+  },
+  {
+   "name": "Coursera",
+   "category": "education",
+   "description": "Remote-first",
+   "ats": "greenhouse",
+   "slug": "coursera"
+  },
+  {
+   "name": "Outschool",
+   "category": "education",
+   "description": "Fully remote live-learning marketplace",
+   "ats": "greenhouse",
+   "slug": "outschool"
+  },
+  {
+   "name": "Alloy",
+   "category": "fintech",
+   "description": "Identity risk, remote-friendly",
+   "ats": "greenhouse",
+   "slug": "alloy"
+  },
+  {
+   "name": "Brex",
+   "category": "fintech",
+   "description": "Remote-first corporate cards/spend",
+   "ats": "greenhouse",
+   "slug": "brex"
+  },
+  {
+   "name": "Circle",
+   "category": "fintech",
+   "description": "USDC issuer, remote-first",
+   "ats": "ashby",
+   "slug": "circle"
+  },
+  {
+   "name": "Coinbase",
+   "category": "fintech",
+   "description": "Remote-first since 2020",
+   "ats": "greenhouse",
+   "slug": "coinbase"
+  },
+  {
+   "name": "Kraken",
+   "category": "fintech",
+   "description": "Fully remote, global crypto exchange",
+   "ats": "ashby",
+   "slug": "kraken.com"
+  },
+  {
+   "name": "Lithic",
+   "category": "fintech",
+   "description": "Card infrastructure, fully remote",
+   "ats": "greenhouse",
+   "slug": "lithic"
+  },
+  {
+   "name": "Marqeta",
+   "category": "fintech",
+   "description": "Card issuing, remote-first",
+   "ats": "greenhouse",
+   "slug": "marqeta"
+  },
+  {
+   "name": "Mercury",
+   "category": "fintech",
+   "description": "Startup banking, remote-first, strong async culture",
+   "ats": "greenhouse",
+   "slug": "mercury"
+  },
+  {
+   "name": "Tremendous",
+   "category": "fintech",
+   "description": "Payouts platform, profitable, fully remote, low-meeting culture",
+   "ats": "ashby",
+   "slug": "tremendous"
+  },
+  {
+   "name": "Airbyte",
+   "category": "gtm-tools",
+   "description": "Open-source ELT, fully remote",
+   "ats": "ashby",
+   "slug": "airbyte"
+  },
+  {
+   "name": "Amplitude",
+   "category": "gtm-tools",
+   "description": "Product analytics, remote-friendly",
+   "ats": "greenhouse",
+   "slug": "amplitude"
+  },
+  {
+   "name": "Hightouch",
+   "category": "gtm-tools",
+   "description": "Composable CDP / reverse ETL \u2014 core GTM engineering vendor, remote-first",
+   "ats": "ashby",
+   "slug": "hightouch"
+  },
+  {
+   "name": "Metabase",
+   "category": "gtm-tools",
+   "description": "BI tool, fully remote",
+   "ats": "lever",
+   "slug": "metabase"
+  },
+  {
+   "name": "6sense",
+   "category": "gtm-tools",
+   "description": "ABM/intent, remote-first",
+   "ats": "greenhouse",
+   "slug": "6sense"
+  },
+  {
+   "name": "Apollo.io",
+   "category": "gtm-tools",
+   "description": "Sales intelligence, remote-first, fast growth",
+   "ats": "greenhouse",
+   "slug": "apolloio"
+  },
+  {
+   "name": "Calendly",
+   "category": "gtm-tools",
+   "description": "Remote-first scheduling, profitable",
+   "ats": "greenhouse",
+   "slug": "calendly"
+  },
+  {
+   "name": "Chili Piper",
+   "category": "gtm-tools",
+   "description": "Inbound routing/scheduling, fully remote",
+   "ats": "ashby",
+   "slug": "chilipiper"
+  },
+  {
+   "name": "Clari",
+   "category": "gtm-tools",
+   "description": "Revenue operations platform, remote-friendly",
+   "ats": "lever",
+   "slug": "clari"
+  },
+  {
+   "name": "Close",
+   "category": "gtm-tools",
+   "description": "Sales CRM, bootstrapped, fully remote async-first since 2016",
+   "ats": "ashby",
+   "slug": "close"
+  },
+  {
+   "name": "Common Room",
+   "category": "gtm-tools",
+   "description": "Signal-based GTM, remote-first",
+   "ats": "ashby",
+   "slug": "commonroom"
+  },
+  {
+   "name": "Demandbase",
+   "category": "gtm-tools",
+   "description": "ABM platform, remote-first",
+   "ats": "ashby",
+   "slug": "demandbase"
+  },
+  {
+   "name": "Paddle",
+   "category": "gtm-tools",
+   "description": "Merchant of record for SaaS, remote-first",
+   "ats": "ashby",
+   "slug": "paddle"
+  },
+  {
+   "name": "Qualified",
+   "category": "gtm-tools",
+   "description": "Pipeline generation / AI SDR, remote-friendly",
+   "ats": "ashby",
+   "slug": "qualified"
+  },
+  {
+   "name": "RevenueCat",
+   "category": "gtm-tools",
+   "description": "Subscription infrastructure, 50k+ apps, fully remote",
+   "ats": "ashby",
+   "slug": "revenuecat"
+  },
+  {
+   "name": "Salesloft",
+   "category": "gtm-tools",
+   "description": "Revenue orchestration, remote roles",
+   "ats": "greenhouse",
+   "slug": "salesloft"
+  },
+  {
+   "name": "Vitally",
+   "category": "gtm-tools",
+   "description": "Customer success platform, remote-first",
+   "ats": "ashby",
+   "slug": "vitally"
+  },
+  {
+   "name": "Carrot Fertility",
+   "category": "healthtech",
+   "description": "Fully remote fertility benefits",
+   "ats": "greenhouse",
+   "slug": "carrotfertility"
+  },
+  {
+   "name": "Doximity",
+   "category": "healthtech",
+   "description": "Fully remote clinical network, profitable",
+   "ats": "greenhouse",
+   "slug": "doximity"
+  },
+  {
+   "name": "Grow Therapy",
+   "category": "healthtech",
+   "description": "Remote-first mental health marketplace",
+   "ats": "ashby",
+   "slug": "grow-therapy"
+  },
+  {
+   "name": "Hims & Hers",
+   "category": "healthtech",
+   "description": "Remote-first telehealth, high growth",
+   "ats": "ashby",
+   "slug": "hims-and-hers"
+  },
+  {
+   "name": "Included Health",
+   "category": "healthtech",
+   "description": "Remote-first healthcare navigation",
+   "ats": "lever",
+   "slug": "includedhealth"
+  },
+  {
+   "name": "LeanTaaS",
+   "category": "healthtech",
+   "description": "Healthcare AI ops, flexibility-first remote",
+   "ats": "lever",
+   "slug": "leantaas"
+  },
+  {
+   "name": "Lyra Health",
+   "category": "healthtech",
+   "description": "Remote-first behavioral health",
+   "ats": "lever",
+   "slug": "lyrahealth"
+  },
+  {
+   "name": "Omada Health",
+   "category": "healthtech",
+   "description": "Virtual-first care, remote",
+   "ats": "greenhouse",
+   "slug": "omadahealth"
+  },
+  {
+   "name": "Sword Health",
+   "category": "healthtech",
+   "description": "Digital MSK care, remote-first, fast growth",
+   "ats": "lever",
+   "slug": "swordhealth"
+  },
+  {
+   "name": "Wheel",
+   "category": "healthtech",
+   "description": "Virtual care infrastructure, remote",
+   "ats": "ashby",
+   "slug": "wheel"
+  },
+  {
+   "name": "Ashby",
+   "category": "hr-tech",
+   "description": "Recruiting software, fully remote, fast growth",
+   "ats": "ashby",
+   "slug": "ashby"
+  },
+  {
+   "name": "Deel",
+   "category": "hr-tech",
+   "description": "Fully distributed, 100+ countries, hypergrowth",
+   "ats": "ashby",
+   "slug": "deel"
+  },
+  {
+   "name": "Multiplier",
+   "category": "hr-tech",
+   "description": "Global employment platform, remote-first",
+   "ats": "recruitee",
+   "slug": "multiplier"
+  },
+  {
+   "name": "Oyster HR",
+   "category": "hr-tech",
+   "description": "Distributed hiring platform, fully remote",
+   "ats": "ashby",
+   "slug": "oyster"
+  },
+  {
+   "name": "Papaya Global",
+   "category": "hr-tech",
+   "description": "Global payroll, distributed",
+   "ats": "greenhouse",
+   "slug": "papaya"
+  },
+  {
+   "name": "RemoFirst",
+   "category": "hr-tech",
+   "description": "EOR in 185+ countries, born remote",
+   "ats": "lever",
+   "slug": "remofirst"
+  },
+  {
+   "name": "Remote.com",
+   "category": "hr-tech",
+   "description": "EOR platform, remote by design",
+   "ats": "greenhouse",
+   "slug": "remotecom"
+  },
+  {
+   "name": "Velocity Global",
+   "category": "hr-tech",
+   "description": "Global work platform, remote-first",
+   "ats": "ashby",
+   "slug": "velocity"
+  },
+  {
+   "name": "Toptal",
+   "category": "consumer",
+   "description": "Fully distributed talent marketplace",
+   "ats": "lever",
+   "slug": "toptal"
+  },
+  {
+   "name": "Braze",
+   "category": "gtm-tools",
+   "description": "Customer engagement platform, remote roles",
+   "ats": "greenhouse",
+   "slug": "braze"
+  },
+  {
+   "name": "Customer.io",
+   "category": "gtm-tools",
+   "description": "Fully remote, async-first, $100M+ revenue",
+   "ats": "greenhouse",
+   "slug": "customerio"
+  },
+  {
+   "name": "Iterable",
+   "category": "gtm-tools",
+   "description": "Cross-channel marketing platform, remote-friendly",
+   "ats": "greenhouse",
+   "slug": "iterable"
+  },
+  {
+   "name": "Kit",
+   "category": "gtm-tools",
+   "description": "Creator email platform (formerly ConvertKit), fully remote",
+   "ats": "ashby",
+   "slug": "kit"
+  },
+  {
+   "name": "Klaviyo",
+   "category": "gtm-tools",
+   "description": "Marketing automation, remote-friendly, high growth",
+   "ats": "greenhouse",
+   "slug": "klaviyo"
+  },
+  {
+   "name": "Mozilla",
+   "category": "nonprofit-civic",
+   "description": "Remote-first, async culture, 26 wks parental leave",
+   "ats": "greenhouse",
+   "slug": "mozilla"
+  },
+  {
+   "name": "Wikimedia Foundation",
+   "category": "nonprofit-civic",
+   "description": "Work-from-anywhere nonprofit",
+   "ats": "greenhouse",
+   "slug": "wikimedia"
+  },
+  {
+   "name": "Aha!",
+   "category": "saas",
+   "description": "Fully remote, profitable product management software",
+   "ats": "greenhouse",
+   "slug": "aha"
+  },
+  {
+   "name": "Automattic",
+   "category": "saas",
+   "description": "WordPress.com; distributed across 90+ countries",
+   "ats": "greenhouse",
+   "slug": "automatticcareers"
+  },
+  {
+   "name": "Buffer",
+   "category": "saas",
+   "description": "Fully remote, transparent salaries",
+   "ats": "ashby",
+   "slug": "buffer"
+  },
+  {
+   "name": "Ghost",
+   "category": "saas",
+   "description": "Fully remote nonprofit publishing platform",
+   "ats": "greenhouse",
+   "slug": "ghost"
+  },
+  {
+   "name": "Help Scout",
+   "category": "saas",
+   "description": "Fully remote customer support platform",
+   "ats": "greenhouse",
+   "slug": "help"
+  },
+  {
+   "name": "Hubstaff",
+   "category": "saas",
+   "description": "Fully remote workforce analytics",
+   "ats": "ashby",
+   "slug": "hubstaff"
+  },
+  {
+   "name": "1Password",
+   "category": "security",
+   "description": "Remote-first, growing security company",
+   "ats": "ashby",
+   "slug": "1password"
+  },
+  {
+   "name": "Bishop Fox",
+   "category": "security",
+   "description": "Offensive security, fully remote",
+   "ats": "greenhouse",
+   "slug": "bishopfox"
+  },
+  {
+   "name": "Bitwarden",
+   "category": "security",
+   "description": "Open-source password manager, fully remote",
+   "ats": "greenhouse",
+   "slug": "bitwarden"
+  },
+  {
+   "name": "Cloudflare",
+   "category": "security",
+   "description": "Flexible/remote roles, strong growth",
+   "ats": "greenhouse",
+   "slug": "cloudflare"
+  },
+  {
+   "name": "Dashlane",
+   "category": "security",
+   "description": "Remote-first credential security",
+   "ats": "greenhouse",
+   "slug": "dashlane"
+  },
+  {
+   "name": "Huntress",
+   "category": "security",
+   "description": "Fully remote managed security, fast growth",
+   "ats": "greenhouse",
+   "slug": "huntress"
+  },
+  {
+   "name": "Chainalysis",
+   "category": "crypto",
+   "description": "Blockchain data, remote-first",
+   "ats": "ashby",
+   "slug": "chainalysis-careers"
+  },
+  {
+   "name": "Consensys",
+   "category": "crypto",
+   "description": "MetaMask/Infura, fully remote",
+   "ats": "greenhouse",
+   "slug": "consensys"
+  },
+  {
+   "name": "Walmart",
+   "category": "fortune",
+   "description": "Retail, largest US employer"
+  },
+  {
+   "name": "Amazon",
+   "category": "fortune",
+   "description": "Retail, cloud, logistics"
+  },
+  {
+   "name": "Apple",
+   "category": "fortune",
+   "description": "Consumer hardware and services"
+  },
+  {
+   "name": "CVS Health",
+   "category": "fortune",
+   "description": "Pharmacy and health insurance"
+  },
+  {
+   "name": "UnitedHealth Group",
+   "category": "fortune",
+   "description": "Health insurance and care delivery"
+  },
+  {
+   "name": "Alphabet",
+   "category": "fortune",
+   "description": "Search, cloud, YouTube"
+  },
+  {
+   "name": "McKesson",
+   "category": "fortune",
+   "description": "Pharmaceutical distribution"
+  },
+  {
+   "name": "Chevron",
+   "category": "fortune",
+   "description": "Energy"
+  },
+  {
+   "name": "Costco",
+   "category": "fortune",
+   "description": "Warehouse retail"
+  },
+  {
+   "name": "JPMorgan Chase",
+   "category": "fortune",
+   "description": "Banking and financial services"
+  },
+  {
+   "name": "Microsoft",
+   "category": "fortune",
+   "description": "Software, cloud, gaming"
+  },
+  {
+   "name": "Cardinal Health",
+   "category": "fortune",
+   "description": "Healthcare distribution"
+  },
+  {
+   "name": "Cigna",
+   "category": "fortune",
+   "description": "Health insurance"
+  },
+  {
+   "name": "Ford Motor Company",
+   "category": "fortune",
+   "description": "Automotive"
+  },
+  {
+   "name": "General Motors",
+   "category": "fortune",
+   "description": "Automotive"
+  },
+  {
+   "name": "Elevance Health",
+   "category": "fortune",
+   "description": "Health insurance"
+  },
+  {
+   "name": "Citigroup",
+   "category": "fortune",
+   "description": "Global banking"
+  },
+  {
+   "name": "Centene",
+   "category": "fortune",
+   "description": "Government-sponsored healthcare"
+  },
+  {
+   "name": "The Home Depot",
+   "category": "fortune",
+   "description": "Home improvement retail"
+  },
+  {
+   "name": "Kroger",
+   "category": "fortune",
+   "description": "Grocery retail"
+  },
+  {
+   "name": "Walgreens",
+   "category": "fortune",
+   "description": "Pharmacy retail"
+  },
+  {
+   "name": "Verizon",
+   "category": "fortune",
+   "description": "Telecom"
+  },
+  {
+   "name": "Comcast",
+   "category": "fortune",
+   "description": "Cable, broadband, media"
+  },
+  {
+   "name": "AT&T",
+   "category": "fortune",
+   "description": "Telecom"
+  },
+  {
+   "name": "Meta",
+   "category": "fortune",
+   "description": "Social platforms, VR"
+  },
+  {
+   "name": "Bank of America",
+   "category": "fortune",
+   "description": "Banking"
+  },
+  {
+   "name": "Target",
+   "category": "fortune",
+   "description": "General merchandise retail"
+  },
+  {
+   "name": "Dell Technologies",
+   "category": "fortune",
+   "description": "Enterprise hardware"
+  },
+  {
+   "name": "Wells Fargo",
+   "category": "fortune",
+   "description": "Banking"
+  },
+  {
+   "name": "PepsiCo",
+   "category": "fortune",
+   "description": "Food and beverage"
+  },
+  {
+   "name": "UPS",
+   "category": "fortune",
+   "description": "Package delivery"
+  },
+  {
+   "name": "FedEx",
+   "category": "fortune",
+   "description": "Logistics"
+  },
+  {
+   "name": "The Walt Disney Company",
+   "category": "fortune",
+   "description": "Media and parks"
+  },
+  {
+   "name": "Procter & Gamble",
+   "category": "fortune",
+   "description": "Consumer goods"
+  },
+  {
+   "name": "Boeing",
+   "category": "fortune",
+   "description": "Aerospace"
+  },
+  {
+   "name": "Lowe's",
+   "category": "fortune",
+   "description": "Home improvement retail"
+  },
+  {
+   "name": "Intel",
+   "category": "fortune",
+   "description": "Semiconductors"
+  },
+  {
+   "name": "IBM",
+   "category": "fortune",
+   "description": "Enterprise IT and consulting"
+  },
+  {
+   "name": "Johnson & Johnson",
+   "category": "fortune",
+   "description": "Pharmaceuticals and medtech"
+  },
+  {
+   "name": "Pfizer",
+   "category": "fortune",
+   "description": "Pharmaceuticals"
+  },
+  {
+   "name": "NVIDIA",
+   "category": "fortune",
+   "description": "GPUs and AI computing"
+  },
+  {
+   "name": "Tesla",
+   "category": "fortune",
+   "description": "Electric vehicles and energy"
+  },
+  {
+   "name": "Caterpillar",
+   "category": "fortune",
+   "description": "Heavy equipment"
+  },
+  {
+   "name": "Merck",
+   "category": "fortune",
+   "description": "Pharmaceuticals"
+  },
+  {
+   "name": "Goldman Sachs",
+   "category": "fortune",
+   "description": "Investment banking"
+  },
+  {
+   "name": "RTX",
+   "category": "fortune",
+   "description": "Aerospace and defence"
+  },
+  {
+   "name": "Nike",
+   "category": "fortune",
+   "description": "Athletic apparel"
+  },
+  {
+   "name": "Starbucks",
+   "category": "fortune",
+   "description": "Coffee retail"
+  },
+  {
+   "name": "Oracle",
+   "category": "fortune",
+   "description": "Enterprise software and cloud"
+  },
+  {
+   "name": "Lockheed Martin",
+   "category": "fortune",
+   "description": "Aerospace and defence"
+  },
+  {
+   "name": "American Express",
+   "category": "fortune",
+   "description": "Payments and travel"
+  },
+  {
+   "name": "Morgan Stanley",
+   "category": "fortune",
+   "description": "Investment banking"
+  },
+  {
+   "name": "Delta Air Lines",
+   "category": "fortune",
+   "description": "Airline"
+  },
+  {
+   "name": "United Airlines",
+   "category": "fortune",
+   "description": "Airline"
+  },
+  {
+   "name": "Southwest Airlines",
+   "category": "fortune",
+   "description": "Airline"
+  },
+  {
+   "name": "Marriott International",
+   "category": "fortune",
+   "description": "Hotels"
+  },
+  {
+   "name": "Hilton",
+   "category": "fortune",
+   "description": "Hotels"
+  },
+  {
+   "name": "McDonald's",
+   "category": "fortune",
+   "description": "Quick-service restaurants"
+  },
+  {
+   "name": "Coca-Cola",
+   "category": "fortune",
+   "description": "Beverages"
+  },
+  {
+   "name": "General Electric",
+   "category": "fortune",
+   "description": "Industrials and aerospace"
+  },
+  {
+   "name": "3M",
+   "category": "fortune",
+   "description": "Industrial and consumer products"
+  },
+  {
+   "name": "Honeywell",
+   "category": "fortune",
+   "description": "Industrial technology"
+  },
+  {
+   "name": "Abbott",
+   "category": "fortune",
+   "description": "Medical devices and diagnostics"
+  },
+  {
+   "name": "Eli Lilly",
+   "category": "fortune",
+   "description": "Pharmaceuticals"
+  },
+  {
+   "name": "Bristol Myers Squibb",
+   "category": "fortune",
+   "description": "Pharmaceuticals"
+  },
+  {
+   "name": "Amgen",
+   "category": "fortune",
+   "description": "Biotechnology"
+  },
+  {
+   "name": "Gilead Sciences",
+   "category": "fortune",
+   "description": "Biopharmaceuticals"
+  },
+  {
+   "name": "Moderna",
+   "category": "fortune",
+   "description": "mRNA medicines"
+  },
+  {
+   "name": "Texas Instruments",
+   "category": "fortune",
+   "description": "Semiconductors"
+  },
+  {
+   "name": "Qualcomm",
+   "category": "fortune",
+   "description": "Mobile chipsets"
+  },
+  {
+   "name": "Broadcom",
+   "category": "fortune",
+   "description": "Semiconductors and infrastructure software"
+  },
+  {
+   "name": "AMD",
+   "category": "fortune",
+   "description": "Semiconductors"
+  },
+  {
+   "name": "Cisco",
+   "category": "fortune",
+   "description": "Networking"
+  },
+  {
+   "name": "Adobe",
+   "category": "fortune",
+   "description": "Creative and marketing software"
+  },
+  {
+   "name": "Netflix",
+   "category": "fortune",
+   "description": "Streaming"
+  },
+  {
+   "name": "PayPal",
+   "category": "fortune",
+   "description": "Payments"
+  },
+  {
+   "name": "Visa",
+   "category": "fortune",
+   "description": "Payment networks"
+  },
+  {
+   "name": "Mastercard",
+   "category": "fortune",
+   "description": "Payment networks"
+  },
+  {
+   "name": "Charles Schwab",
+   "category": "fortune",
+   "description": "Brokerage"
+  },
+  {
+   "name": "Fidelity Investments",
+   "category": "fortune",
+   "description": "Asset management"
+  },
+  {
+   "name": "BlackRock",
+   "category": "fortune",
+   "description": "Asset management"
+  },
+  {
+   "name": "Capital One",
+   "category": "fortune",
+   "description": "Banking and credit"
+  },
+  {
+   "name": "Progressive",
+   "category": "fortune",
+   "description": "Insurance"
+  },
+  {
+   "name": "Allstate",
+   "category": "fortune",
+   "description": "Insurance"
+  },
+  {
+   "name": "MetLife",
+   "category": "fortune",
+   "description": "Insurance"
+  },
+  {
+   "name": "Prudential Financial",
+   "category": "fortune",
+   "description": "Insurance and retirement"
+  },
+  {
+   "name": "Nationwide",
+   "category": "fortune",
+   "description": "Insurance"
+  },
+  {
+   "name": "USAA",
+   "category": "fortune",
+   "description": "Insurance and banking for military families"
+  },
+  {
+   "name": "Liberty Mutual",
+   "category": "fortune",
+   "description": "Insurance"
+  },
+  {
+   "name": "State Farm",
+   "category": "fortune",
+   "description": "Insurance"
+  },
+  {
+   "name": "Humana",
+   "category": "fortune",
+   "description": "Health insurance"
+  },
+  {
+   "name": "HCA Healthcare",
+   "category": "fortune",
+   "description": "Hospitals"
+  },
+  {
+   "name": "Kaiser Permanente",
+   "category": "fortune",
+   "description": "Integrated health system"
+  },
+  {
+   "name": "Mayo Clinic",
+   "category": "fortune",
+   "description": "Academic medical centre"
+  },
+  {
+   "name": "Cleveland Clinic",
+   "category": "fortune",
+   "description": "Academic medical centre"
+  },
+  {
+   "name": "Deloitte",
+   "category": "fortune",
+   "description": "Professional services"
+  },
+  {
+   "name": "PwC",
+   "category": "fortune",
+   "description": "Professional services"
+  },
+  {
+   "name": "EY",
+   "category": "fortune",
+   "description": "Professional services"
+  },
+  {
+   "name": "KPMG",
+   "category": "fortune",
+   "description": "Professional services"
+  },
+  {
+   "name": "Accenture",
+   "category": "fortune",
+   "description": "Technology consulting"
+  },
+  {
+   "name": "McKinsey & Company",
+   "category": "fortune",
+   "description": "Management consulting"
+  },
+  {
+   "name": "Boston Consulting Group",
+   "category": "fortune",
+   "description": "Management consulting"
+  },
+  {
+   "name": "Bain & Company",
+   "category": "fortune",
+   "description": "Management consulting"
+  },
+  {
+   "name": "Salesforce",
+   "category": "bigtech",
+   "description": "CRM and enterprise cloud"
+  },
+  {
+   "name": "ServiceNow",
+   "category": "bigtech",
+   "description": "Enterprise workflow platform"
+  },
+  {
+   "name": "Workday",
+   "category": "bigtech",
+   "description": "HR and finance software"
+  },
+  {
+   "name": "Intuit",
+   "category": "bigtech",
+   "description": "Financial software"
+  },
+  {
+   "name": "Atlassian",
+   "category": "bigtech",
+   "description": "Developer and team collaboration"
+  },
+  {
+   "name": "VMware",
+   "category": "bigtech",
+   "description": "Virtualisation and cloud"
+  },
+  {
+   "name": "Dropbox",
+   "category": "bigtech",
+   "description": "File sync and collaboration"
+  },
+  {
+   "name": "Box",
+   "category": "bigtech",
+   "description": "Enterprise content management"
+  },
+  {
+   "name": "DocuSign",
+   "category": "bigtech",
+   "description": "Electronic signature"
+  },
+  {
+   "name": "Zoom",
+   "category": "bigtech",
+   "description": "Video conferencing"
+  },
+  {
+   "name": "Slack",
+   "category": "bigtech",
+   "description": "Team messaging"
+  },
+  {
+   "name": "Shopify",
+   "category": "bigtech",
+   "description": "Commerce platform"
+  },
+  {
+   "name": "Block",
+   "category": "bigtech",
+   "description": "Payments and financial tools"
+  },
+  {
+   "name": "Stripe",
+   "category": "bigtech",
+   "description": "Payments infrastructure"
+  },
+  {
+   "name": "Twilio",
+   "category": "bigtech",
+   "description": "Communications APIs"
+  },
+  {
+   "name": "Uber",
+   "category": "bigtech",
+   "description": "Ride-hailing and delivery"
+  },
+  {
+   "name": "Lyft",
+   "category": "bigtech",
+   "description": "Ride-hailing"
+  },
+  {
+   "name": "Airbnb",
+   "category": "bigtech",
+   "description": "Home rentals"
+  },
+  {
+   "name": "DoorDash",
+   "category": "bigtech",
+   "description": "Food delivery"
+  },
+  {
+   "name": "Instacart",
+   "category": "bigtech",
+   "description": "Grocery delivery"
+  },
+  {
+   "name": "Pinterest",
+   "category": "bigtech",
+   "description": "Visual discovery"
+  },
+  {
+   "name": "Snap",
+   "category": "bigtech",
+   "description": "Camera and social"
+  },
+  {
+   "name": "Reddit",
+   "category": "bigtech",
+   "description": "Community forums"
+  },
+  {
+   "name": "Discord",
+   "category": "bigtech",
+   "description": "Voice and text chat"
+  },
+  {
+   "name": "Spotify",
+   "category": "bigtech",
+   "description": "Music streaming"
+  },
+  {
+   "name": "Roblox",
+   "category": "bigtech",
+   "description": "Game platform"
+  },
+  {
+   "name": "Unity",
+   "category": "bigtech",
+   "description": "Game engine"
+  },
+  {
+   "name": "Epic Games",
+   "category": "bigtech",
+   "description": "Games and engine"
+  },
+  {
+   "name": "Riot Games",
+   "category": "bigtech",
+   "description": "Games"
+  },
+  {
+   "name": "Electronic Arts",
+   "category": "bigtech",
+   "description": "Games"
+  },
+  {
+   "name": "Take-Two Interactive",
+   "category": "bigtech",
+   "description": "Games"
+  },
+  {
+   "name": "Niantic",
+   "category": "bigtech",
+   "description": "Location-based games"
+  },
+  {
+   "name": "Robinhood",
+   "category": "bigtech",
+   "description": "Brokerage"
+  },
+  {
+   "name": "SoFi",
+   "category": "bigtech",
+   "description": "Consumer finance"
+  },
+  {
+   "name": "Affirm",
+   "category": "bigtech",
+   "description": "Buy now, pay later"
+  },
+  {
+   "name": "Chime",
+   "category": "bigtech",
+   "description": "Consumer banking"
+  },
+  {
+   "name": "Adyen",
+   "category": "bigtech",
+   "description": "Payments"
+  },
+  {
+   "name": "Klarna",
+   "category": "bigtech",
+   "description": "Payments"
+  },
+  {
+   "name": "Wise",
+   "category": "bigtech",
+   "description": "International transfers"
+  },
+  {
+   "name": "Revolut",
+   "category": "bigtech",
+   "description": "Consumer finance"
+  },
+  {
+   "name": "Nubank",
+   "category": "bigtech",
+   "description": "Digital banking"
+  },
+  {
+   "name": "Plaid",
+   "category": "bigtech",
+   "description": "Financial data APIs"
+  },
+  {
+   "name": "Ramp",
+   "category": "bigtech",
+   "description": "Corporate cards and spend"
+  },
+  {
+   "name": "Modern Treasury",
+   "category": "bigtech",
+   "description": "Payment operations"
+  },
+  {
+   "name": "Betterment",
+   "category": "bigtech",
+   "description": "Automated investing"
+  },
+  {
+   "name": "Wealthfront",
+   "category": "bigtech",
+   "description": "Automated investing"
+  },
+  {
+   "name": "Gemini",
+   "category": "bigtech",
+   "description": "Cryptocurrency exchange"
+  },
+  {
+   "name": "Ripple",
+   "category": "bigtech",
+   "description": "Blockchain payments"
+  },
+  {
+   "name": "Fireblocks",
+   "category": "bigtech",
+   "description": "Digital asset custody"
+  },
+  {
+   "name": "Checkout.com",
+   "category": "bigtech",
+   "description": "Payments"
+  },
+  {
+   "name": "GitHub",
+   "category": "devtools",
+   "description": "Code hosting and CI"
+  },
+  {
+   "name": "Docker",
+   "category": "devtools",
+   "description": "Container tooling"
+  },
+  {
+   "name": "HashiCorp",
+   "category": "devtools",
+   "description": "Infrastructure automation"
+  },
+  {
+   "name": "Datadog",
+   "category": "devtools",
+   "description": "Monitoring and security"
+  },
+  {
+   "name": "Sentry",
+   "category": "devtools",
+   "description": "Error monitoring"
+  },
+  {
+   "name": "Confluent",
+   "category": "devtools",
+   "description": "Streaming data"
+  },
+  {
+   "name": "MongoDB",
+   "category": "devtools",
+   "description": "Document database"
+  },
+  {
+   "name": "Redis",
+   "category": "devtools",
+   "description": "In-memory data store"
+  },
+  {
+   "name": "Cockroach Labs",
+   "category": "devtools",
+   "description": "Distributed SQL"
+  },
+  {
+   "name": "PlanetScale",
+   "category": "devtools",
+   "description": "MySQL platform"
+  },
+  {
+   "name": "Fastly",
+   "category": "devtools",
+   "description": "Edge cloud"
+  },
+  {
+   "name": "DigitalOcean",
+   "category": "devtools",
+   "description": "Cloud hosting"
+  },
+  {
+   "name": "Temporal Technologies",
+   "category": "devtools",
+   "description": "Durable execution"
+  },
+  {
+   "name": "Fivetran",
+   "category": "devtools",
+   "description": "Data pipelines"
+  },
+  {
+   "name": "dbt Labs",
+   "category": "devtools",
+   "description": "Analytics engineering"
+  },
+  {
+   "name": "Census",
+   "category": "devtools",
+   "description": "Reverse ETL"
+  },
+  {
+   "name": "Snowflake",
+   "category": "devtools",
+   "description": "Cloud data platform"
+  },
+  {
+   "name": "Databricks",
+   "category": "devtools",
+   "description": "Data and AI platform"
+  },
+  {
+   "name": "Starburst",
+   "category": "devtools",
+   "description": "Query engine"
+  },
+  {
+   "name": "dremio",
+   "category": "devtools",
+   "description": "Data lakehouse"
+  },
+  {
+   "name": "LaunchDarkly",
+   "category": "devtools",
+   "description": "Feature management"
+  },
+  {
+   "name": "Split Software",
+   "category": "devtools",
+   "description": "Feature delivery"
+  },
+  {
+   "name": "Optimizely",
+   "category": "devtools",
+   "description": "Experimentation and content"
+  },
+  {
+   "name": "PostHog",
+   "category": "devtools",
+   "description": "Product analytics"
+  },
+  {
+   "name": "Mixpanel",
+   "category": "devtools",
+   "description": "Product analytics"
+  },
+  {
+   "name": "Heap",
+   "category": "devtools",
+   "description": "Digital insights"
+  },
+  {
+   "name": "CircleCI",
+   "category": "devtools",
+   "description": "Continuous integration"
+  },
+  {
+   "name": "Buildkite",
+   "category": "devtools",
+   "description": "CI/CD"
+  },
+  {
+   "name": "JFrog",
+   "category": "devtools",
+   "description": "Software supply chain"
+  },
+  {
+   "name": "Sonar",
+   "category": "devtools",
+   "description": "Code quality"
+  },
+  {
+   "name": "Postman",
+   "category": "devtools",
+   "description": "API platform"
+  },
+  {
+   "name": "Kong",
+   "category": "devtools",
+   "description": "API gateway"
+  },
+  {
+   "name": "Apollo GraphQL",
+   "category": "devtools",
+   "description": "GraphQL platform"
+  },
+  {
+   "name": "Hasura",
+   "category": "devtools",
+   "description": "GraphQL APIs"
+  },
+  {
+   "name": "Twilio SendGrid",
+   "category": "devtools",
+   "description": "Email delivery"
+  },
+  {
+   "name": "Resend",
+   "category": "devtools",
+   "description": "Email for developers"
+  },
+  {
+   "name": "Courier",
+   "category": "devtools",
+   "description": "Notification infrastructure"
+  },
+  {
+   "name": "Pusher",
+   "category": "devtools",
+   "description": "Realtime APIs"
+  },
+  {
+   "name": "Ably",
+   "category": "devtools",
+   "description": "Realtime infrastructure"
+  },
+  {
+   "name": "Algolia",
+   "category": "devtools",
+   "description": "Search API"
+  },
+  {
+   "name": "Typesense",
+   "category": "devtools",
+   "description": "Open-source search"
+  },
+  {
+   "name": "Meilisearch",
+   "category": "devtools",
+   "description": "Search engine"
+  },
+  {
+   "name": "Bitrise",
+   "category": "devtools",
+   "description": "Mobile CI/CD"
+  },
+  {
+   "name": "Chainguard",
+   "category": "devtools",
+   "description": "Secure container images"
+  },
+  {
+   "name": "Teleport",
+   "category": "devtools",
+   "description": "Infrastructure access"
+  },
+  {
+   "name": "Pulumi",
+   "category": "devtools",
+   "description": "Infrastructure as code"
+  },
+  {
+   "name": "Spacelift",
+   "category": "devtools",
+   "description": "Infrastructure orchestration"
+  },
+  {
+   "name": "Earthly",
+   "category": "devtools",
+   "description": "Build automation"
+  },
+  {
+   "name": "Replicated",
+   "category": "devtools",
+   "description": "Enterprise software delivery"
+  },
+  {
+   "name": "Linear",
+   "category": "devtools",
+   "description": "Issue tracking"
+  },
+  {
+   "name": "Height",
+   "category": "devtools",
+   "description": "Project management"
+  },
+  {
+   "name": "Retool",
+   "category": "devtools",
+   "description": "Internal tools"
+  },
+  {
+   "name": "Appsmith",
+   "category": "devtools",
+   "description": "Internal tools"
+  },
+  {
+   "name": "Make",
+   "category": "devtools",
+   "description": "Visual automation"
+  },
+  {
+   "name": "n8n",
+   "category": "devtools",
+   "description": "Workflow automation"
+  },
+  {
+   "name": "Workato",
+   "category": "devtools",
+   "description": "Integration and automation"
+  },
+  {
+   "name": "Tray.io",
+   "category": "devtools",
+   "description": "Integration platform"
+  },
+  {
+   "name": "Mulesoft",
+   "category": "devtools",
+   "description": "Integration platform"
+  },
+  {
+   "name": "OpenAI",
+   "category": "ai",
+   "description": "AI research and products"
+  },
+  {
+   "name": "Anthropic",
+   "category": "ai",
+   "description": "AI safety and research"
+  },
+  {
+   "name": "Hugging Face",
+   "category": "ai",
+   "description": "Open machine learning platform"
+  },
+  {
+   "name": "Scale AI",
+   "category": "ai",
+   "description": "Data for AI"
+  },
+  {
+   "name": "Cohere",
+   "category": "ai",
+   "description": "Enterprise language models"
+  },
+  {
+   "name": "Mistral AI",
+   "category": "ai",
+   "description": "Open-weight language models"
+  },
+  {
+   "name": "Runway",
+   "category": "ai",
+   "description": "Generative video"
+  },
+  {
+   "name": "Stability AI",
+   "category": "ai",
+   "description": "Generative models"
+  },
+  {
+   "name": "Perplexity",
+   "category": "ai",
+   "description": "AI search"
+  },
+  {
+   "name": "Character.AI",
+   "category": "ai",
+   "description": "Conversational AI"
+  },
+  {
+   "name": "Weights & Biases",
+   "category": "ai",
+   "description": "ML experiment tracking"
+  },
+  {
+   "name": "Pinecone",
+   "category": "ai",
+   "description": "Vector database"
+  },
+  {
+   "name": "Weaviate",
+   "category": "ai",
+   "description": "Vector database"
+  },
+  {
+   "name": "Chroma",
+   "category": "ai",
+   "description": "Embedding database"
+  },
+  {
+   "name": "Modal",
+   "category": "ai",
+   "description": "Serverless compute for AI"
+  },
+  {
+   "name": "Replicate",
+   "category": "ai",
+   "description": "Run models in the cloud"
+  },
+  {
+   "name": "Together AI",
+   "category": "ai",
+   "description": "Open model cloud"
+  },
+  {
+   "name": "Anyscale",
+   "category": "ai",
+   "description": "Ray and distributed compute"
+  },
+  {
+   "name": "LangChain",
+   "category": "ai",
+   "description": "LLM application framework"
+  },
+  {
+   "name": "LlamaIndex",
+   "category": "ai",
+   "description": "Data framework for LLMs"
+  },
+  {
+   "name": "Baseten",
+   "category": "ai",
+   "description": "Model deployment"
+  },
+  {
+   "name": "Fireworks AI",
+   "category": "ai",
+   "description": "Inference platform"
+  },
+  {
+   "name": "Groq",
+   "category": "ai",
+   "description": "Inference hardware"
+  },
+  {
+   "name": "Cerebras",
+   "category": "ai",
+   "description": "AI compute"
+  },
+  {
+   "name": "SambaNova Systems",
+   "category": "ai",
+   "description": "AI compute"
+  },
+  {
+   "name": "Glean",
+   "category": "ai",
+   "description": "Enterprise search"
+  },
+  {
+   "name": "Sierra",
+   "category": "ai",
+   "description": "AI agents for customer experience"
+  },
+  {
+   "name": "Harvey",
+   "category": "ai",
+   "description": "AI for legal work"
+  },
+  {
+   "name": "Abridge",
+   "category": "ai",
+   "description": "Clinical documentation"
+  },
+  {
+   "name": "Cresta",
+   "category": "ai",
+   "description": "Contact centre intelligence"
+  },
+  {
+   "name": "Observe.AI",
+   "category": "ai",
+   "description": "Contact centre AI"
+  },
+  {
+   "name": "Synthesia",
+   "category": "ai",
+   "description": "AI video generation"
+  },
+  {
+   "name": "ElevenLabs",
+   "category": "ai",
+   "description": "Voice AI"
+  },
+  {
+   "name": "Descript",
+   "category": "ai",
+   "description": "Audio and video editing"
+  },
+  {
+   "name": "Grammarly",
+   "category": "ai",
+   "description": "Writing assistance"
+  },
+  {
+   "name": "Labelbox",
+   "category": "ai",
+   "description": "Training data platform"
+  },
+  {
+   "name": "Snorkel AI",
+   "category": "ai",
+   "description": "Data-centric AI"
+  },
+  {
+   "name": "CrowdStrike",
+   "category": "security",
+   "description": "Endpoint security"
+  },
+  {
+   "name": "Palo Alto Networks",
+   "category": "security",
+   "description": "Network and cloud security"
+  },
+  {
+   "name": "Zscaler",
+   "category": "security",
+   "description": "Cloud security"
+  },
+  {
+   "name": "Okta",
+   "category": "security",
+   "description": "Identity management"
+  },
+  {
+   "name": "Snyk",
+   "category": "security",
+   "description": "Developer security"
+  },
+  {
+   "name": "Wiz",
+   "category": "security",
+   "description": "Cloud security"
+  },
+  {
+   "name": "Orca Security",
+   "category": "security",
+   "description": "Cloud security"
+  },
+  {
+   "name": "SentinelOne",
+   "category": "security",
+   "description": "Endpoint security"
+  },
+  {
+   "name": "Abnormal Security",
+   "category": "security",
+   "description": "Email security"
+  },
+  {
+   "name": "Arctic Wolf",
+   "category": "security",
+   "description": "Security operations"
+  },
+  {
+   "name": "Vanta",
+   "category": "security",
+   "description": "Compliance automation"
+  },
+  {
+   "name": "Drata",
+   "category": "security",
+   "description": "Compliance automation"
+  },
+  {
+   "name": "Secureframe",
+   "category": "security",
+   "description": "Compliance automation"
+  },
+  {
+   "name": "JumpCloud",
+   "category": "security",
+   "description": "Directory platform"
+  },
+  {
+   "name": "Yubico",
+   "category": "security",
+   "description": "Hardware security keys"
+  },
+  {
+   "name": "Cloudflare Area 1",
+   "category": "security",
+   "description": "Email security"
+  },
+  {
+   "name": "Rapid7",
+   "category": "security",
+   "description": "Vulnerability management"
+  },
+  {
+   "name": "Tenable",
+   "category": "security",
+   "description": "Exposure management"
+  },
+  {
+   "name": "Qualys",
+   "category": "security",
+   "description": "Cloud security and compliance"
+  },
+  {
+   "name": "Proofpoint",
+   "category": "security",
+   "description": "Email and data security"
+  },
+  {
+   "name": "Netskope",
+   "category": "security",
+   "description": "Cloud security"
+  },
+  {
+   "name": "Cybereason",
+   "category": "security",
+   "description": "Endpoint protection"
+  },
+  {
+   "name": "Recorded Future",
+   "category": "security",
+   "description": "Threat intelligence"
+  },
+  {
+   "name": "Material Security",
+   "category": "security",
+   "description": "Email security"
+  },
+  {
+   "name": "Semgrep",
+   "category": "security",
+   "description": "Static analysis"
+  },
+  {
+   "name": "Socket",
+   "category": "security",
+   "description": "Supply chain security"
+  },
+  {
+   "name": "Keeper Security",
+   "category": "security",
+   "description": "Password management"
+  },
+  {
+   "name": "Oscar Health",
+   "category": "healthtech",
+   "description": "Health insurance"
+  },
+  {
+   "name": "Devoted Health",
+   "category": "healthtech",
+   "description": "Medicare Advantage"
+  },
+  {
+   "name": "Ro",
+   "category": "healthtech",
+   "description": "Telehealth"
+  },
+  {
+   "name": "Cedar",
+   "category": "healthtech",
+   "description": "Patient billing"
+  },
+  {
+   "name": "Headway",
+   "category": "healthtech",
+   "description": "Mental health network"
+  },
+  {
+   "name": "Spring Health",
+   "category": "healthtech",
+   "description": "Mental health benefits"
+  },
+  {
+   "name": "Talkspace",
+   "category": "healthtech",
+   "description": "Online therapy"
+  },
+  {
+   "name": "Calm",
+   "category": "healthtech",
+   "description": "Sleep and meditation"
+  },
+  {
+   "name": "Headspace",
+   "category": "healthtech",
+   "description": "Meditation and mental health"
+  },
+  {
+   "name": "Zocdoc",
+   "category": "healthtech",
+   "description": "Appointment booking"
+  },
+  {
+   "name": "Komodo Health",
+   "category": "healthtech",
+   "description": "Healthcare data"
+  },
+  {
+   "name": "Tempus AI",
+   "category": "healthtech",
+   "description": "Precision medicine"
+  },
+  {
+   "name": "Flatiron Health",
+   "category": "healthtech",
+   "description": "Oncology data"
+  },
+  {
+   "name": "Color Health",
+   "category": "healthtech",
+   "description": "Population genomics"
+  },
+  {
+   "name": "23andMe",
+   "category": "healthtech",
+   "description": "Consumer genetics"
+  },
+  {
+   "name": "Guardant Health",
+   "category": "healthtech",
+   "description": "Cancer diagnostics"
+  },
+  {
+   "name": "Carbon Health",
+   "category": "healthtech",
+   "description": "Primary and urgent care"
+  },
+  {
+   "name": "One Medical",
+   "category": "healthtech",
+   "description": "Primary care"
+  },
+  {
+   "name": "Oak Street Health",
+   "category": "healthtech",
+   "description": "Primary care for seniors"
+  },
+  {
+   "name": "DispatchHealth",
+   "category": "healthtech",
+   "description": "In-home care"
+  },
+  {
+   "name": "Alma",
+   "category": "healthtech",
+   "description": "Mental health network"
+  },
+  {
+   "name": "SonderMind",
+   "category": "healthtech",
+   "description": "Behavioural health"
+  },
+  {
+   "name": "Maven Clinic",
+   "category": "healthtech",
+   "description": "Family health"
+  },
+  {
+   "name": "Kindbody",
+   "category": "healthtech",
+   "description": "Fertility and family building"
+  },
+  {
+   "name": "Progyny",
+   "category": "healthtech",
+   "description": "Fertility benefits"
+  },
+  {
+   "name": "Hinge Health",
+   "category": "healthtech",
+   "description": "Musculoskeletal care"
+  },
+  {
+   "name": "Virta Health",
+   "category": "healthtech",
+   "description": "Diabetes reversal"
+  },
+  {
+   "name": "Found",
+   "category": "healthtech",
+   "description": "Weight care"
+  },
+  {
+   "name": "Truepill",
+   "category": "healthtech",
+   "description": "Pharmacy infrastructure"
+  },
+  {
+   "name": "Alto Pharmacy",
+   "category": "healthtech",
+   "description": "Digital pharmacy"
+  },
+  {
+   "name": "Capsule",
+   "category": "healthtech",
+   "description": "Digital pharmacy"
+  },
+  {
+   "name": "Medely",
+   "category": "healthtech",
+   "description": "Healthcare staffing"
+  },
+  {
+   "name": "Vivian Health",
+   "category": "healthtech",
+   "description": "Healthcare hiring"
+  },
+  {
+   "name": "Athenahealth",
+   "category": "healthtech",
+   "description": "Practice management"
+  },
+  {
+   "name": "Veeva Systems",
+   "category": "healthtech",
+   "description": "Life sciences cloud"
+  },
+  {
+   "name": "Benchling",
+   "category": "healthtech",
+   "description": "Life sciences R&D"
+  },
+  {
+   "name": "Ginkgo Bioworks",
+   "category": "healthtech",
+   "description": "Synthetic biology"
+  },
+  {
+   "name": "Recursion",
+   "category": "healthtech",
+   "description": "AI drug discovery"
+  },
+  {
+   "name": "Insitro",
+   "category": "healthtech",
+   "description": "Machine learning drug discovery"
+  },
+  {
+   "name": "Rippling",
+   "category": "hr-tech",
+   "description": "HR, IT and finance platform"
+  },
+  {
+   "name": "Gusto",
+   "category": "hr-tech",
+   "description": "Payroll and benefits"
+  },
+  {
+   "name": "Justworks",
+   "category": "hr-tech",
+   "description": "PEO and payroll"
+  },
+  {
+   "name": "TriNet",
+   "category": "hr-tech",
+   "description": "HR services"
+  },
+  {
+   "name": "Remote",
+   "category": "hr-tech",
+   "description": "Global employment"
+  },
+  {
+   "name": "Lattice",
+   "category": "hr-tech",
+   "description": "Performance and engagement"
+  },
+  {
+   "name": "Culture Amp",
+   "category": "hr-tech",
+   "description": "Employee experience"
+  },
+  {
+   "name": "15Five",
+   "category": "hr-tech",
+   "description": "Performance management"
+  },
+  {
+   "name": "Leapsome",
+   "category": "hr-tech",
+   "description": "People enablement"
+  },
+  {
+   "name": "Greenhouse Software",
+   "category": "hr-tech",
+   "description": "Recruiting software"
+  },
+  {
+   "name": "Lever",
+   "category": "hr-tech",
+   "description": "Recruiting software"
+  },
+  {
+   "name": "SmartRecruiters",
+   "category": "hr-tech",
+   "description": "Talent acquisition"
+  },
+  {
+   "name": "Workable",
+   "category": "hr-tech",
+   "description": "Recruiting software"
+  },
+  {
+   "name": "Gem",
+   "category": "hr-tech",
+   "description": "Recruiting CRM"
+  },
+  {
+   "name": "Guild",
+   "category": "hr-tech",
+   "description": "Education benefits"
+  },
+  {
+   "name": "Handshake",
+   "category": "hr-tech",
+   "description": "Early career hiring"
+  },
+  {
+   "name": "Karat",
+   "category": "hr-tech",
+   "description": "Technical interviewing"
+  },
+  {
+   "name": "HackerRank",
+   "category": "hr-tech",
+   "description": "Developer skills"
+  },
+  {
+   "name": "CoderPad",
+   "category": "hr-tech",
+   "description": "Technical interviews"
+  },
+  {
+   "name": "Checkr",
+   "category": "hr-tech",
+   "description": "Background checks"
+  },
+  {
+   "name": "SeekOut",
+   "category": "hr-tech",
+   "description": "Talent search"
+  },
+  {
+   "name": "Findem",
+   "category": "hr-tech",
+   "description": "Talent data"
+  },
+  {
+   "name": "Eightfold AI",
+   "category": "hr-tech",
+   "description": "Talent intelligence"
+  },
+  {
+   "name": "Sana",
+   "category": "hr-tech",
+   "description": "Learning platform"
+  },
+  {
+   "name": "360Learning",
+   "category": "hr-tech",
+   "description": "Collaborative learning"
+  },
+  {
+   "name": "HubSpot",
+   "category": "gtm-tools",
+   "description": "CRM and marketing"
+  },
+  {
+   "name": "Attentive",
+   "category": "gtm-tools",
+   "description": "SMS marketing"
+  },
+  {
+   "name": "Intercom",
+   "category": "gtm-tools",
+   "description": "Customer communications"
+  },
+  {
+   "name": "Zendesk",
+   "category": "gtm-tools",
+   "description": "Customer service"
+  },
+  {
+   "name": "Freshworks",
+   "category": "gtm-tools",
+   "description": "Business software"
+  },
+  {
+   "name": "Front",
+   "category": "gtm-tools",
+   "description": "Customer operations"
+  },
+  {
+   "name": "Gong",
+   "category": "gtm-tools",
+   "description": "Revenue intelligence"
+  },
+  {
+   "name": "Outreach",
+   "category": "gtm-tools",
+   "description": "Sales execution"
+  },
+  {
+   "name": "ZoomInfo",
+   "category": "gtm-tools",
+   "description": "B2B data"
+  },
+  {
+   "name": "Clearbit",
+   "category": "gtm-tools",
+   "description": "Company data"
+  },
+  {
+   "name": "Drift",
+   "category": "gtm-tools",
+   "description": "Conversational marketing"
+  },
+  {
+   "name": "Mutiny",
+   "category": "gtm-tools",
+   "description": "Website personalisation"
+  },
+  {
+   "name": "Pocus",
+   "category": "gtm-tools",
+   "description": "Product-led sales"
+  },
+  {
+   "name": "Catalyst Software",
+   "category": "gtm-tools",
+   "description": "Customer success"
+  },
+  {
+   "name": "Gainsight",
+   "category": "gtm-tools",
+   "description": "Customer success"
+  },
+  {
+   "name": "Totango",
+   "category": "gtm-tools",
+   "description": "Customer success"
+  },
+  {
+   "name": "Pendo",
+   "category": "gtm-tools",
+   "description": "Product experience"
+  },
+  {
+   "name": "Userpilot",
+   "category": "gtm-tools",
+   "description": "Product growth"
+  },
+  {
+   "name": "Metadata.io",
+   "category": "gtm-tools",
+   "description": "Marketing automation"
+  },
+  {
+   "name": "Ortto",
+   "category": "gtm-tools",
+   "description": "Marketing automation"
+  },
+  {
+   "name": "Notion",
+   "category": "saas",
+   "description": "Workspace and docs"
+  },
+  {
+   "name": "Airtable",
+   "category": "saas",
+   "description": "Databases for teams"
+  },
+  {
+   "name": "Asana",
+   "category": "saas",
+   "description": "Work management"
+  },
+  {
+   "name": "monday.com",
+   "category": "saas",
+   "description": "Work operating system"
+  },
+  {
+   "name": "ClickUp",
+   "category": "saas",
+   "description": "Productivity platform"
+  },
+  {
+   "name": "Coda",
+   "category": "saas",
+   "description": "Docs and apps"
+  },
+  {
+   "name": "Miro",
+   "category": "saas",
+   "description": "Visual collaboration"
+  },
+  {
+   "name": "Figma",
+   "category": "saas",
+   "description": "Interface design"
+  },
+  {
+   "name": "Canva",
+   "category": "saas",
+   "description": "Visual design"
+  },
+  {
+   "name": "Framer",
+   "category": "saas",
+   "description": "Website design"
+  },
+  {
+   "name": "Webflow",
+   "category": "saas",
+   "description": "Website builder"
+  },
+  {
+   "name": "Squarespace",
+   "category": "saas",
+   "description": "Website building"
+  },
+  {
+   "name": "Wix",
+   "category": "saas",
+   "description": "Website building"
+  },
+  {
+   "name": "Contentful",
+   "category": "saas",
+   "description": "Content platform"
+  },
+  {
+   "name": "Sanity",
+   "category": "saas",
+   "description": "Structured content"
+  },
+  {
+   "name": "Loom",
+   "category": "saas",
+   "description": "Video messaging"
+  },
+  {
+   "name": "Superhuman",
+   "category": "saas",
+   "description": "Email client"
+  },
+  {
+   "name": "Grain",
+   "category": "saas",
+   "description": "Meeting intelligence"
+  },
+  {
+   "name": "Fathom",
+   "category": "saas",
+   "description": "Meeting notes"
+  },
+  {
+   "name": "Guru",
+   "category": "saas",
+   "description": "Knowledge management"
+  },
+  {
+   "name": "Confluence",
+   "category": "saas",
+   "description": "Team documentation"
+  },
+  {
+   "name": "Smartsheet",
+   "category": "saas",
+   "description": "Work management"
+  },
+  {
+   "name": "Wrike",
+   "category": "saas",
+   "description": "Project management"
+  },
+  {
+   "name": "Bill.com",
+   "category": "saas",
+   "description": "Financial operations"
+  },
+  {
+   "name": "Expensify",
+   "category": "saas",
+   "description": "Expense management"
+  },
+  {
+   "name": "Navan",
+   "category": "saas",
+   "description": "Travel and expense"
+  },
+  {
+   "name": "Airbase",
+   "category": "saas",
+   "description": "Spend management"
+  },
+  {
+   "name": "Vena Solutions",
+   "category": "saas",
+   "description": "Financial planning"
+  },
+  {
+   "name": "Pigment",
+   "category": "saas",
+   "description": "Business planning"
+  },
+  {
+   "name": "Mosaic",
+   "category": "saas",
+   "description": "Strategic finance"
+  },
+  {
+   "name": "Runway Financial",
+   "category": "saas",
+   "description": "Financial modelling"
+  },
+  {
+   "name": "Carta",
+   "category": "saas",
+   "description": "Equity management"
+  },
+  {
+   "name": "Pulley",
+   "category": "saas",
+   "description": "Cap table management"
+  },
+  {
+   "name": "Ironclad",
+   "category": "saas",
+   "description": "Contract management"
+  },
+  {
+   "name": "Icertis",
+   "category": "saas",
+   "description": "Contract intelligence"
+  },
+  {
+   "name": "DocuSign CLM",
+   "category": "saas",
+   "description": "Agreement workflow"
+  },
+  {
+   "name": "Avalara",
+   "category": "saas",
+   "description": "Tax compliance"
+  },
+  {
+   "name": "Stripe Tax",
+   "category": "saas",
+   "description": "Tax automation"
+  },
+  {
+   "name": "Anrok",
+   "category": "saas",
+   "description": "Sales tax for SaaS"
+  },
+  {
+   "name": "Duolingo",
+   "category": "consumer",
+   "description": "Language learning"
+  },
+  {
+   "name": "Babbel",
+   "category": "consumer",
+   "description": "Language learning"
+  },
+  {
+   "name": "Udemy",
+   "category": "consumer",
+   "description": "Online courses"
+  },
+  {
+   "name": "Skillshare",
+   "category": "consumer",
+   "description": "Creative classes"
+  },
+  {
+   "name": "MasterClass",
+   "category": "consumer",
+   "description": "Online classes"
+  },
+  {
+   "name": "Khan Academy",
+   "category": "consumer",
+   "description": "Free education nonprofit"
+  },
+  {
+   "name": "Chegg",
+   "category": "consumer",
+   "description": "Student services"
+  },
+  {
+   "name": "Quizlet",
+   "category": "consumer",
+   "description": "Study tools"
+  },
+  {
+   "name": "Newsela",
+   "category": "consumer",
+   "description": "Classroom content"
+  },
+  {
+   "name": "Nerdy",
+   "category": "consumer",
+   "description": "Live online learning"
+  },
+  {
+   "name": "Peloton",
+   "category": "consumer",
+   "description": "Connected fitness"
+  },
+  {
+   "name": "Whoop",
+   "category": "consumer",
+   "description": "Fitness wearables"
+  },
+  {
+   "name": "Oura",
+   "category": "consumer",
+   "description": "Sleep and health ring"
+  },
+  {
+   "name": "Strava",
+   "category": "consumer",
+   "description": "Fitness social network"
+  },
+  {
+   "name": "ClassPass",
+   "category": "consumer",
+   "description": "Fitness marketplace"
+  },
+  {
+   "name": "Warby Parker",
+   "category": "consumer",
+   "description": "Eyewear"
+  },
+  {
+   "name": "Glossier",
+   "category": "consumer",
+   "description": "Beauty"
+  },
+  {
+   "name": "Away",
+   "category": "consumer",
+   "description": "Travel goods"
+  },
+  {
+   "name": "Allbirds",
+   "category": "consumer",
+   "description": "Footwear"
+  },
+  {
+   "name": "Rothy's",
+   "category": "consumer",
+   "description": "Footwear"
+  },
+  {
+   "name": "Bombas",
+   "category": "consumer",
+   "description": "Apparel"
+  },
+  {
+   "name": "Chewy",
+   "category": "consumer",
+   "description": "Pet retail"
+  },
+  {
+   "name": "Wayfair",
+   "category": "consumer",
+   "description": "Home goods"
+  },
+  {
+   "name": "Etsy",
+   "category": "consumer",
+   "description": "Handmade marketplace"
+  },
+  {
+   "name": "eBay",
+   "category": "consumer",
+   "description": "Marketplace"
+  },
+  {
+   "name": "Poshmark",
+   "category": "consumer",
+   "description": "Resale marketplace"
+  },
+  {
+   "name": "ThredUp",
+   "category": "consumer",
+   "description": "Resale"
+  },
+  {
+   "name": "StockX",
+   "category": "consumer",
+   "description": "Resale marketplace"
+  },
+  {
+   "name": "GOAT",
+   "category": "consumer",
+   "description": "Sneaker marketplace"
+  },
+  {
+   "name": "Faire",
+   "category": "consumer",
+   "description": "Wholesale marketplace"
+  },
+  {
+   "name": "Whatnot",
+   "category": "consumer",
+   "description": "Live shopping"
+  },
+  {
+   "name": "Gopuff",
+   "category": "consumer",
+   "description": "Instant delivery"
+  },
+  {
+   "name": "Sweetgreen",
+   "category": "consumer",
+   "description": "Restaurants"
+  },
+  {
+   "name": "Chipotle",
+   "category": "consumer",
+   "description": "Restaurants"
+  },
+  {
+   "name": "Blue Apron",
+   "category": "consumer",
+   "description": "Meal kits"
+  },
+  {
+   "name": "HelloFresh",
+   "category": "consumer",
+   "description": "Meal kits"
+  },
+  {
+   "name": "Misfits Market",
+   "category": "consumer",
+   "description": "Grocery delivery"
+  },
+  {
+   "name": "Substack",
+   "category": "media",
+   "description": "Publishing platform"
+  },
+  {
+   "name": "Medium",
+   "category": "media",
+   "description": "Publishing platform"
+  },
+  {
+   "name": "Patreon",
+   "category": "media",
+   "description": "Creator memberships"
+  },
+  {
+   "name": "Vimeo",
+   "category": "media",
+   "description": "Video platform"
+  },
+  {
+   "name": "Twitch",
+   "category": "media",
+   "description": "Live streaming"
+  },
+  {
+   "name": "SoundCloud",
+   "category": "media",
+   "description": "Audio platform"
+  },
+  {
+   "name": "Bandcamp",
+   "category": "media",
+   "description": "Music marketplace"
+  },
+  {
+   "name": "The New York Times",
+   "category": "media",
+   "description": "News"
+  },
+  {
+   "name": "The Washington Post",
+   "category": "media",
+   "description": "News"
+  },
+  {
+   "name": "Vox Media",
+   "category": "media",
+   "description": "Digital media"
+  },
+  {
+   "name": "BuzzFeed",
+   "category": "media",
+   "description": "Digital media"
+  },
+  {
+   "name": "Axios",
+   "category": "media",
+   "description": "News"
+  },
+  {
+   "name": "The Atlantic",
+   "category": "media",
+   "description": "Magazine and news"
+  },
+  {
+   "name": "Bloomberg",
+   "category": "media",
+   "description": "Financial news and data"
+  },
+  {
+   "name": "Dow Jones",
+   "category": "media",
+   "description": "Business news"
+  },
+  {
+   "name": "Cond\u00e9 Nast",
+   "category": "media",
+   "description": "Magazines"
+  },
+  {
+   "name": "Hearst",
+   "category": "media",
+   "description": "Media"
+  },
+  {
+   "name": "NPR",
+   "category": "media",
+   "description": "Public radio"
+  },
+  {
+   "name": "PBS",
+   "category": "media",
+   "description": "Public television"
+  },
+  {
+   "name": "Roku",
+   "category": "media",
+   "description": "Streaming platform"
+  },
+  {
+   "name": "Sonos",
+   "category": "media",
+   "description": "Audio hardware"
+  },
+  {
+   "name": "Warner Bros. Discovery",
+   "category": "media",
+   "description": "Media and entertainment"
+  },
+  {
+   "name": "Paramount",
+   "category": "media",
+   "description": "Media"
+  },
+  {
+   "name": "SiriusXM",
+   "category": "media",
+   "description": "Audio entertainment"
+  },
+  {
+   "name": "Flexport",
+   "category": "logistics-mobility",
+   "description": "Freight forwarding"
+  },
+  {
+   "name": "project44",
+   "category": "logistics-mobility",
+   "description": "Supply chain visibility"
+  },
+  {
+   "name": "Samsara",
+   "category": "logistics-mobility",
+   "description": "Connected operations"
+  },
+  {
+   "name": "Motive",
+   "category": "logistics-mobility",
+   "description": "Fleet management"
+  },
+  {
+   "name": "Nuro",
+   "category": "logistics-mobility",
+   "description": "Autonomous delivery"
+  },
+  {
+   "name": "Zipline",
+   "category": "logistics-mobility",
+   "description": "Drone delivery"
+  },
+  {
+   "name": "Rivian",
+   "category": "logistics-mobility",
+   "description": "Electric vehicles"
+  },
+  {
+   "name": "Lucid Motors",
+   "category": "logistics-mobility",
+   "description": "Electric vehicles"
+  },
+  {
+   "name": "Waymo",
+   "category": "logistics-mobility",
+   "description": "Autonomous driving"
+  },
+  {
+   "name": "Aurora",
+   "category": "logistics-mobility",
+   "description": "Autonomous trucking"
+  },
+  {
+   "name": "Turo",
+   "category": "logistics-mobility",
+   "description": "Car sharing"
+  },
+  {
+   "name": "Getaround",
+   "category": "logistics-mobility",
+   "description": "Car sharing"
+  },
+  {
+   "name": "Lime",
+   "category": "logistics-mobility",
+   "description": "Micromobility"
+  },
+  {
+   "name": "Bird",
+   "category": "logistics-mobility",
+   "description": "Micromobility"
+  },
+  {
+   "name": "Booking.com",
+   "category": "logistics-mobility",
+   "description": "Travel"
+  },
+  {
+   "name": "Expedia Group",
+   "category": "logistics-mobility",
+   "description": "Travel"
+  },
+  {
+   "name": "Tripadvisor",
+   "category": "logistics-mobility",
+   "description": "Travel reviews"
+  },
+  {
+   "name": "Hopper",
+   "category": "logistics-mobility",
+   "description": "Travel booking"
+  },
+  {
+   "name": "KAYAK",
+   "category": "logistics-mobility",
+   "description": "Travel search"
+  },
+  {
+   "name": "GetYourGuide",
+   "category": "logistics-mobility",
+   "description": "Travel experiences"
+  },
+  {
+   "name": "Sonder",
+   "category": "logistics-mobility",
+   "description": "Hospitality"
+  },
+  {
+   "name": "Vacasa",
+   "category": "logistics-mobility",
+   "description": "Vacation rentals"
+  },
+  {
+   "name": "Convoy",
+   "category": "logistics-mobility",
+   "description": "Freight"
+  },
+  {
+   "name": "Shippo",
+   "category": "logistics-mobility",
+   "description": "Shipping APIs"
+  },
+  {
+   "name": "ShipBob",
+   "category": "logistics-mobility",
+   "description": "Fulfilment"
+  },
+  {
+   "name": "Stord",
+   "category": "logistics-mobility",
+   "description": "Supply chain"
+  },
+  {
+   "name": "Ryder",
+   "category": "logistics-mobility",
+   "description": "Logistics"
+  },
+  {
+   "name": "Sunrun",
+   "category": "climate-energy",
+   "description": "Residential solar"
+  },
+  {
+   "name": "Enphase Energy",
+   "category": "climate-energy",
+   "description": "Solar hardware"
+  },
+  {
+   "name": "SolarEdge",
+   "category": "climate-energy",
+   "description": "Solar technology"
+  },
+  {
+   "name": "Arcadia",
+   "category": "climate-energy",
+   "description": "Energy data"
+  },
+  {
+   "name": "Watershed",
+   "category": "climate-energy",
+   "description": "Carbon management"
+  },
+  {
+   "name": "Persefoni",
+   "category": "climate-energy",
+   "description": "Carbon accounting"
+  },
+  {
+   "name": "Pachama",
+   "category": "climate-energy",
+   "description": "Forest carbon"
+  },
+  {
+   "name": "Climeworks",
+   "category": "climate-energy",
+   "description": "Direct air capture"
+  },
+  {
+   "name": "Form Energy",
+   "category": "climate-energy",
+   "description": "Long-duration storage"
+  },
+  {
+   "name": "Redwood Materials",
+   "category": "climate-energy",
+   "description": "Battery recycling"
+  },
+  {
+   "name": "Commonwealth Fusion Systems",
+   "category": "climate-energy",
+   "description": "Fusion energy"
+  },
+  {
+   "name": "Helion Energy",
+   "category": "climate-energy",
+   "description": "Fusion energy"
+  },
+  {
+   "name": "X-energy",
+   "category": "climate-energy",
+   "description": "Advanced nuclear"
+  },
+  {
+   "name": "Crusoe Energy",
+   "category": "climate-energy",
+   "description": "Energy and computing"
+  },
+  {
+   "name": "Octopus Energy",
+   "category": "climate-energy",
+   "description": "Energy retail and technology"
+  },
+  {
+   "name": "Aurora Solar",
+   "category": "climate-energy",
+   "description": "Solar software"
+  },
+  {
+   "name": "Palmetto",
+   "category": "climate-energy",
+   "description": "Clean energy platform"
+  },
+  {
+   "name": "EnergyHub",
+   "category": "climate-energy",
+   "description": "Grid services"
+  },
+  {
+   "name": "Uplight",
+   "category": "climate-energy",
+   "description": "Utility technology"
+  },
+  {
+   "name": "AMP Robotics",
+   "category": "climate-energy",
+   "description": "Recycling automation"
+  },
+  {
+   "name": "Internet Archive",
+   "category": "nonprofit-civic",
+   "description": "Digital library"
+  },
+  {
+   "name": "Electronic Frontier Foundation",
+   "category": "nonprofit-civic",
+   "description": "Digital rights"
+  },
+  {
+   "name": "Code for America",
+   "category": "nonprofit-civic",
+   "description": "Civic technology"
+  },
+  {
+   "name": "Nava PBC",
+   "category": "nonprofit-civic",
+   "description": "Government digital services"
+  },
+  {
+   "name": "Ad Hoc",
+   "category": "nonprofit-civic",
+   "description": "Government digital services"
+  },
+  {
+   "name": "DonorsChoose",
+   "category": "nonprofit-civic",
+   "description": "Classroom funding"
+  },
+  {
+   "name": "charity: water",
+   "category": "nonprofit-civic",
+   "description": "Clean water"
+  },
+  {
+   "name": "GiveDirectly",
+   "category": "nonprofit-civic",
+   "description": "Direct cash transfers"
+  },
+  {
+   "name": "Crisis Text Line",
+   "category": "nonprofit-civic",
+   "description": "Crisis support"
+  },
+  {
+   "name": "Propel",
+   "category": "nonprofit-civic",
+   "description": "Benefits technology"
+  },
+  {
+   "name": "Upsolve",
+   "category": "nonprofit-civic",
+   "description": "Debt relief nonprofit"
+  },
+  {
+   "name": "Signal",
+   "category": "nonprofit-civic",
+   "description": "Private messaging nonprofit"
+  },
+  {
+   "name": "Linux Foundation",
+   "category": "nonprofit-civic",
+   "description": "Open source stewardship"
+  },
+  {
+   "name": "Girls Who Code",
+   "category": "nonprofit-civic",
+   "description": "Computer science education"
+  },
+  {
+   "name": "Kiva",
+   "category": "nonprofit-civic",
+   "description": "Microlending"
+  },
+  {
+   "name": "Room to Read",
+   "category": "nonprofit-civic",
+   "description": "Literacy and education"
+  },
+  {
+   "name": "Procore",
+   "category": "industry",
+   "description": "Construction management"
+  },
+  {
+   "name": "Autodesk",
+   "category": "industry",
+   "description": "Design and make software"
+  },
+  {
+   "name": "Bentley Systems",
+   "category": "industry",
+   "description": "Infrastructure engineering"
+  },
+  {
+   "name": "Trimble",
+   "category": "industry",
+   "description": "Industrial technology"
+  },
+  {
+   "name": "Toast",
+   "category": "industry",
+   "description": "Restaurant technology"
+  },
+  {
+   "name": "Olo",
+   "category": "industry",
+   "description": "Restaurant commerce"
+  },
+  {
+   "name": "ServiceTitan",
+   "category": "industry",
+   "description": "Trades software"
+  },
+  {
+   "name": "Housecall Pro",
+   "category": "industry",
+   "description": "Home services software"
+  },
+  {
+   "name": "EquipmentShare",
+   "category": "industry",
+   "description": "Construction technology"
+  },
+  {
+   "name": "Fictiv",
+   "category": "industry",
+   "description": "Manufacturing platform"
+  },
+  {
+   "name": "Xometry",
+   "category": "industry",
+   "description": "Manufacturing marketplace"
+  },
+  {
+   "name": "Markforged",
+   "category": "industry",
+   "description": "Additive manufacturing"
+  },
+  {
+   "name": "Formlabs",
+   "category": "industry",
+   "description": "3D printing"
+  },
+  {
+   "name": "Desktop Metal",
+   "category": "industry",
+   "description": "Additive manufacturing"
+  },
+  {
+   "name": "Anduril Industries",
+   "category": "industry",
+   "description": "Defence technology"
+  },
+  {
+   "name": "Shield AI",
+   "category": "industry",
+   "description": "Autonomous defence"
+  },
+  {
+   "name": "Applied Intuition",
+   "category": "industry",
+   "description": "Vehicle software"
+  },
+  {
+   "name": "SpaceX",
+   "category": "industry",
+   "description": "Launch and satellites"
+  },
+  {
+   "name": "Rocket Lab",
+   "category": "industry",
+   "description": "Launch services"
+  },
+  {
+   "name": "Planet Labs",
+   "category": "industry",
+   "description": "Earth imaging"
+  },
+  {
+   "name": "Relativity Space",
+   "category": "industry",
+   "description": "Rocket manufacturing"
+  },
+  {
+   "name": "Astranis",
+   "category": "industry",
+   "description": "Satellites"
+  },
+  {
+   "name": "Boston Dynamics",
+   "category": "industry",
+   "description": "Robotics"
+  },
+  {
+   "name": "Zebra Technologies",
+   "category": "industry",
+   "description": "Enterprise devices"
+  },
+  {
+   "name": "Cognex",
+   "category": "industry",
+   "description": "Machine vision"
+  },
+  {
+   "name": "Path Robotics",
+   "category": "industry",
+   "description": "Welding robotics"
+  },
+  {
+   "name": "Zillow",
+   "category": "real-estate-legal",
+   "description": "Real estate marketplace"
+  },
+  {
+   "name": "Redfin",
+   "category": "real-estate-legal",
+   "description": "Real estate brokerage"
+  },
+  {
+   "name": "Compass",
+   "category": "real-estate-legal",
+   "description": "Real estate brokerage"
+  },
+  {
+   "name": "Opendoor",
+   "category": "real-estate-legal",
+   "description": "Home buying and selling"
+  },
+  {
+   "name": "CoStar Group",
+   "category": "real-estate-legal",
+   "description": "Commercial real estate data"
+  },
+  {
+   "name": "VTS",
+   "category": "real-estate-legal",
+   "description": "Commercial real estate"
+  },
+  {
+   "name": "Latch",
+   "category": "real-estate-legal",
+   "description": "Building technology"
+  },
+  {
+   "name": "SmartRent",
+   "category": "real-estate-legal",
+   "description": "Smart home for rentals"
+  },
+  {
+   "name": "Divvy Homes",
+   "category": "real-estate-legal",
+   "description": "Rent to own"
+  },
+  {
+   "name": "Roofstock",
+   "category": "real-estate-legal",
+   "description": "Rental investing"
+  },
+  {
+   "name": "LegalZoom",
+   "category": "real-estate-legal",
+   "description": "Legal services"
+  },
+  {
+   "name": "Clio",
+   "category": "real-estate-legal",
+   "description": "Legal practice management"
+  },
+  {
+   "name": "Everlaw",
+   "category": "real-estate-legal",
+   "description": "Litigation software"
+  },
+  {
+   "name": "Relativity",
+   "category": "real-estate-legal",
+   "description": "eDiscovery"
+  },
+  {
+   "name": "Rocket Lawyer",
+   "category": "real-estate-legal",
+   "description": "Legal services"
+  }
+ ]
+}

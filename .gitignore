@@ -1,0 +1,20 @@
+node_modules/
+.env
+
+# NOTE: `data/` was ignored here, inherited from v1 where it held runtime state
+# (seen.json, matches.json). This version keeps no local state — the sheet is
+# the state — and data/directory.json is shipped content the code reads at
+# runtime. Ignoring the directory silently kept it out of four commits while
+# the tests passed locally, because the file was on one machine and not in the
+# repository. Don't re-add it.
+
+# Raw probe output from the prospect workflow. Maintenance scratch: it lives on
+# the `catalogue` branch, where that workflow runs, and only the reviewed result
+# — data/directory.json and data/rejected.json — is merged back to main. Users
+# copy this repository as a template and have no use for 180K of it.
+data/prospects/
+
+# Scratch bundler output. The shipped file is dist/Code.gs, which is committed:
+# it is the artefact people paste into a spreadsheet, so it has to be reachable
+# without a checkout and a build.
+build/

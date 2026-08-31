@@ -1,0 +1,51 @@
+{
+  "name": "Software Engineering",
+  "description": "Individual-contributor software engineering roles — backend, frontend, platform, infrastructure and reliability.",
+  "notes": [
+    "Entries wrapped in slashes are regexes; plain entries are phrases matched on whole words.",
+    "Regexes are used only where one rule needs to cover several spellings.",
+    "Nothing here is required — delete any row that doesn't fit how you search."
+  ],
+
+  "title": [
+    "/\\bsoftware\\s+(engineer|developer)/",
+    "/\\b(back|front)[\\s-]?end\\s+(engineer|developer)/",
+    "/\\bfull[\\s-]?stack\\s+(engineer|developer)/",
+    "/\\b(staff|principal|senior|lead)\\s+(software\\s+)?engineer/",
+    "/\\bplatform\\s+engineer/",
+    "/\\binfrastructure\\s+engineer/",
+    "/\\bsite\\s+reliability\\s+engineer|\\bSRE\\b/",
+    "/\\bdevops\\s+engineer/",
+    "/\\bsystems\\s+engineer/",
+    "/\\bdistributed\\s+systems\\s+engineer/",
+    "/\\bsecurity\\s+engineer/",
+    "/\\b(ios|android|mobile)\\s+(engineer|developer)/",
+    "/\\bdeveloper\\s+experience\\b/"
+  ],
+
+  "body": [
+    "/\\b(kubernetes|k8s|terraform|docker)\\b/",
+    "/\\b(golang|rust|typescript|python|elixir|scala)\\b/",
+    "/\\b(postgres|postgresql|kafka|redis|cassandra)\\b/",
+    "/\\b(aws|gcp|azure)\\b/",
+    "/\\bdistributed\\s+systems\\b/"
+  ],
+
+  "bodyRequiresTitleHint": [
+    "/\\b(engineer|developer|architect|sre|infrastructure|platform|systems)\\b/"
+  ],
+
+  "exclude": [
+    "intern",
+    "internship",
+    "contractor",
+    "part-time",
+    "/\\b(sales|solutions|support|field)\\s+engineer\\b/",
+    "/\\bengineering\\s+manager\\b/"
+  ],
+
+  "location": {
+    "mode": "remote-only",
+    "allowlist": []
+  }
+}

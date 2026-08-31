@@ -1,0 +1,3633 @@
+{
+ "name": "Remote-first companies",
+ "description": "Companies that hire remotely and post on a board this can watch. Set Add to TRUE on any row to start watching it.",
+ "updated": "2026-08-29",
+ "entries": [
+  {
+   "name": "Abridge",
+   "description": "Clinical documentation",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "abridge"
+  },
+  {
+   "name": "Anthropic",
+   "description": "AI safety and research",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "anthropic"
+  },
+  {
+   "name": "Anyscale",
+   "description": "Ray and distributed compute",
+   "category": "ai",
+   "ats": "lever",
+   "slug": "anyscale"
+  },
+  {
+   "name": "Baseten",
+   "description": "Model deployment",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "baseten"
+  },
+  {
+   "name": "Cerebras",
+   "description": "AI compute",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "cerebras"
+  },
+  {
+   "name": "Character.AI",
+   "description": "Conversational AI",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "character"
+  },
+  {
+   "name": "Cohere",
+   "description": "Enterprise language models",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "cohere"
+  },
+  {
+   "name": "Cresta",
+   "description": "Contact centre intelligence",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "cresta"
+  },
+  {
+   "name": "Descript",
+   "description": "Audio and video editing",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "descript"
+  },
+  {
+   "name": "ElevenLabs",
+   "description": "Voice AI",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "elevenlabs"
+  },
+  {
+   "name": "Fireworks AI",
+   "description": "Inference platform",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "fireworks"
+  },
+  {
+   "name": "Glean",
+   "description": "Enterprise search",
+   "category": "ai",
+   "ats": "smartrecruiters",
+   "slug": "glean"
+  },
+  {
+   "name": "Harvey",
+   "description": "AI for legal work",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "harvey"
+  },
+  {
+   "name": "Hugging Face",
+   "description": "Open machine learning platform",
+   "category": "ai",
+   "ats": "workable",
+   "slug": "huggingface"
+  },
+  {
+   "name": "Invisible Technologies",
+   "description": "AI training/ops, work-from-anywhere, fast growth",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "invisibletech"
+  },
+  {
+   "name": "Labelbox",
+   "description": "Training data platform",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "labelbox"
+  },
+  {
+   "name": "LangChain",
+   "description": "LLM application framework",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "langchain"
+  },
+  {
+   "name": "LlamaIndex",
+   "description": "Data framework for LLMs",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "llamaindex"
+  },
+  {
+   "name": "Modal",
+   "description": "Serverless compute for AI",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "modal"
+  },
+  {
+   "name": "Observe.AI",
+   "description": "Contact centre AI",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "observeai"
+  },
+  {
+   "name": "OpenAI",
+   "description": "AI research and products",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "openai"
+  },
+  {
+   "name": "Perplexity",
+   "description": "AI search",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "perplexity"
+  },
+  {
+   "name": "Pinecone",
+   "description": "Vector database",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "pinecone"
+  },
+  {
+   "name": "SambaNova Systems",
+   "description": "AI compute",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "sambanovasystems"
+  },
+  {
+   "name": "Scale AI",
+   "description": "Data for AI",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "scaleai"
+  },
+  {
+   "name": "Sierra",
+   "description": "AI agents for customer experience",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "sierra"
+  },
+  {
+   "name": "Snorkel AI",
+   "description": "Data-centric AI",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "snorkelai"
+  },
+  {
+   "name": "Stability AI",
+   "description": "Generative models",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "stabilityai"
+  },
+  {
+   "name": "Synthesia",
+   "description": "AI video generation",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "synthesia"
+  },
+  {
+   "name": "Together AI",
+   "description": "Open model cloud",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "togetherai"
+  },
+  {
+   "name": "Turing",
+   "description": "Remote engineering marketplace, AI data services",
+   "category": "ai",
+   "ats": "greenhouse",
+   "slug": "turing"
+  },
+  {
+   "name": "Weaviate",
+   "description": "Vector database",
+   "category": "ai",
+   "ats": "ashby",
+   "slug": "weaviate"
+  },
+  {
+   "name": "Adyen",
+   "description": "Payments",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "adyen"
+  },
+  {
+   "name": "Affirm",
+   "description": "Buy now, pay later",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "affirm"
+  },
+  {
+   "name": "Airbnb",
+   "description": "Home rentals",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "airbnb"
+  },
+  {
+   "name": "Betterment",
+   "description": "Automated investing",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "betterment"
+  },
+  {
+   "name": "Block",
+   "description": "Payments and financial tools",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "block"
+  },
+  {
+   "name": "Chime",
+   "description": "Consumer banking",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "chime"
+  },
+  {
+   "name": "Discord",
+   "description": "Voice and text chat",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "discord"
+  },
+  {
+   "name": "Dropbox",
+   "description": "File sync and collaboration",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "dropbox"
+  },
+  {
+   "name": "Epic Games",
+   "description": "Games and engine",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "epicgames"
+  },
+  {
+   "name": "Fireblocks",
+   "description": "Digital asset custody",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "fireblocks"
+  },
+  {
+   "name": "Gemini",
+   "description": "Cryptocurrency exchange",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "gemini"
+  },
+  {
+   "name": "Instacart",
+   "description": "Grocery delivery",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "instacart"
+  },
+  {
+   "name": "Lyft",
+   "description": "Ride-hailing",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "lyft"
+  },
+  {
+   "name": "Modern Treasury",
+   "description": "Payment operations",
+   "category": "bigtech",
+   "ats": "ashby",
+   "slug": "moderntreasury"
+  },
+  {
+   "name": "Nubank",
+   "description": "Digital banking",
+   "category": "bigtech",
+   "ats": "ashby",
+   "slug": "nubank"
+  },
+  {
+   "name": "Pinterest",
+   "description": "Visual discovery",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "pinterest"
+  },
+  {
+   "name": "Plaid",
+   "description": "Financial data APIs",
+   "category": "bigtech",
+   "ats": "ashby",
+   "slug": "plaid"
+  },
+  {
+   "name": "Ramp",
+   "description": "Corporate cards and spend",
+   "category": "bigtech",
+   "ats": "ashby",
+   "slug": "ramp"
+  },
+  {
+   "name": "Reddit",
+   "description": "Community forums",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "reddit"
+  },
+  {
+   "name": "Riot Games",
+   "description": "Games",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "riotgames"
+  },
+  {
+   "name": "Ripple",
+   "description": "Blockchain payments",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "ripple"
+  },
+  {
+   "name": "Robinhood",
+   "description": "Brokerage",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "robinhood"
+  },
+  {
+   "name": "Roblox",
+   "description": "Game platform",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "roblox"
+  },
+  {
+   "name": "ServiceNow",
+   "description": "Enterprise workflow platform",
+   "category": "bigtech",
+   "ats": "smartrecruiters",
+   "slug": "servicenow"
+  },
+  {
+   "name": "SoFi",
+   "description": "Consumer finance",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "sofi"
+  },
+  {
+   "name": "Spotify",
+   "description": "Music streaming",
+   "category": "bigtech",
+   "ats": "lever",
+   "slug": "spotify"
+  },
+  {
+   "name": "Stripe",
+   "description": "Payments infrastructure",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "stripe"
+  },
+  {
+   "name": "Take-Two Interactive",
+   "description": "Games",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "taketwo"
+  },
+  {
+   "name": "Twilio",
+   "description": "Communications APIs",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "twilio"
+  },
+  {
+   "name": "Uber",
+   "description": "Ride-hailing and delivery",
+   "category": "bigtech",
+   "ats": "smartrecruiters",
+   "slug": "uber"
+  },
+  {
+   "name": "Wealthfront",
+   "description": "Automated investing",
+   "category": "bigtech",
+   "ats": "lever",
+   "slug": "wealthfront"
+  },
+  {
+   "name": "Wise",
+   "description": "International transfers",
+   "category": "bigtech",
+   "ats": "greenhouse",
+   "slug": "wise"
+  },
+  {
+   "name": "Arcadia",
+   "description": "Energy data",
+   "category": "climate-energy",
+   "ats": "lever",
+   "slug": "arcadia"
+  },
+  {
+   "name": "Aurora Solar",
+   "description": "Solar software",
+   "category": "climate-energy",
+   "ats": "ashby",
+   "slug": "aurorasolar"
+  },
+  {
+   "name": "Climeworks",
+   "description": "Direct air capture",
+   "category": "climate-energy",
+   "ats": "recruitee",
+   "slug": "climeworks"
+  },
+  {
+   "name": "Crusoe Energy",
+   "description": "Energy and computing",
+   "category": "climate-energy",
+   "ats": "ashby",
+   "slug": "crusoe"
+  },
+  {
+   "name": "EnergyHub",
+   "description": "Grid services",
+   "category": "climate-energy",
+   "ats": "greenhouse",
+   "slug": "energyhub"
+  },
+  {
+   "name": "Form Energy",
+   "description": "Long-duration storage",
+   "category": "climate-energy",
+   "ats": "ashby",
+   "slug": "formenergy"
+  },
+  {
+   "name": "Helion Energy",
+   "description": "Fusion energy",
+   "category": "climate-energy",
+   "ats": "ashby",
+   "slug": "helion"
+  },
+  {
+   "name": "Palmetto",
+   "description": "Clean energy platform",
+   "category": "climate-energy",
+   "ats": "greenhouse",
+   "slug": "palmetto"
+  },
+  {
+   "name": "Redwood Materials",
+   "description": "Battery recycling",
+   "category": "climate-energy",
+   "ats": "greenhouse",
+   "slug": "redwoodmaterials"
+  },
+  {
+   "name": "Watershed",
+   "description": "Carbon management",
+   "category": "climate-energy",
+   "ats": "greenhouse",
+   "slug": "watershed"
+  },
+  {
+   "name": "Away",
+   "description": "Travel goods",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "away"
+  },
+  {
+   "name": "Babbel",
+   "description": "Language learning",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "babbel"
+  },
+  {
+   "name": "Bombas",
+   "description": "Apparel",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "bombas"
+  },
+  {
+   "name": "ClassPass",
+   "description": "Fitness marketplace",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "classpass"
+  },
+  {
+   "name": "DuckDuckGo",
+   "description": "Fully remote privacy company",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "duck-duck-go"
+  },
+  {
+   "name": "Duolingo",
+   "description": "Language learning",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "duolingo"
+  },
+  {
+   "name": "Faire",
+   "description": "Wholesale marketplace",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "faire"
+  },
+  {
+   "name": "GameChanger",
+   "description": "Fully remote sportstech (DICK'S subsidiary)",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "gamechanger"
+  },
+  {
+   "name": "Glossier",
+   "description": "Beauty",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "glossier"
+  },
+  {
+   "name": "Gopuff",
+   "description": "Instant delivery",
+   "category": "consumer",
+   "ats": "lever",
+   "slug": "gopuff"
+  },
+  {
+   "name": "HelloFresh",
+   "description": "Meal kits",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "hellofresh"
+  },
+  {
+   "name": "Khan Academy",
+   "description": "Free education nonprofit",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "khanacademy"
+  },
+  {
+   "name": "MasterClass",
+   "description": "Online classes",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "masterclass"
+  },
+  {
+   "name": "Misfits Market",
+   "description": "Grocery delivery",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "misfitsmarket"
+  },
+  {
+   "name": "Newsela",
+   "description": "Classroom content",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "newsela"
+  },
+  {
+   "name": "Oura",
+   "description": "Sleep and health ring",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "oura"
+  },
+  {
+   "name": "Peloton",
+   "description": "Connected fitness",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "peloton"
+  },
+  {
+   "name": "Poshmark",
+   "description": "Resale marketplace",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "poshmark"
+  },
+  {
+   "name": "Rothy's",
+   "description": "Footwear",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "rothys"
+  },
+  {
+   "name": "StockX",
+   "description": "Resale marketplace",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "stockx"
+  },
+  {
+   "name": "Strava",
+   "description": "Fitness social network",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "strava"
+  },
+  {
+   "name": "Sweetgreen",
+   "description": "Restaurants",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "sweetgreen"
+  },
+  {
+   "name": "Toptal",
+   "description": "Fully distributed talent marketplace",
+   "category": "consumer",
+   "ats": "lever",
+   "slug": "toptal"
+  },
+  {
+   "name": "Udemy",
+   "description": "Online courses",
+   "category": "consumer",
+   "ats": "greenhouse",
+   "slug": "udemy"
+  },
+  {
+   "name": "Wayfair",
+   "description": "Home goods",
+   "category": "consumer",
+   "ats": "smartrecruiters",
+   "slug": "wayfair"
+  },
+  {
+   "name": "Whoop",
+   "description": "Fitness wearables",
+   "category": "consumer",
+   "ats": "ashby",
+   "slug": "whoop"
+  },
+  {
+   "name": "Chainalysis",
+   "description": "Blockchain data, remote-first",
+   "category": "crypto",
+   "ats": "ashby",
+   "slug": "chainalysis-careers"
+  },
+  {
+   "name": "Consensys",
+   "description": "MetaMask/Infura, fully remote",
+   "category": "crypto",
+   "ats": "greenhouse",
+   "slug": "consensys"
+  },
+  {
+   "name": "Algolia",
+   "description": "Search API",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "algolia"
+  },
+  {
+   "name": "Apollo GraphQL",
+   "description": "GraphQL platform",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "apollo-graphql"
+  },
+  {
+   "name": "Buildkite",
+   "description": "CI/CD",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "buildkite"
+  },
+  {
+   "name": "Camunda",
+   "description": "Process automation, fully remote since 2012",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "camunda"
+  },
+  {
+   "name": "Canonical",
+   "description": "Ubuntu; remote-first since inception",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "canonical"
+  },
+  {
+   "name": "Chainguard",
+   "description": "Secure container images",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "chainguard"
+  },
+  {
+   "name": "CircleCI",
+   "description": "Continuous integration",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "circleci"
+  },
+  {
+   "name": "Cockroach Labs",
+   "description": "Distributed SQL",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "cockroachlabs"
+  },
+  {
+   "name": "Confluent",
+   "description": "Streaming data",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "confluent"
+  },
+  {
+   "name": "Databricks",
+   "description": "Data and AI platform",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "databricks"
+  },
+  {
+   "name": "Datadog",
+   "description": "Monitoring and security",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "datadog"
+  },
+  {
+   "name": "Docker",
+   "description": "Container tooling",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "docker"
+  },
+  {
+   "name": "dremio",
+   "description": "Data lakehouse",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "dremio"
+  },
+  {
+   "name": "Elastic",
+   "description": "Distributed by design, 40+ countries",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "elastic"
+  },
+  {
+   "name": "Fastly",
+   "description": "Edge cloud",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "fastly"
+  },
+  {
+   "name": "Fivetran",
+   "description": "Data pipelines",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "fivetran"
+  },
+  {
+   "name": "GitLab",
+   "description": "All-remote, 65+ countries, public handbook",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "gitlab"
+  },
+  {
+   "name": "Grafana Labs",
+   "description": "Fully remote observability, fast growth",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "grafanalabs"
+  },
+  {
+   "name": "InfluxData",
+   "description": "Time-series DB, remote-first",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "influxdata"
+  },
+  {
+   "name": "JFrog",
+   "description": "Software supply chain",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "jfrog"
+  },
+  {
+   "name": "Kong",
+   "description": "API gateway",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "kong"
+  },
+  {
+   "name": "LaunchDarkly",
+   "description": "Feature management",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "launchdarkly"
+  },
+  {
+   "name": "Linear",
+   "description": "Issue tracking",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "linear"
+  },
+  {
+   "name": "Make",
+   "description": "Visual automation",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "make"
+  },
+  {
+   "name": "Mattermost",
+   "description": "Open-source collaboration, all-remote",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "mattermost"
+  },
+  {
+   "name": "Mixpanel",
+   "description": "Product analytics",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "mixpanel"
+  },
+  {
+   "name": "MongoDB",
+   "description": "Document database",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "mongodb"
+  },
+  {
+   "name": "n8n",
+   "description": "Workflow automation",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "n8n"
+  },
+  {
+   "name": "Neon",
+   "description": "Serverless Postgres, remote-first",
+   "category": "devtools",
+   "ats": "lever",
+   "slug": "neon"
+  },
+  {
+   "name": "Netlify",
+   "description": "Remote-first web platform",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "netlify"
+  },
+  {
+   "name": "Percona",
+   "description": "Open-source database services, fully remote",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "percona"
+  },
+  {
+   "name": "PlanetScale",
+   "description": "MySQL platform",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "planetscale"
+  },
+  {
+   "name": "PostHog",
+   "description": "Product analytics",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "posthog"
+  },
+  {
+   "name": "Postman",
+   "description": "API platform",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "postman"
+  },
+  {
+   "name": "Prisma",
+   "description": "ORM/data layer, remote-first",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "prisma"
+  },
+  {
+   "name": "Redis",
+   "description": "In-memory data store",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "redis"
+  },
+  {
+   "name": "Render",
+   "description": "Cloud platform, remote",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "render"
+  },
+  {
+   "name": "Resend",
+   "description": "Email for developers",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "resend"
+  },
+  {
+   "name": "Sentry",
+   "description": "Error monitoring",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "sentry"
+  },
+  {
+   "name": "Snowflake",
+   "description": "Cloud data platform",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "snowflake"
+  },
+  {
+   "name": "Sourcegraph",
+   "description": "All-remote code intelligence",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "sourcegraph91"
+  },
+  {
+   "name": "Starburst",
+   "description": "Query engine",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "starburst"
+  },
+  {
+   "name": "Supabase",
+   "description": "Open-source Firebase alt, fully remote, fast growth",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "supabase"
+  },
+  {
+   "name": "Tailscale",
+   "description": "Fully remote networking, rapid growth",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "tailscale"
+  },
+  {
+   "name": "Temporal Technologies",
+   "description": "Durable execution",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "temporal"
+  },
+  {
+   "name": "Timescale",
+   "description": "Fully remote database company",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "tigerdata"
+  },
+  {
+   "name": "Vercel",
+   "description": "Remote-friendly, frontend cloud, strong growth",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "vercel"
+  },
+  {
+   "name": "Workato",
+   "description": "Integration and automation",
+   "category": "devtools",
+   "ats": "greenhouse",
+   "slug": "workato"
+  },
+  {
+   "name": "Zapier",
+   "description": "Fully remote since 2011, 40+ countries, salary parity",
+   "category": "devtools",
+   "ats": "ashby",
+   "slug": "zapier"
+  },
+  {
+   "name": "Coursera",
+   "description": "Remote-first",
+   "category": "education",
+   "ats": "greenhouse",
+   "slug": "coursera"
+  },
+  {
+   "name": "Outschool",
+   "description": "Fully remote live-learning marketplace",
+   "category": "education",
+   "ats": "greenhouse",
+   "slug": "outschool"
+  },
+  {
+   "name": "Alloy",
+   "description": "Identity risk, remote-friendly",
+   "category": "fintech",
+   "ats": "greenhouse",
+   "slug": "alloy"
+  },
+  {
+   "name": "Brex",
+   "description": "Remote-first corporate cards/spend",
+   "category": "fintech",
+   "ats": "greenhouse",
+   "slug": "brex"
+  },
+  {
+   "name": "Circle",
+   "description": "USDC issuer, remote-first",
+   "category": "fintech",
+   "ats": "ashby",
+   "slug": "circle"
+  },
+  {
+   "name": "Coinbase",
+   "description": "Remote-first since 2020",
+   "category": "fintech",
+   "ats": "greenhouse",
+   "slug": "coinbase"
+  },
+  {
+   "name": "Kraken",
+   "description": "Fully remote, global crypto exchange",
+   "category": "fintech",
+   "ats": "ashby",
+   "slug": "kraken.com"
+  },
+  {
+   "name": "Lithic",
+   "description": "Card infrastructure, fully remote",
+   "category": "fintech",
+   "ats": "greenhouse",
+   "slug": "lithic"
+  },
+  {
+   "name": "Marqeta",
+   "description": "Card issuing, remote-first",
+   "category": "fintech",
+   "ats": "greenhouse",
+   "slug": "marqeta"
+  },
+  {
+   "name": "Mercury",
+   "description": "Startup banking, remote-first, strong async culture",
+   "category": "fintech",
+   "ats": "greenhouse",
+   "slug": "mercury"
+  },
+  {
+   "name": "Tremendous",
+   "description": "Payouts platform, profitable, fully remote, low-meeting culture",
+   "category": "fintech",
+   "ats": "ashby",
+   "slug": "tremendous"
+  },
+  {
+   "name": "6sense",
+   "description": "ABM/intent, remote-first",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "6sense"
+  },
+  {
+   "name": "Airbyte",
+   "description": "Open-source ELT, fully remote",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "airbyte"
+  },
+  {
+   "name": "Amplitude",
+   "description": "Product analytics, remote-friendly",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "amplitude"
+  },
+  {
+   "name": "Apollo.io",
+   "description": "Sales intelligence, remote-first, fast growth",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "apolloio"
+  },
+  {
+   "name": "Attentive",
+   "description": "SMS marketing",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "attentive"
+  },
+  {
+   "name": "Braze",
+   "description": "Customer engagement platform, remote roles",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "braze"
+  },
+  {
+   "name": "Calendly",
+   "description": "Remote-first scheduling, profitable",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "calendly"
+  },
+  {
+   "name": "Chili Piper",
+   "description": "Inbound routing/scheduling, fully remote",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "chilipiper"
+  },
+  {
+   "name": "Clari",
+   "description": "Revenue operations platform, remote-friendly",
+   "category": "gtm-tools",
+   "ats": "lever",
+   "slug": "clari"
+  },
+  {
+   "name": "Close",
+   "description": "Sales CRM, bootstrapped, fully remote async-first since 2016",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "close"
+  },
+  {
+   "name": "Common Room",
+   "description": "Signal-based GTM, remote-first",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "commonroom"
+  },
+  {
+   "name": "Customer.io",
+   "description": "Fully remote, async-first, $100M+ revenue",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "customerio"
+  },
+  {
+   "name": "Demandbase",
+   "description": "ABM platform, remote-first",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "demandbase"
+  },
+  {
+   "name": "Freshworks",
+   "description": "Business software",
+   "category": "gtm-tools",
+   "ats": "smartrecruiters",
+   "slug": "freshworks"
+  },
+  {
+   "name": "Gainsight",
+   "description": "Customer success",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "gainsight"
+  },
+  {
+   "name": "Gong",
+   "description": "Revenue intelligence",
+   "category": "gtm-tools",
+   "ats": "smartrecruiters",
+   "slug": "gong"
+  },
+  {
+   "name": "Hightouch",
+   "description": "Composable CDP / reverse ETL — core GTM engineering vendor, remote-first",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "hightouch"
+  },
+  {
+   "name": "Intercom",
+   "description": "Customer communications",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "intercom"
+  },
+  {
+   "name": "Iterable",
+   "description": "Cross-channel marketing platform, remote-friendly",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "iterable"
+  },
+  {
+   "name": "Kit",
+   "description": "Creator email platform (formerly ConvertKit), fully remote",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "kit"
+  },
+  {
+   "name": "Klaviyo",
+   "description": "Marketing automation, remote-friendly, high growth",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "klaviyo"
+  },
+  {
+   "name": "Metabase",
+   "description": "BI tool, fully remote",
+   "category": "gtm-tools",
+   "ats": "lever",
+   "slug": "metabase"
+  },
+  {
+   "name": "Mutiny",
+   "description": "Website personalisation",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "mutiny"
+  },
+  {
+   "name": "Outreach",
+   "description": "Sales execution",
+   "category": "gtm-tools",
+   "ats": "lever",
+   "slug": "outreach"
+  },
+  {
+   "name": "Paddle",
+   "description": "Merchant of record for SaaS, remote-first",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "paddle"
+  },
+  {
+   "name": "Pendo",
+   "description": "Product experience",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "pendo"
+  },
+  {
+   "name": "Qualified",
+   "description": "Pipeline generation / AI SDR, remote-friendly",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "qualified"
+  },
+  {
+   "name": "RevenueCat",
+   "description": "Subscription infrastructure, 50k+ apps, fully remote",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "revenuecat"
+  },
+  {
+   "name": "Salesloft",
+   "description": "Revenue orchestration, remote roles",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "salesloft"
+  },
+  {
+   "name": "Vitally",
+   "description": "Customer success platform, remote-first",
+   "category": "gtm-tools",
+   "ats": "ashby",
+   "slug": "vitally"
+  },
+  {
+   "name": "ZoomInfo",
+   "description": "B2B data",
+   "category": "gtm-tools",
+   "ats": "greenhouse",
+   "slug": "zoominfo"
+  },
+  {
+   "name": "Benchling",
+   "description": "Life sciences R&D",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "benchling"
+  },
+  {
+   "name": "Calm",
+   "description": "Sleep and meditation",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "calm"
+  },
+  {
+   "name": "Capsule",
+   "description": "Digital pharmacy",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "capsule"
+  },
+  {
+   "name": "Carrot Fertility",
+   "description": "Fully remote fertility benefits",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "carrotfertility"
+  },
+  {
+   "name": "Cedar",
+   "description": "Patient billing",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "cedar"
+  },
+  {
+   "name": "Color Health",
+   "description": "Population genomics",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "color-health"
+  },
+  {
+   "name": "Devoted Health",
+   "description": "Medicare Advantage",
+   "category": "healthtech",
+   "ats": "smartrecruiters",
+   "slug": "devotedhealth"
+  },
+  {
+   "name": "Doximity",
+   "description": "Fully remote clinical network, profitable",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "doximity"
+  },
+  {
+   "name": "Flatiron Health",
+   "description": "Oncology data",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "flatironhealth"
+  },
+  {
+   "name": "Found",
+   "description": "Weight care",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "found"
+  },
+  {
+   "name": "Ginkgo Bioworks",
+   "description": "Synthetic biology",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "ginkgobioworks"
+  },
+  {
+   "name": "Grow Therapy",
+   "description": "Remote-first mental health marketplace",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "grow-therapy"
+  },
+  {
+   "name": "Headway",
+   "description": "Mental health network",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "headway"
+  },
+  {
+   "name": "Hims & Hers",
+   "description": "Remote-first telehealth, high growth",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "hims-and-hers"
+  },
+  {
+   "name": "Hinge Health",
+   "description": "Musculoskeletal care",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "hinge-health"
+  },
+  {
+   "name": "Included Health",
+   "description": "Remote-first healthcare navigation",
+   "category": "healthtech",
+   "ats": "lever",
+   "slug": "includedhealth"
+  },
+  {
+   "name": "Insitro",
+   "description": "Machine learning drug discovery",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "insitro"
+  },
+  {
+   "name": "Komodo Health",
+   "description": "Healthcare data",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "komodohealth"
+  },
+  {
+   "name": "LeanTaaS",
+   "description": "Healthcare AI ops, flexibility-first remote",
+   "category": "healthtech",
+   "ats": "lever",
+   "slug": "leantaas"
+  },
+  {
+   "name": "Lyra Health",
+   "description": "Remote-first behavioral health",
+   "category": "healthtech",
+   "ats": "lever",
+   "slug": "lyrahealth"
+  },
+  {
+   "name": "Maven Clinic",
+   "description": "Family health",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "mavenclinic"
+  },
+  {
+   "name": "Medely",
+   "description": "Healthcare staffing",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "medely"
+  },
+  {
+   "name": "Omada Health",
+   "description": "Virtual-first care, remote",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "omadahealth"
+  },
+  {
+   "name": "One Medical",
+   "description": "Primary care",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "onemedical"
+  },
+  {
+   "name": "Oscar Health",
+   "description": "Health insurance",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "oscar"
+  },
+  {
+   "name": "Ro",
+   "description": "Telehealth",
+   "category": "healthtech",
+   "ats": "lever",
+   "slug": "ro"
+  },
+  {
+   "name": "SonderMind",
+   "description": "Behavioural health",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "sondermind"
+  },
+  {
+   "name": "Sword Health",
+   "description": "Digital MSK care, remote-first, fast growth",
+   "category": "healthtech",
+   "ats": "lever",
+   "slug": "swordhealth"
+  },
+  {
+   "name": "Talkspace",
+   "description": "Online therapy",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "talkspace"
+  },
+  {
+   "name": "Veeva Systems",
+   "description": "Life sciences cloud",
+   "category": "healthtech",
+   "ats": "lever",
+   "slug": "veeva"
+  },
+  {
+   "name": "Virta Health",
+   "description": "Diabetes reversal",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "virtahealth"
+  },
+  {
+   "name": "Wheel",
+   "description": "Virtual care infrastructure, remote",
+   "category": "healthtech",
+   "ats": "ashby",
+   "slug": "wheel"
+  },
+  {
+   "name": "Zocdoc",
+   "description": "Appointment booking",
+   "category": "healthtech",
+   "ats": "greenhouse",
+   "slug": "zocdoc"
+  },
+  {
+   "name": "15Five",
+   "description": "Performance management",
+   "category": "hr-tech",
+   "ats": "lever",
+   "slug": "15five"
+  },
+  {
+   "name": "360Learning",
+   "description": "Collaborative learning",
+   "category": "hr-tech",
+   "ats": "lever",
+   "slug": "360learning"
+  },
+  {
+   "name": "Ashby",
+   "description": "Recruiting software, fully remote, fast growth",
+   "category": "hr-tech",
+   "ats": "ashby",
+   "slug": "ashby"
+  },
+  {
+   "name": "Checkr",
+   "description": "Background checks",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "checkr"
+  },
+  {
+   "name": "CoderPad",
+   "description": "Technical interviews",
+   "category": "hr-tech",
+   "ats": "lever",
+   "slug": "coderpad"
+  },
+  {
+   "name": "Culture Amp",
+   "description": "Employee experience",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "cultureamp"
+  },
+  {
+   "name": "Deel",
+   "description": "Fully distributed, 100+ countries, hypergrowth",
+   "category": "hr-tech",
+   "ats": "ashby",
+   "slug": "deel"
+  },
+  {
+   "name": "Findem",
+   "description": "Talent data",
+   "category": "hr-tech",
+   "ats": "lever",
+   "slug": "findem"
+  },
+  {
+   "name": "Greenhouse Software",
+   "description": "Recruiting software",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "greenhouse"
+  },
+  {
+   "name": "Guild",
+   "description": "Education benefits",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "guild"
+  },
+  {
+   "name": "Gusto",
+   "description": "Payroll and benefits",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "gusto"
+  },
+  {
+   "name": "HackerRank",
+   "description": "Developer skills",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "hackerrank"
+  },
+  {
+   "name": "Handshake",
+   "description": "Early career hiring",
+   "category": "hr-tech",
+   "ats": "ashby",
+   "slug": "handshake"
+  },
+  {
+   "name": "Justworks",
+   "description": "PEO and payroll",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "justworks"
+  },
+  {
+   "name": "Karat",
+   "description": "Technical interviewing",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "karat"
+  },
+  {
+   "name": "Lattice",
+   "description": "Performance and engagement",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "lattice"
+  },
+  {
+   "name": "Leapsome",
+   "description": "People enablement",
+   "category": "hr-tech",
+   "ats": "ashby",
+   "slug": "leapsome"
+  },
+  {
+   "name": "Oyster HR",
+   "description": "Distributed hiring platform, fully remote",
+   "category": "hr-tech",
+   "ats": "ashby",
+   "slug": "oyster"
+  },
+  {
+   "name": "Papaya Global",
+   "description": "Global payroll, distributed",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "papaya"
+  },
+  {
+   "name": "RemoFirst",
+   "description": "EOR in 185+ countries, born remote",
+   "category": "hr-tech",
+   "ats": "lever",
+   "slug": "remofirst"
+  },
+  {
+   "name": "Remote",
+   "description": "Global employment",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "remote"
+  },
+  {
+   "name": "Remote.com",
+   "description": "EOR platform, remote by design",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "remotecom"
+  },
+  {
+   "name": "SeekOut",
+   "description": "Talent search",
+   "category": "hr-tech",
+   "ats": "greenhouse",
+   "slug": "seekout"
+  },
+  {
+   "name": "SmartRecruiters",
+   "description": "Talent acquisition",
+   "category": "hr-tech",
+   "ats": "smartrecruiters",
+   "slug": "smartrecruiters"
+  },
+  {
+   "name": "Anduril Industries",
+   "description": "Defence technology",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "andurilindustries"
+  },
+  {
+   "name": "Applied Intuition",
+   "description": "Vehicle software",
+   "category": "industry",
+   "ats": "ashby",
+   "slug": "applied"
+  },
+  {
+   "name": "Astranis",
+   "description": "Satellites",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "astranis"
+  },
+  {
+   "name": "Fictiv",
+   "description": "Manufacturing platform",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "fictiv"
+  },
+  {
+   "name": "Formlabs",
+   "description": "3D printing",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "formlabs"
+  },
+  {
+   "name": "Housecall Pro",
+   "description": "Home services software",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "housecall"
+  },
+  {
+   "name": "Markforged",
+   "description": "Additive manufacturing",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "markforged"
+  },
+  {
+   "name": "Olo",
+   "description": "Restaurant commerce",
+   "category": "industry",
+   "ats": "lever",
+   "slug": "olo"
+  },
+  {
+   "name": "Path Robotics",
+   "description": "Welding robotics",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "pathrobotics"
+  },
+  {
+   "name": "Planet Labs",
+   "description": "Earth imaging",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "planetlabs"
+  },
+  {
+   "name": "Relativity Space",
+   "description": "Rocket manufacturing",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "relativity"
+  },
+  {
+   "name": "Rocket Lab",
+   "description": "Launch services",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "rocketlab"
+  },
+  {
+   "name": "ServiceTitan",
+   "description": "Trades software",
+   "category": "industry",
+   "ats": "smartrecruiters",
+   "slug": "servicetitan"
+  },
+  {
+   "name": "Shield AI",
+   "description": "Autonomous defence",
+   "category": "industry",
+   "ats": "lever",
+   "slug": "shieldai"
+  },
+  {
+   "name": "SpaceX",
+   "description": "Launch and satellites",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "spacex"
+  },
+  {
+   "name": "Toast",
+   "description": "Restaurant technology",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "toast"
+  },
+  {
+   "name": "Xometry",
+   "description": "Manufacturing marketplace",
+   "category": "industry",
+   "ats": "greenhouse",
+   "slug": "xometry"
+  },
+  {
+   "name": "Bird",
+   "description": "Micromobility",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "bird"
+  },
+  {
+   "name": "Flexport",
+   "description": "Freight forwarding",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "flexport"
+  },
+  {
+   "name": "GetYourGuide",
+   "description": "Travel experiences",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "getyourguide"
+  },
+  {
+   "name": "Hopper",
+   "description": "Travel booking",
+   "category": "logistics-mobility",
+   "ats": "ashby",
+   "slug": "hopper"
+  },
+  {
+   "name": "KAYAK",
+   "description": "Travel search",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "kayak"
+  },
+  {
+   "name": "Lucid Motors",
+   "description": "Electric vehicles",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "lucidmotors"
+  },
+  {
+   "name": "Motive",
+   "description": "Fleet management",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "motive"
+  },
+  {
+   "name": "Nuro",
+   "description": "Autonomous delivery",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "nuro"
+  },
+  {
+   "name": "project44",
+   "description": "Supply chain visibility",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "project44"
+  },
+  {
+   "name": "Samsara",
+   "description": "Connected operations",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "samsara"
+  },
+  {
+   "name": "Tripadvisor",
+   "description": "Travel reviews",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "tripadvisor"
+  },
+  {
+   "name": "Vacasa",
+   "description": "Vacation rentals",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "vacasa"
+  },
+  {
+   "name": "Waymo",
+   "description": "Autonomous driving",
+   "category": "logistics-mobility",
+   "ats": "greenhouse",
+   "slug": "waymo"
+  },
+  {
+   "name": "Axios",
+   "description": "News",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "axios"
+  },
+  {
+   "name": "BuzzFeed",
+   "description": "Digital media",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "buzzfeed"
+  },
+  {
+   "name": "Hearst",
+   "description": "Media",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "hearst"
+  },
+  {
+   "name": "Medium",
+   "description": "Publishing platform",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "medium"
+  },
+  {
+   "name": "Patreon",
+   "description": "Creator memberships",
+   "category": "media",
+   "ats": "ashby",
+   "slug": "patreon"
+  },
+  {
+   "name": "Roku",
+   "description": "Streaming platform",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "roku"
+  },
+  {
+   "name": "Substack",
+   "description": "Publishing platform",
+   "category": "media",
+   "ats": "ashby",
+   "slug": "substack"
+  },
+  {
+   "name": "The New York Times",
+   "description": "News",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "thenewyorktimes"
+  },
+  {
+   "name": "Twitch",
+   "description": "Live streaming",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "twitch"
+  },
+  {
+   "name": "Vox Media",
+   "description": "Digital media",
+   "category": "media",
+   "ats": "greenhouse",
+   "slug": "voxmedia"
+  },
+  {
+   "name": "charity: water",
+   "description": "Clean water",
+   "category": "nonprofit-civic",
+   "ats": "lever",
+   "slug": "charitywater"
+  },
+  {
+   "name": "Code for America",
+   "description": "Civic technology",
+   "category": "nonprofit-civic",
+   "ats": "greenhouse",
+   "slug": "codeforamerica"
+  },
+  {
+   "name": "DonorsChoose",
+   "description": "Classroom funding",
+   "category": "nonprofit-civic",
+   "ats": "greenhouse",
+   "slug": "donorschoose"
+  },
+  {
+   "name": "Girls Who Code",
+   "description": "Computer science education",
+   "category": "nonprofit-civic",
+   "ats": "lever",
+   "slug": "girlswhocode"
+  },
+  {
+   "name": "GiveDirectly",
+   "description": "Direct cash transfers",
+   "category": "nonprofit-civic",
+   "ats": "greenhouse",
+   "slug": "givedirectly"
+  },
+  {
+   "name": "Mozilla",
+   "description": "Remote-first, async culture, 26 wks parental leave",
+   "category": "nonprofit-civic",
+   "ats": "greenhouse",
+   "slug": "mozilla"
+  },
+  {
+   "name": "Nava PBC",
+   "description": "Government digital services",
+   "category": "nonprofit-civic",
+   "ats": "greenhouse",
+   "slug": "navapbc"
+  },
+  {
+   "name": "Propel",
+   "description": "Benefits technology",
+   "category": "nonprofit-civic",
+   "ats": "ashby",
+   "slug": "propel"
+  },
+  {
+   "name": "Wikimedia Foundation",
+   "description": "Work-from-anywhere nonprofit",
+   "category": "nonprofit-civic",
+   "ats": "greenhouse",
+   "slug": "wikimedia"
+  },
+  {
+   "name": "CoStar Group",
+   "description": "Commercial real estate data",
+   "category": "real-estate-legal",
+   "ats": "greenhouse",
+   "slug": "costar"
+  },
+  {
+   "name": "Everlaw",
+   "description": "Litigation software",
+   "category": "real-estate-legal",
+   "ats": "greenhouse",
+   "slug": "everlaw"
+  },
+  {
+   "name": "Latch",
+   "description": "Building technology",
+   "category": "real-estate-legal",
+   "ats": "lever",
+   "slug": "latch"
+  },
+  {
+   "name": "Rocket Lawyer",
+   "description": "Legal services",
+   "category": "real-estate-legal",
+   "ats": "greenhouse",
+   "slug": "rocketlawyer"
+  },
+  {
+   "name": "Roofstock",
+   "description": "Rental investing",
+   "category": "real-estate-legal",
+   "ats": "greenhouse",
+   "slug": "roofstock"
+  },
+  {
+   "name": "SmartRent",
+   "description": "Smart home for rentals",
+   "category": "real-estate-legal",
+   "ats": "greenhouse",
+   "slug": "smartrent"
+  },
+  {
+   "name": "VTS",
+   "description": "Commercial real estate",
+   "category": "real-estate-legal",
+   "ats": "greenhouse",
+   "slug": "vts"
+  },
+  {
+   "name": "Aha!",
+   "description": "Fully remote, profitable product management software",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "aha"
+  },
+  {
+   "name": "Airtable",
+   "description": "Databases for teams",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "airtable"
+  },
+  {
+   "name": "Anrok",
+   "description": "Sales tax for SaaS",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "anrok"
+  },
+  {
+   "name": "Asana",
+   "description": "Work management",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "asana"
+  },
+  {
+   "name": "Automattic",
+   "description": "WordPress.com; distributed across 90+ countries",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "automatticcareers"
+  },
+  {
+   "name": "Bill.com",
+   "description": "Financial operations",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "billcom"
+  },
+  {
+   "name": "Buffer",
+   "description": "Fully remote, transparent salaries",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "buffer"
+  },
+  {
+   "name": "Canva",
+   "description": "Visual design",
+   "category": "saas",
+   "ats": "smartrecruiters",
+   "slug": "canva"
+  },
+  {
+   "name": "Carta",
+   "description": "Equity management",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "carta"
+  },
+  {
+   "name": "ClickUp",
+   "description": "Productivity platform",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "clickup"
+  },
+  {
+   "name": "Contentful",
+   "description": "Content platform",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "contentful"
+  },
+  {
+   "name": "Expensify",
+   "description": "Expense management",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "expensify"
+  },
+  {
+   "name": "Figma",
+   "description": "Interface design",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "figma"
+  },
+  {
+   "name": "Ghost",
+   "description": "Fully remote nonprofit publishing platform",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "ghost"
+  },
+  {
+   "name": "Hubstaff",
+   "description": "Fully remote workforce analytics",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "hubstaff"
+  },
+  {
+   "name": "Miro",
+   "description": "Visual collaboration",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "miro"
+  },
+  {
+   "name": "Mosaic",
+   "description": "Strategic finance",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "mosaic"
+  },
+  {
+   "name": "Notion",
+   "description": "Workspace and docs",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "notion"
+  },
+  {
+   "name": "Pigment",
+   "description": "Business planning",
+   "category": "saas",
+   "ats": "lever",
+   "slug": "pigment"
+  },
+  {
+   "name": "Sanity",
+   "description": "Structured content",
+   "category": "saas",
+   "ats": "ashby",
+   "slug": "sanity"
+  },
+  {
+   "name": "Smartsheet",
+   "description": "Work management",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "smartsheet"
+  },
+  {
+   "name": "Squarespace",
+   "description": "Website building",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "squarespace"
+  },
+  {
+   "name": "Webflow",
+   "description": "Website builder",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "webflow"
+  },
+  {
+   "name": "Wrike",
+   "description": "Project management",
+   "category": "saas",
+   "ats": "greenhouse",
+   "slug": "wrike"
+  },
+  {
+   "name": "1Password",
+   "description": "Remote-first, growing security company",
+   "category": "security",
+   "ats": "ashby",
+   "slug": "1password"
+  },
+  {
+   "name": "Abnormal Security",
+   "description": "Email security",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "abnormalsecurity"
+  },
+  {
+   "name": "Bishop Fox",
+   "description": "Offensive security, fully remote",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "bishopfox"
+  },
+  {
+   "name": "Bitwarden",
+   "description": "Open-source password manager, fully remote",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "bitwarden"
+  },
+  {
+   "name": "Cloudflare",
+   "description": "Flexible/remote roles, strong growth",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "cloudflare"
+  },
+  {
+   "name": "Cybereason",
+   "description": "Endpoint protection",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "cybereason"
+  },
+  {
+   "name": "Dashlane",
+   "description": "Remote-first credential security",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "dashlane"
+  },
+  {
+   "name": "Drata",
+   "description": "Compliance automation",
+   "category": "security",
+   "ats": "ashby",
+   "slug": "drata"
+  },
+  {
+   "name": "Huntress",
+   "description": "Fully remote managed security, fast growth",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "huntress"
+  },
+  {
+   "name": "JumpCloud",
+   "description": "Directory platform",
+   "category": "security",
+   "ats": "lever",
+   "slug": "jumpcloud"
+  },
+  {
+   "name": "Keeper Security",
+   "description": "Password management",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "keepersecurity"
+  },
+  {
+   "name": "Material Security",
+   "description": "Email security",
+   "category": "security",
+   "ats": "ashby",
+   "slug": "materialsecurity"
+  },
+  {
+   "name": "Netskope",
+   "description": "Cloud security",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "netskope"
+  },
+  {
+   "name": "Okta",
+   "description": "Identity management",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "okta"
+  },
+  {
+   "name": "Orca Security",
+   "description": "Cloud security",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "orcasecurity"
+  },
+  {
+   "name": "Recorded Future",
+   "description": "Threat intelligence",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "recordedfuture"
+  },
+  {
+   "name": "Secureframe",
+   "description": "Compliance automation",
+   "category": "security",
+   "ats": "lever",
+   "slug": "secureframe"
+  },
+  {
+   "name": "Semgrep",
+   "description": "Static analysis",
+   "category": "security",
+   "ats": "ashby",
+   "slug": "semgrep"
+  },
+  {
+   "name": "Socket",
+   "description": "Supply chain security",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "socket"
+  },
+  {
+   "name": "Vanta",
+   "description": "Compliance automation",
+   "category": "security",
+   "ats": "ashby",
+   "slug": "vanta"
+  },
+  {
+   "name": "Yubico",
+   "description": "Hardware security keys",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "yubico"
+  },
+  {
+   "name": "Zscaler",
+   "description": "Cloud security",
+   "category": "security",
+   "ats": "greenhouse",
+   "slug": "zscaler"
+  }
+ ],
+ "unlisted": [
+  {
+   "name": "23andMe",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "3M",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Abbott",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Ably",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Ad Hoc",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Adobe",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Airbase",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Allbirds",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Alma",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Amazon",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "AMD",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "American Express",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Amgen",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "AMP Robotics",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Apple",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Appsmith",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Arctic Wolf",
+   "reason": "Workday (arcticwolf.wd1.myworkdayjobs.com), unsupported platform"
+  },
+  {
+   "name": "AT&T",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Athenahealth",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Atlassian",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Aurora",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Autodesk",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Avalara",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bain & Company",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bandcamp",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bank of America",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bentley Systems",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bitrise",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "BlackRock",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bloomberg",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Boeing",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Booking.com",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Boston Consulting Group",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Boston Dynamics",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Box",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Bristol Myers Squibb",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Broadcom",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Cardinal Health",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Catalyst Software",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Caterpillar",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Census",
+   "reason": "acquired by Fivetran; postings merged into Fivetran's own Greenhouse board, no Census-specific board"
+  },
+  {
+   "name": "Centene",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Chainlink Labs",
+   "description": "Fully remote, global",
+   "category": "web3",
+   "reason": "the board 404ed on two separate runs and needs re-checking"
+  },
+  {
+   "name": "Chargebee",
+   "description": "Subscription billing, remote-first",
+   "category": "gtm-tools",
+   "reason": "custom domain (jobs.chargebee.com), ATS not one of the six supported"
+  },
+  {
+   "name": "Checkout.com",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Chegg",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Chevron",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Chewy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Chipotle",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Chroma",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "ChurnZero",
+   "description": "Customer success, remote-first",
+   "category": "gtm-tools",
+   "reason": "ClearCompany/HRM Direct, unsupported platform"
+  },
+  {
+   "name": "Cigna",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Cisco",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Citigroup",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Clearbit",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Cleveland Clinic",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Clio",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Coca-Cola",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Coda",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Cognex",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Comcast",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Commonwealth Fusion Systems",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Compass",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Condé Nast",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Confluence",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Convoy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Costco",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Courier",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Crisis Text Line",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "CrowdStrike",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "CVS Health",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "dbt Labs",
+   "reason": "the board 404ed on two separate runs and needs re-checking"
+  },
+  {
+   "name": "Dell Technologies",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Deloitte",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Delta Air Lines",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Desktop Metal",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "DigitalOcean",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "DispatchHealth",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Divvy Homes",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "DocuSign",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "DocuSign CLM",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Doist",
+   "description": "Todoist; fully remote, bootstrapped, 40-hour cap",
+   "category": "saas",
+   "reason": "custom in-house application form, no public ATS"
+  },
+  {
+   "name": "DoorDash",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Dow Jones",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Drift",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Earthly",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "eBay",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Eightfold AI",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Electronic Arts",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Electronic Frontier Foundation",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Elevance Health",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Enphase Energy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "EquipmentShare",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Etsy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Expedia Group",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Fathom",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "FedEx",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Fidelity Investments",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Fly.io",
+   "description": "Edge compute, fully remote",
+   "category": "devtools",
+   "reason": "custom site, no public API"
+  },
+  {
+   "name": "Ford Motor Company",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Framer",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Front",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Gem",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Getaround",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Gilead Sciences",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "GitHub",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "GOAT",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Goldman Sachs",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Grain",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Grammarly",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Groq",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Guardant Health",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Guru",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "HashiCorp",
+   "reason": "acquired by IBM; jobs now served via IBM's internal system, no public board on a supported platform"
+  },
+  {
+   "name": "Hasura",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "HCA Healthcare",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Headspace",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Heap",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Height",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Hilton",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Honeywell",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "HubSpot",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Humana",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "IBM",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Icertis",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Intel",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Internet Archive",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Intuit",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Ironclad",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Johnson & Johnson",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "JPMorgan Chase",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Kaiser Permanente",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Kindbody",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Kiva",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Klarna",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "KPMG",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Kroger",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "LegalZoom",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Lever",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Liberty Mutual",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Lime",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Linux Foundation",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Lockheed Martin",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Loom",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Lowe's",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Marriott International",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Mastercard",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Mayo Clinic",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "McDonald's",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "McKesson",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "McKinsey & Company",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Meilisearch",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Merck",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Metadata.io",
+   "reason": "careers page exists but no confirmed ATS among the 6 supported platforms"
+  },
+  {
+   "name": "Microsoft",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Mistral AI",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Moderna",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "monday.com",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Morgan Stanley",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Mulesoft",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Nationwide",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Navan",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Nerdy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Netflix",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Niantic",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Nike",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "NPR",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "NVIDIA",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Octopus Energy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Opendoor",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Optimizely",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Oracle",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Ortto",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Pachama",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Palo Alto Networks",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Paramount",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "PathFactory",
+   "description": "Content intelligence, remote",
+   "category": "gtm-tools",
+   "reason": "JazzHR (applytojob.com), unsupported platform"
+  },
+  {
+   "name": "PayPal",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "PBS",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "PepsiCo",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Persefoni",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Pfizer",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Pocus",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Procore",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Procter & Gamble",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Progressive",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Progyny",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Proofpoint",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Prudential Financial",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Pulley",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Pulumi",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Pusher",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "PwC",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Qualcomm",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Qualys",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Quizlet",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Rapid7",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Recursion",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Redfin",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Replicate",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Replicated",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Retool",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Revolut",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Rippling",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Rivian",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Room to Read",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "RTX",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Ryder",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "SafetyWing",
+   "description": "Insurance for remote workers, fully remote",
+   "category": "insurtech",
+   "reason": "Pinpoint ATS, unsupported platform"
+  },
+  {
+   "name": "Salesforce",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Sana",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "SentinelOne",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "ShipBob",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Shippo",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Shopify",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Signal",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "SiriusXM",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Skillshare",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Slack",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Snap",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Snyk",
+   "reason": "the board 404ed on two separate runs and needs re-checking"
+  },
+  {
+   "name": "SolarEdge",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Sonar",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Sonder",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Sonos",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "SoundCloud",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Southwest Airlines",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Spacelift",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Split Software",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Starbucks",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "State Farm",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Stord",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Stride",
+   "description": "Perennial FlexJobs Top 100 remote employer",
+   "category": "edtech",
+   "reason": "Workday"
+  },
+  {
+   "name": "Sunrun",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Superhuman",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Target",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Teleport",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Tempus AI",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Tenable",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Tesla",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Texas Instruments",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "The Atlantic",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "The Home Depot",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "The Walt Disney Company",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "The Washington Post",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "ThredUp",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Toggl",
+   "description": "Fully remote time tracking, profitable",
+   "category": "saas",
+   "reason": "the board 404ed on two separate runs and needs re-checking"
+  },
+  {
+   "name": "Totango",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Tray.io",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Trimble",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "TriNet",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Truepill",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Turo",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Typesense",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "United Airlines",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "UnitedHealth Group",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Unity",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Uplight",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "UPS",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Upsolve",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "USAA",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Vena Solutions",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Verizon",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Vimeo",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Visa",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Vivian Health",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "VMware",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Walgreens",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Walmart",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Warby Parker",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Warner Bros. Discovery",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Weights & Biases",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Wells Fargo",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Whatnot",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Wix",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Wiz",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Workable",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Workday",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Workiva",
+   "description": "Remote-friendly reporting/compliance platform",
+   "category": "saas",
+   "reason": "Workday"
+  },
+  {
+   "name": "X-energy",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Zebra Technologies",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Zendesk",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Zillow",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Zipline",
+   "reason": "No board found on a supported ATS"
+  },
+  {
+   "name": "Zoom",
+   "reason": "No board found on a supported ATS"
+  }
+ ]
+}

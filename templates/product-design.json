@@ -1,0 +1,42 @@
+{
+  "name": "Product Design",
+  "description": "Product, UX and design systems roles — the people who decide how software looks and behaves.",
+  "notes": [
+    "Entries wrapped in slashes are regexes; plain entries are phrases matched on whole words.",
+    "Graphic, brand and marketing design are excluded by default — delete those rows if you want them.",
+    "Nothing here is required — delete any row that doesn't fit how you search."
+  ],
+
+  "title": [
+    "/\\bproduct\\s+design(er)?\\b/",
+    "/\\b(ux|ui|ux\\/ui)\\s+design(er)?\\b/",
+    "/\\bux\\s+(researcher|writer|engineer)\\b/",
+    "/\\bdesign\\s+system(s)?\\b/",
+    "/\\b(staff|principal|senior|lead)\\s+designer\\b/",
+    "/\\bdesign\\s+(lead|manager|director)\\b/",
+    "/\\binteraction\\s+design(er)?\\b/",
+    "/\\bcontent\\s+design(er)?\\b/",
+    "/\\bdesign\\s+engineer\\b/"
+  ],
+
+  "body": [
+    "/\\b(figma|sketch|framer|protopie)\\b/",
+    "/\\bdesign\\s+system\\b/",
+    "/\\b(usability|user)\\s+research\\b/",
+    "/\\baccessibility\\b|\\bwcag\\b/"
+  ],
+
+  "bodyRequiresTitleHint": [
+    "/\\b(design|designer|ux|ui|research|product)\\b/"
+  ],
+
+  "exclude": [
+    "intern",
+    "internship",
+    "contractor",
+    "part-time",
+    "/\\b(graphic|brand|marketing|motion|packaging)\\s+design(er)?\\b/"
+  ],
+
+  "location": { "mode": "remote-only", "allowlist": [] }
+}

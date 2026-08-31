@@ -1,0 +1,46 @@
+{
+  "name": "GTM & Revenue Operations",
+  "description": "Go-to-market, revenue and marketing operations — the people who own the systems and data behind a sales org.",
+  "notes": [
+    "Entries wrapped in slashes are regexes; plain entries are phrases matched on whole words.",
+    "The body rules are gated by bodyRequiresTitleHint, so a posting only counts on tooling if the title is already adjacent — otherwise every role mentioning Salesforce matches.",
+    "Nothing here is required — delete any row that doesn't fit how you search."
+  ],
+
+  "title": [
+    "/\\b(revenue|revops|rev)\\s+operations?\\b/",
+    "/\\bgo[\\s-]?to[\\s-]?market\\s+(operations?|engineer|strategy)/",
+    "/\\bgtm\\s+(operations?|engineer|strategy|systems)/",
+    "/\\b(marketing|sales|business)\\s+operations?\\b/",
+    "/\\bmarketing\\s+technology\\b|\\bmartech\\b/",
+    "/\\bsales\\s+(systems|enablement|technology)\\b/",
+    "/\\bbusiness\\s+systems\\b/",
+    "/\\bdeal\\s+desk\\b/",
+    "/\\b(lifecycle|growth)\\s+marketing\\s+(manager|lead|director)/",
+    "/\\bcrm\\s+(manager|administrator|architect)/",
+    "/\\bsalesforce\\s+(administrator|architect|developer)/"
+  ],
+
+  "body": [
+    "/\\b(salesforce|hubspot|marketo|pardot)\\b/",
+    "/\\b(outreach|salesloft|gong|clari|clay)\\b/",
+    "/\\b(segment|hightouch|census|fivetran|dbt)\\b/",
+    "/\\b(lead\\s+routing|territory\\s+planning|quota|pipeline\\s+hygiene)\\b/",
+    "/\\b(cpq|clm|billing\\s+systems)\\b/"
+  ],
+
+  "bodyRequiresTitleHint": [
+    "/\\b(operations?|ops|systems|revenue|marketing|sales|growth|gtm|crm|analytics)\\b/"
+  ],
+
+  "exclude": [
+    "intern",
+    "internship",
+    "contractor",
+    "part-time",
+    "/\\baccount\\s+executive\\b/",
+    "/\\b(sdr|bdr)\\b|\\b(sales|business)\\s+development\\s+representative\\b/"
+  ],
+
+  "location": { "mode": "remote-only", "allowlist": [] }
+}

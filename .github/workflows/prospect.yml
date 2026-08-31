@@ -1,0 +1,70 @@
+# Probes data/candidates.json against the live job boards and commits the
+# answers to data/prospects/. A maintenance job for whoever keeps the
+# catalogue, not something a user of this tool ever runs.
+#
+# Sharded: a company on none of the supported boards costs a request per slug
+# per board before it can be ruled out, so a full pass over several hundred
+# names is hours of deliberately slow requests. Six shards in parallel brings
+# that to well under an hour without any single board seeing a rude rate.
+name: prospect
+
+on:
+  workflow_dispatch:
+    inputs:
+      shards:
+        description: 'How many shards to split the list across'
+        default: '6'
+      limit:
+        description: 'Probe only the first N candidates (0 = all)'
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: Probe
+        run: node src/prospect.js --shard ${{ matrix.shard }}/${{ inputs.shards }} --limit ${{ inputs.limit }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prospects-${{ matrix.shard }}
+          path: data/prospects/shard-${{ matrix.shard }}.json
+
+  collect:
+    needs: probe
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: incoming
+          pattern: prospects-*
+          merge-multiple: true
+
+      - name: Commit the raw results
+        run: |
+          mkdir -p data/prospects
+          cp incoming/*.json data/prospects/ 2>/dev/null || true
+          rm -rf incoming
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/prospects
+          git diff --staged --quiet || git commit -m "prospect: probe results $(date -u +%F)"
+          git push

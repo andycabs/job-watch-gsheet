@@ -1,0 +1,18 @@
+{
+  "name": "job-watch-gsheet",
+  "version": "2.0.0",
+  "description": "A Google Sheet that watches company job boards. Self-contained: no server, no account, no subscription.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node src/boards.test.js && node src/rules.test.js && node src/templates.test.js && node src/sheet/bootstrap.test.js && node src/sheet/read.test.js && node src/salary.test.js && node src/sync.test.js && node src/suggest.test.js && node src/notify.test.js && node src/learn.test.js && node src/log.test.js && node src/directory.test.js && node src/discover.test.js && node src/stale.test.js && node src/bundle.test.js && node src/gas/gas.test.js && node src/prospect.test.js && node src/catalogue.test.js && node src/release.test.js && node src/edge.test.js",
+    "build": "node src/gas/build.js --module",
+    "diagnose": "node src/diagnose.js",
+    "prospect": "node src/prospect.js",
+    "catalogue": "node src/catalogue.js"
+  }
+}

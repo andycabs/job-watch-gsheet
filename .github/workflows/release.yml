@@ -1,0 +1,44 @@
+# Publishes a GitHub release when a version tag is pushed.
+#
+#   npm version 1.1.0 --no-git-tag-version   # or edit package.json
+#   # add a "## 1.1.0" section to CHANGELOG.md, commit both
+#   git tag v1.1.0 && git push origin v1.1.0
+#
+# The release notes are the changelog section for that version, so there is one
+# place to write them. If the tag, package.json and the changelog disagree the
+# job fails and nothing is published — that mismatch is always a tag pushed
+# without a version bump, and it is much cheaper to catch here.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # A release of a broken tree is worse than a late release.
+      - name: Test
+        run: npm test
+
+      - name: Check the tag against package.json and the changelog
+        run: node src/release.js "${GITHUB_REF_NAME}"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node src/release.js "${GITHUB_REF_NAME}" --notes > notes.md
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file notes.md

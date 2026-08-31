@@ -1,0 +1,44 @@
+{
+  "name": "Data",
+  "description": "Data engineering, analytics engineering, analysis and machine learning.",
+  "notes": [
+    "Entries wrapped in slashes are regexes; plain entries are phrases matched on whole words.",
+    "This covers a wide span — from analyst to ML engineer. Delete the rows for the half you don't want.",
+    "Nothing here is required — delete any row that doesn't fit how you search."
+  ],
+
+  "title": [
+    "/\\bdata\\s+(engineer|scientist|analyst|architect)\\b/",
+    "/\\banalytics\\s+engineer\\b/",
+    "/\\b(machine\\s+learning|ml)\\s+(engineer|scientist)\\b/",
+    "/\\b(ai|applied\\s+scientist)\\s+engineer\\b|\\bapplied\\s+scientist\\b/",
+    "/\\bdata\\s+platform\\b/",
+    "/\\bbusiness\\s+intelligence\\b|\\bbi\\s+(analyst|engineer|developer)\\b/",
+    "/\\bresearch\\s+scientist\\b/",
+    "/\\bdecision\\s+scientist\\b/",
+    "/\\b(staff|principal|senior|lead)\\s+data\\b/"
+  ],
+
+  "body": [
+    "/\\b(dbt|airflow|dagster|prefect|spark)\\b/",
+    "/\\b(snowflake|bigquery|redshift|databricks|clickhouse)\\b/",
+    "/\\b(pytorch|tensorflow|scikit[\\s-]?learn|hugging\\s?face)\\b/",
+    "/\\b(sql|python)\\b.*\\b(pipeline|warehouse|model)\\b/",
+    "/\\bexperimentation\\b|\\ba\\/b\\s+test/"
+  ],
+
+  "bodyRequiresTitleHint": [
+    "/\\b(data|analytics|analyst|scientist|ml|machine\\s+learning|ai|research|intelligence)\\b/"
+  ],
+
+  "exclude": [
+    "intern",
+    "internship",
+    "contractor",
+    "part-time",
+    "/\\bdata\\s+entry\\b/",
+    "/\\bsales\\s+analyst\\b/"
+  ],
+
+  "location": { "mode": "remote-only", "allowlist": [] }
+}

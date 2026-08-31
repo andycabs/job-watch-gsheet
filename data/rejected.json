@@ -1,0 +1,33 @@
+{
+ "name": "Probe results rejected on review",
+ "description": "Companies whose probe found a live board that belongs to somebody else, or that duplicate a company already listed. Slugs are first-come-first-served, so a board answering is not proof it is the company we meant — every one of these returned real postings. Recorded rather than deleted so the same false positive is not rediscovered and shipped next time.",
+ "rejected": [
+  { "name": "Alphabet", "slug": "workable/alphabet", "reason": "One design role; Alphabet does not recruit here" },
+  { "name": "General Motors", "slug": "greenhouse/general", "reason": "Generic slug from the first word; one posting reading 'Career Opportunities'" },
+  { "name": "General Electric", "slug": "greenhouse/general", "reason": "Same generic board as General Motors — the slug belongs to neither" },
+  { "name": "Meta", "slug": "recruitee/meta", "reason": "One social media role; not the company" },
+  { "name": "Eli Lilly", "slug": "ashby/eli", "reason": "First-name slug; one unrelated posting" },
+  { "name": "Charles Schwab", "slug": "greenhouse/charles", "reason": "First-name slug; German-language sales roles at another company" },
+  { "name": "Capital One", "slug": "lever/capital", "reason": "Generic slug; cannot confirm the board is theirs" },
+  { "name": "Allstate", "slug": "recruitee/allstate", "reason": "Unclaimed Recruitee account still showing its sample posting" },
+  { "name": "EY", "slug": "recruitee/ey", "reason": "Unclaimed Recruitee account still showing its sample posting" },
+  { "name": "Accenture", "slug": "recruitee/accenture", "reason": "Unclaimed Recruitee account still showing its sample posting" },
+  { "name": "Multiplier", "slug": "recruitee/multiplier", "reason": "Unclaimed Recruitee account still showing its sample posting" },
+  { "name": "Userpilot", "slug": "recruitee/userpilot", "reason": "Unclaimed Recruitee account still showing its sample posting" },
+  { "name": "MetLife", "slug": "lever/metlife", "reason": "A regional agent-recruitment board, not the employer's own openings" },
+  { "name": "Velocity Global", "slug": "ashby/velocity", "reason": "Financial crime and KYC roles — a fintech, not the employment platform" },
+  { "name": "Alto Pharmacy", "slug": "workable/alto", "reason": "Marketing engineering contracts; not the pharmacy" },
+  { "name": "Blue Apron", "slug": "lever/blue", "reason": "Offshore data consultancy postings; not the meal kit company" },
+  { "name": "Oak Street Health", "slug": "ashby/oak", "reason": "Enterprise software sales roles; not the primary care clinics" },
+  { "name": "Carbon Health", "slug": "greenhouse/carbon", "reason": "Hardware engineering roles — this board is Carbon, the 3D printing company" },
+  { "name": "Spring Health", "slug": "recruitee/spring", "reason": "French retail sales internships; not the mental health company" },
+  { "name": "Help Scout", "slug": "greenhouse/help", "reason": "HVAC technician roles; the slug belongs to a trades business" },
+  { "name": "Cloudflare Area 1", "slug": "greenhouse/cloudflare", "reason": "A product, not a separate employer — Cloudflare is already listed" },
+  { "name": "Stripe Tax", "slug": "greenhouse/stripe", "reason": "A product, not a separate employer — Stripe is already listed" },
+  { "name": "Twilio SendGrid", "slug": "greenhouse/twilio", "reason": "A product, not a separate employer — Twilio is already listed" },
+  { "name": "DocuSign CLM", "slug": "", "reason": "A product, not a separate employer — DocuSign is already listed" },
+  { "name": "Relativity", "slug": "greenhouse/relativity", "reason": "This board is Relativity Space — aerospace postings, not the eDiscovery company" },
+  { "name": "Runway", "slug": "ashby/runway", "reason": "One board, two candidates, and the postings do not settle which; neither ships" },
+  { "name": "Runway Financial", "slug": "ashby/runway", "reason": "One board, two candidates, and the postings do not settle which; neither ships" }
+ ]
+}
