@@ -1,29 +1,46 @@
 # job-watch
 
-A Google Sheet that watches company job boards for you.
+Find your next job. All from a Google Sheet.
 
-You say what you're after — titles, a salary floor, remote or not — and which
-companies you'd work for. Every morning it reads their job boards and writes
-what it found into your sheet: scored, ranked, salary pulled out of the
-posting, and a note when something changes on a job that's still open.
+You select what you're looking for - titles, salary, remote or not - and what 
+companies you'd work for.
+
+Every day it reads the companies' job boards and writes what it found into your 
+sheet: scored, ranked, salary pulled out of the posting, and 
+a note when something changes on a job that's still open.
+
+**Now, you can easily track openings at specific companies and get alerts 
+when they're hiring for your dream role.**
 
 **It is a spreadsheet.** No account to make, no service to sign up for, no
 subscription. Nothing runs on anybody's server but Google's, and no language
 model runs at any point — matching and scoring are ordinary code, so a run
 costs nothing and needs no API key.
 
-- 352 companies to pick from, every one checked against a live board
+- 352 built-in companies to pick from to get started,
+  every one checked against a live board (and you can add as many as you want)
 - Six job board platforms: Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee
 - Runs itself daily, in your timezone
-- Digests to email or Discord, if you want them
+- Digests/alerts sent to you email or Discord, if you want them
 
 ---
 
 ## What's in this repository
 
-**If somebody sent you a link to a copy of the sheet, you need none of this.**
-Open the link, choose *File → Make a copy*, and skip to *Setting it up* below.
+### Easy Setup
+
+Open the Google Sheets template link, choose *File → Make a copy*, and skip to *Setting it up* below.
 The code is already inside the copy.
+
+https://docs.google.com/spreadsheets/d/17eJWRWQrl2MsuWSmGX5WzVvfxNdjlTZsU6fGHZNGHFA/edit
+
+Then, you're all set!
+
+Note - if you're not signed into a Google account at the time, you won't be able to save a copy to your Google Drive.
+
+### Harder Setup
+
+**If somebody sent you a link to a copy of the sheet, you need none of this.**
 
 If you are here to set the sheet up yourself, one file matters:
 
