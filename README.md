@@ -27,6 +27,12 @@ costs nothing and needs no API key.
 
 ## What's in this repository
 
+This repository has more than everything you need.
+
+Simplest setup, you can just copy a Google Sheet template, which includes the App Script built-in, and be off and running.
+
+But if you want to go wild, I've included everything 
+
 ### Easy Setup
 
 Open the Google Sheets template link, choose *File → Make a copy*, and skip to *Setting it up* below.
@@ -34,13 +40,11 @@ The code is already inside the copy.
 
 https://docs.google.com/spreadsheets/d/17eJWRWQrl2MsuWSmGX5WzVvfxNdjlTZsU6fGHZNGHFA/edit
 
-Then, you're all set!
+See further details below in the **Setting it up** section.
 
 Note - if you're not signed into a Google account at the time, you won't be able to save a copy to your Google Drive.
 
 ### Harder Setup
-
-**If somebody sent you a link to a copy of the sheet, you need none of this.**
 
 If you are here to set the sheet up yourself, one file matters:
 
@@ -65,7 +69,7 @@ result. Editing `Code.gs` by hand means the next build overwrites you.
 
 ## Setting it up
 
-**1. Make your own copy.** Open the link you were given and choose
+**1. Make your own copy.** Open the Google Sheet template link and choose
 *File → Make a copy*. The whole tool comes with it.
 
 **2. Open the menu.** Reload the copy and a **Job watch** menu appears next to
@@ -84,10 +88,28 @@ That's it. There is no fourth step.
 
 ---
 
+## Tabs overview
+
+There are 7 tabs in the Google Sheet template:
+
+| Item | What it does |
+| --- | --- |
+| **rules** | What kinds of job titles are you looking for and not looking for? |
+| **companies** | Which companies' job boards do you want to search? |
+| **matches** | Here are the relevant job postings we found for you |
+| **dropped** | Here are the job postings that are not relevant for you because they don't meet your rules |
+| **directory** | Here are 352 companies that you can add to your companies list easily if you want |
+| **log** | Here's a log of the app's runs so you can troubleshoot and track if need be |
+| **settings** | What are your job search parameters - salary, location, remote, etc. |
+
+---
+
 ## Picking who to watch
 
+Now that you're set up, let's go to the companies tab and figure out what companies we want to monitor.
+
 **Start with the companies you already know.** Before opening the catalogue,
-type twenty names into the `companies` tab off the top of your head — where
+type some names into the `companies` tab off the top of your head — where
 your friends work, your employer's competitors, the vendors you deal with,
 anyone whose product you like. Leave ATS and Slug blank and run **Find boards
 for new companies**; it works out where each one posts.
@@ -101,6 +123,36 @@ one does. Tick `Add` on any row and the next run starts following it.
 
 That list is better than any catalogue, because the reasons behind it are
 yours.
+
+---
+
+## What are you looking for
+
+Once you have some companies in the Companies section that are found, and, optionally, some other companies chosen
+from the directory, now you need to set your preferences and settings.
+
+Once you've gotten this part done, you can just straight-up run the watch by going to the job watch menu > **Run the watch now**.
+
+### Rules tab
+
+The `rules` tab is a list of patterns. A plain phrase matches whole words in
+order, so `staff engineer` will **not** match "Staff Software Engineer". Wrap a
+pattern in slashes for a regular expression when you want the wider net.
+
+| Active | Kind | Pattern | Note |
+| --- | --- | --- | --- |
+| TRUE | title | `head of revenue operations` | |
+| TRUE | title | `/staff.*engineer/` | regex, for a wider net |
+| TRUE | exclude | `intern` | never show these |
+
+### Settings tab
+
+The `settings` tab holds everything else — salary floor, what to do with
+postings that state no salary, remote-only, a location allowlist, how long
+before a long-open posting counts as stale and whether to drop it, and the four
+scoring weights. Each row explains itself; the middle column is the answer.
+
+The "weight" options are how the app scores different job openings for you.
 
 ---
 
@@ -127,26 +179,12 @@ instead of leaving you to guess.
 
 ---
 
-## Saying what you're looking for
-
-The `rules` tab is a list of patterns. A plain phrase matches whole words in
-order, so `staff engineer` will **not** match "Staff Software Engineer". Wrap a
-pattern in slashes for a regular expression when you want the wider net.
-
-| Active | Kind | Pattern | Note |
-| --- | --- | --- | --- |
-| TRUE | title | `head of revenue operations` | |
-| TRUE | title | `/staff.*engineer/` | regex, for a wider net |
-| TRUE | exclude | `intern` | never show these |
-
-The `settings` tab holds everything else — salary floor, what to do with
-postings that state no salary, remote-only, a location allowlist, how long
-before a long-open posting counts as stale and whether to drop it, and the four
-scoring weights. Each row explains itself; the middle column is the answer.
-
----
-
 ## When it runs
+
+You can make it run whenever you want by going to the menu and selecting **Run the watch now**. The results you'll get will be only
+the new results that you have not seen before.
+
+*What about a daily scheduled run?*
 
 Nothing runs on a schedule until you say so. **Schedule the daily run…** asks
 for an hour and sets it in your spreadsheet's own timezone, so it follows
