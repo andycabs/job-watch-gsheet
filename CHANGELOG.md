@@ -46,7 +46,7 @@ app to deploy, no credentials to copy, and no GitHub account.
 - One engine, two runtimes: the matching, scoring and parsing are the same
   source the tests run on Node, flattened into a single Apps Script file by
   `src/bundle.js`.
-- Updating is by hand now: paste the newer `dist/Code.gs` over your script and
+- Updating is by hand now: paste the newer `Code.gs` over your script and
   run **Add anything missing**. The version you are running is in the `What
   ran` column of every log row.
 

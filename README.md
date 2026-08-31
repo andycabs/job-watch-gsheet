@@ -19,6 +19,33 @@ costs nothing and needs no API key.
 
 ---
 
+## What's in this repository
+
+**If somebody sent you a link to a copy of the sheet, you need none of this.**
+Open the link, choose *File → Make a copy*, and skip to *Setting it up* below.
+The code is already inside the copy.
+
+If you are here to set the sheet up yourself, one file matters:
+
+| | |
+| --- | --- |
+| **`Code.gs`** | **The whole tool.** Paste this into *Extensions → Apps Script* in a blank Google Sheet, save, then reload the sheet. Nothing else in this repository has to be downloaded, installed or run. |
+
+The rest is what that file is built from, kept here so it can be read, checked
+and rebuilt:
+
+| | |
+| --- | --- |
+| `src/` | The engine — job board adapters, matching, scoring, the sheet client — plus its tests. `npm run build` flattens it into `Code.gs`. |
+| `data/` | The company catalogue: 352 employers with a verified board, and a record of the ones that were checked and didn't have one. |
+| `templates/` | The starter rule sets *Start here* offers — the titles and keywords a role tends to use. |
+| `build/` | Scratch output from `npm run build`. Not committed. |
+
+`Code.gs` is generated: edit `src/`, run `npm run build`, and commit the
+result. Editing `Code.gs` by hand means the next build overwrites you.
+
+---
+
 ## Setting it up
 
 **1. Make your own copy.** Open the link you were given and choose
@@ -192,7 +219,7 @@ those.
 
 Your copy carries its own code, so a newer version arrives by hand:
 
-1. Get the latest `dist/Code.gs` from this repository
+1. Get the latest `Code.gs` from the top of this repository
 2. In your sheet, *Extensions → Apps Script*, select everything, paste over it
 3. **Save** — Apps Script does not save on its own
 4. Run **Add anything missing (after an update)**
@@ -213,7 +240,7 @@ inside it is ordinary JavaScript, developed and tested on Node:
 
 ```bash
 npm test                                   # the suite, offline, no credentials
-npm run build                              # regenerate dist/Code.gs
+npm run build                              # regenerate Code.gs
 npm run diagnose greenhouse grafanalabs    # inspect a live board
 ```
 

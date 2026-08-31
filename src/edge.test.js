@@ -408,9 +408,9 @@ console.log('\n=== the repository contains what the code needs ===');
 console.log('\n=== the README describes the menu the sheet actually has ===');
 // ===========================================================================
 {
-  // Against the built file, not the retired web-app script: dist/Code.gs is
+  // Against the built file, not the retired web-app script: Code.gs is
   // what people paste into a spreadsheet, so its menu is the one they see.
-  const gs = readFileSync(new URL('../dist/Code.gs', import.meta.url), 'utf8');
+  const gs = readFileSync(new URL('../Code.gs', import.meta.url), 'utf8');
   const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
 
   const items = [...gs.matchAll(/\.addItem\('([^']+)'/g)].map((m) => m[1]);

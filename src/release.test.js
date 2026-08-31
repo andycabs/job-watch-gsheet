@@ -91,7 +91,7 @@ console.log('\n--- where the version shows up ---');
   // The built file has to carry a real version, not the placeholder the
   // sources use. A copy that cannot say which version it is cannot be told it
   // is out of date.
-  const built = readFileSync(new URL('../dist/Code.gs', import.meta.url), 'utf8');
+  const built = readFileSync(new URL('../Code.gs', import.meta.url), 'utf8');
   check('the built file states its version',
     new RegExp(`// version ${VERSION.replace(/\./g, '\\.')}`).test(built),
     built.split('\n').slice(0, 3).join(' '));

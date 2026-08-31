@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------------
 // Building the file that goes in the spreadsheet.
 //
-//   node src/gas/build.js              write build/Code.gs
+//   node src/gas/build.js              write Code.gs
 //   node src/gas/build.js --module     also write build/Code.mjs, importable
 //
 // The module form is how the tests get at it: the same generated text, with an
@@ -93,11 +93,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const directory = JSON.parse(readFileSync(fileURLToPath(new URL('../../data/directory.json', import.meta.url)), 'utf8'));
 
   const { source, files } = buildGas(read, { version: pkg.version, templates, directory });
-  // Two destinations. dist/ is committed and is what people paste into a
-  // spreadsheet; build/ is scratch for the tests to import.
-  const dist = fileURLToPath(new URL('../../dist/', import.meta.url));
-  mkdirSync(dist, { recursive: true });
-  writeFileSync(path.join(dist, 'Code.gs'), source);
+  // Two destinations. The committed one sits at the top of the repository,
+  // beside the README, because it is the only file most people ever need and
+  // a folder called dist/ does not say so. build/ is scratch for the tests.
+  const repo = fileURLToPath(new URL('../../', import.meta.url));
+  writeFileSync(path.join(repo, 'Code.gs'), source);
 
   const out = fileURLToPath(new URL('../../build/', import.meta.url));
   mkdirSync(out, { recursive: true });
@@ -107,6 +107,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     writeFileSync(path.join(out, 'Code.mjs'), `${source}\nexport { ${EXPORTED.join(', ')} };\n`);
   }
 
-  console.log(`${files.length} files → dist/Code.gs`);
+  console.log(`${files.length} files → Code.gs`);
   console.log(`${source.split('\n').length} lines, ${Math.round(source.length / 1024)}KB`);
 }

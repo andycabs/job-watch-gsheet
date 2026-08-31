@@ -14,7 +14,7 @@ node_modules/
 # copy this repository as a template and have no use for 180K of it.
 data/prospects/
 
-# Scratch bundler output. The shipped file is dist/Code.gs, which is committed:
-# it is the artefact people paste into a spreadsheet, so it has to be reachable
-# without a checkout and a build.
+# Scratch bundler output. The shipped file is Code.gs at the top of the
+# repository, which is committed: it is the artefact people paste into a
+# spreadsheet, so it has to be reachable without a checkout and a build.
 build/

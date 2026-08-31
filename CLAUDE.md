@@ -6,7 +6,7 @@ paste into a Google Sheet.
 
 **The rules that matter most here**
 
-- `dist/Code.gs` is generated. Never edit it; run `npm run build` and commit the
+- `Code.gs` is generated. Never edit it; run `npm run build` and commit the
   result. A test rebuilds and compares, because a committed artefact that has
   drifted from its sources is worse than none.
 - The tests run against the built file, not the sources. A build step that

@@ -275,7 +275,7 @@ console.log('\n--- every channel ---');
 {
   // There is no web app to send through here: the script inside the
   // spreadsheet sends the mail itself, as the person who owns the sheet.
-  const gs = readFileSync(new URL('../dist/Code.gs', import.meta.url), 'utf8');
+  const gs = readFileSync(new URL('../Code.gs', import.meta.url), 'utf8');
   check('the built script sends mail itself', gs.includes('MailApp.sendEmail'));
   check('and can post to Discord', /discord/i.test(gs));
 }

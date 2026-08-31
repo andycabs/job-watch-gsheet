@@ -30,12 +30,12 @@ const source = readFileSync(path.join(root, 'build', 'Code.gs'), 'utf8');
 
 console.log('\n--- the committed file is the built one ---');
 {
-  // dist/Code.gs is what people paste into a spreadsheet. A committed artefact
+  // Code.gs is what people paste into a spreadsheet. A committed artefact
   // that has drifted from its sources is worse than none: everything here
   // passes against the sources while the file being handed out is last week's.
-  const shipped = existsSync(path.join(root, 'dist', 'Code.gs'))
-    ? readFileSync(path.join(root, 'dist', 'Code.gs'), 'utf8') : '';
-  check('dist/Code.gs exists', Boolean(shipped));
+  const shipped = existsSync(path.join(root, 'Code.gs'))
+    ? readFileSync(path.join(root, 'Code.gs'), 'utf8') : '';
+  check('Code.gs exists', Boolean(shipped));
   check('and matches a fresh build', shipped === source,
     'run `npm run build` and commit the result');
 }
