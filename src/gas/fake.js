@@ -84,6 +84,7 @@ class FakeSheet {
 
 class FakeSpreadsheet {
   constructor(tabs = {}, name = 'Test sheet') {
+    this.timeZone = 'America/New_York';
     this.name = name;
     this.sheets = Object.entries(tabs).map(([n, grid], i) => new FakeSheet(n, grid, 100 + i));
   }
@@ -107,13 +108,21 @@ class FakeSpreadsheet {
     const endRow = m[5] ? Number(m[5]) : (m[4] ? sheet.getMaxRows() : startRow);
     return new FakeRange(sheet, startRow, startCol, endRow - startRow + 1, endCol - startCol + 1);
   }
+  /**
+   * Every real spreadsheet has one, and the daily run is scheduled against it.
+   * The fake not having it is how "cannot read the time in null" got as far as
+   * a test run.
+   */
+  getSpreadsheetTimeZone() { return this.timeZone; }
+
   /** What a tab holds, for a test to assert against. */
   grid(name) { return this.getSheetByName(name)?.grid ?? null; }
 }
 
 /** Installs the globals Apps Script provides. Returns a handle and a teardown. */
-export function installFakes({ tabs = {}, fetch: fetchImpl = () => { throw new Error('no fetch'); } } = {}) {
+export function installFakes({ tabs = {}, timeZone = 'America/New_York', fetch: fetchImpl = () => { throw new Error('no fetch'); } } = {}) {
   const spreadsheet = new FakeSpreadsheet(tabs);
+  spreadsheet.timeZone = timeZone;
   const slept = [];
   const mailed = [];
 
@@ -153,16 +162,18 @@ export function installFakes({ tabs = {}, fetch: fetchImpl = () => { throw new E
       if (i >= 0) triggers.splice(i, 1);
     },
     newTrigger: (handler) => {
-      const spec = { handler, hour: null, days: null };
+      const spec = { handler, hour: null, days: null, hours: null };
       const builder = {
         timeBased: () => builder,
         atHour: (h) => { spec.hour = h; return builder; },
         everyDays: (d) => { spec.days = d; return builder; },
+        everyHours: (h) => { spec.hours = h; return builder; },
         create: () => {
           const trigger = {
             getHandlerFunction: () => spec.handler,
             hour: spec.hour,
             days: spec.days,
+            hours: spec.hours,
           };
           triggers.push(trigger);
           return trigger;
@@ -178,7 +189,21 @@ export function installFakes({ tabs = {}, fetch: fetchImpl = () => { throw new E
       deleteProperty: (k) => { stored.delete(k); },
     }),
   };
-  globalThis.Utilities = { sleep: (ms) => slept.push(ms) };
+  // The timezone database, for real. A fake answering from arithmetic would
+  // agree with the code on every day of the year except the two that matter.
+  globalThis.Utilities = {
+    sleep: (ms) => slept.push(ms),
+    formatDate: (date, tz, pattern) => {
+      const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', hour12: false,
+      }).formatToParts(date).reduce((o, x) => (o[x.type] = x.value, o), {});
+      const hour = parts.hour === '24' ? '00' : parts.hour;
+      return pattern === 'yyyy-MM-dd'
+        ? `${parts.year}-${parts.month}-${parts.day}`
+        : String(Number(hour));
+    },
+  };
   globalThis.MailApp = {
     sendEmail: (msg) => mailed.push(msg),
     getRemainingDailyQuota: () => 100,

@@ -17,7 +17,10 @@ import { runWatch, runSetup, runDirectory, runFirstRun, templateNames, recordRun
 import { runCheck, runSuggest, runLearn, runDiscover } from './diagnose.js';
 import { parseDestination, currentDestination, setDestination } from './notify.js';
 import { scriptProperties } from './props.js';
-import { HOUR_KEY, scheduledHour, scheduleTimeZone, TZ_FIX } from './when.js';
+import {
+  HOUR_KEY, LAST_RUN_KEY, TZ_FIX, watchTimeZone, scheduledHour,
+  lastRunStamp, dueNow, localHour, localStamp,
+} from './when.js';
 import { sheetClient } from './sheet.js';
 
 const MENU = 'Job watch';
@@ -61,11 +64,31 @@ export function parseHour(text) {
  * Scheduling twice is the mistake that costs two emails every morning, and it
  * is invisible: nothing in the sheet shows how many triggers exist.
  */
-export function schedule(hour, app = scriptApp()) {
+export function schedule(hour, app = scriptApp(), deps = {}) {
   const removed = unschedule(app);
-  app.newTrigger(TRIGGER).timeBased().atHour(hour).everyDays(1).create();
-  scriptProperties().setProperty(HOUR_KEY, String(hour));
-  return { hour, replaced: removed };
+  // Hourly, not daily-at-an-hour: the hour a trigger fires at is the script
+  // project's, and the hour a person means is their spreadsheet's. This wakes
+  // up often enough that the second one can decide. See when.js.
+  app.newTrigger(TRIGGER).timeBased().everyHours(1).create();
+
+  const store = scriptProperties();
+  store.setProperty(HOUR_KEY, String(hour));
+
+  // If the hour has already gone today, start tomorrow. Otherwise leave the
+  // stamp clear so the first run is the one they are expecting, today.
+  const { tz, ok } = deps.zone || watchTimeZone();
+  let startsToday = true;
+  store.deleteProperty(LAST_RUN_KEY);
+  if (ok) {
+    try {
+      const now = deps.now || new Date();
+      if (localHour(now, tz) >= Number(hour)) {
+        store.setProperty(LAST_RUN_KEY, localStamp(now, tz));
+        startsToday = false;
+      }
+    } catch { /* leave it clear — a missed first day beats a missed schedule */ }
+  }
+  return { hour, replaced: removed, tz, startsToday };
 }
 
 export function unschedule(app = scriptApp()) {
@@ -173,11 +196,11 @@ export function menuNotifications() {
 }
 
 export function menuSchedule() {
-  const tz = scheduleTimeZone();
-  const where = tz || 'this script\u2019s timezone';
+  const zone = watchTimeZone();
   const answer = ui().prompt('Daily run',
-    `What hour should the watch run, in ${where}? (0-23)\n\n`
-    + `If that is not your timezone, cancel and change it first:\n${TZ_FIX}\n\n`
+    `What hour should the watch run? (0-23)\n\n`
+    + `Times are ${zone.tz}, this spreadsheet\u2019s timezone.\n`
+    + `To change it: ${TZ_FIX}\n\n`
     + 'It fires within the hour you pick rather than on the minute.',
     ui().ButtonSet.OK_CANCEL);
   if (answer.getSelectedButton() !== ui().Button.OK) return;
@@ -185,11 +208,14 @@ export function menuSchedule() {
   const { hour, problem } = parseHour(answer.getResponseText());
   if (problem) { ui().alert('Not an hour', problem, ui().ButtonSet.OK); return; }
 
-  schedule(hour);
+  const set = schedule(hour, scriptApp(), { zone });
+  const when = set.startsToday
+    ? `starting today`
+    : `starting tomorrow — ${hour}:00 has already gone there`;
   ui().alert('Scheduled',
-    `The watch will run daily around ${hour}:00 ${where}, whether or not this `
-    + 'spreadsheet is open.\n\nIt fires within that hour rather than on the minute.'
-    + `\n\nWrong timezone? ${TZ_FIX}`,
+    `The watch will run daily around ${hour}:00 ${set.tz}, ${when}.\n\n`
+    + 'It runs whether or not this spreadsheet is open, and fires within that '
+    + 'hour rather than on the minute.',
     ui().ButtonSet.OK);
 }
 
@@ -207,6 +233,21 @@ export function menuUnschedule() {
  * log tab, which is the only place a person will look tomorrow morning.
  */
 export function scheduledWatch() {
+  // Twenty-three of these a day do nothing. Deciding costs two comparisons and
+  // is deliberately ahead of opening the sheet: a wake-up that is not due
+  // should not read a spreadsheet or touch a job board.
+  const { tz } = watchTimeZone();
+  const verdict = dueNow({
+    now: new Date(), tz, hour: scheduledHour(), stamp: lastRunStamp(),
+  });
+  if (!verdict.due) return { ran: false, reason: verdict.reason };
+
+  // Stamped before the run, not after. A run that dies halfway has still had
+  // its turn today, and retrying it every hour until midnight would be worse
+  // than waiting for tomorrow.
+  scriptProperties().setProperty(LAST_RUN_KEY, verdict.today);
+
   const client = sheetClient();
-  return recordRun(client, 'watch (scheduled)', () => runWatch({ client }));
+  const result = recordRun(client, 'watch (scheduled)', () => runWatch({ client }));
+  return { ran: true, at: verdict.reason, ...result };
 }

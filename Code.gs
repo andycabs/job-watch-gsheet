@@ -4472,30 +4472,59 @@ function salaryLeaning(kept = [], passed = []) {
 // ---------------------------------------------------------------------------
 // When the run happens.
 //
+// A time-driven trigger fires in the *script project's* timezone, which is a
+// setting buried in Project Settings and copied from whoever built the
+// template. Asking somebody to go and change it there — to make a daily run
+// happen at the hour they asked for — is a setup step for a thing they have
+// already told us, since the spreadsheet has a timezone of its own that they
+// set in Sheets like any other document property.
+//
+// So the trigger is not the schedule. The trigger fires every hour and this
+// decides whether it is time, by asking what hour it currently is in the
+// spreadsheet's timezone. Twenty-three of those wake up, compare two numbers
+// and stop.
+//
+// The reason to prefer it over converting between the two zones — the obvious
+// fix — is daylight saving. Zones do not change on the same dates, so an
+// offset worked out in January is wrong for three weeks in March. Asking
+// Google what time it is *now*, in a named zone, is right every day of the
+// year including the two that are weird.
+//
 // Its own file because two callers need it and they already point at each
 // other: the menu schedules, the check reports, and the menu imports the
-// check. The bundler refuses an import cycle rather than guessing an order,
-// which is how this ended up here rather than in either of them.
+// check. The bundler refuses an import cycle rather than guessing an order.
 // ---------------------------------------------------------------------------
 
 const HOUR_KEY = 'WATCH_HOUR';
+const LAST_RUN_KEY = 'WATCH_LAST_RUN';
+
+/** Where somebody goes to change it — a Sheets menu, not the script editor. */
+const TZ_FIX = 'File → Settings → Time zone';
+
+const utilities = () => globalThis.Utilities;
 
 /**
- * The timezone a scheduled run actually fires in.
+ * A date rendered in a named zone.
  *
- * Not the spreadsheet's. A time-driven trigger goes by the *script project's*
- * timezone — the `timeZone` in appsscript.json — and the two are separate
- * settings that a copied sheet carries over from whoever made the template.
- * Someone in Berlin copying a sheet built in New York gets both set to New
- * York, and a prompt that asked in the spreadsheet's timezone would have
- * promised 8am and delivered 2pm.
- *
- * Named rather than computed. Converting between the two zones looks like the
- * obliging thing to do and is a trap: they observe daylight saving on
- * different dates, so an offset worked out in January is wrong for three weeks
- * in March. One timezone that is right beats two that agree twice a year.
+ * Google's own timezone database does the work, so a zone that has just moved
+ * on or off daylight saving is handled by asking rather than by arithmetic.
  */
-function scheduleTimeZone(session = globalThis.Session) {
+function formatIn(now, tz, pattern, utils = utilities()) {
+  return String(utils.formatDate(now, tz, pattern));
+}
+
+/** The spreadsheet's timezone — the one a person sets in Sheets. */
+function sheetTimeZone(app = globalThis.SpreadsheetApp) {
+  try {
+    const tz = app.getActive().getSpreadsheetTimeZone();
+    return tz ? String(tz) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** The script project's, which is what the raw trigger goes by. Reported, not used. */
+function scriptTimeZone(session = globalThis.Session) {
   try {
     const tz = session && session.getScriptTimeZone();
     return tz ? String(tz) : null;
@@ -4504,22 +4533,72 @@ function scheduleTimeZone(session = globalThis.Session) {
   }
 }
 
-/** The spreadsheet's own, which governs how dates display but not the trigger. */
-function sheetTimeZone(app = globalThis.SpreadsheetApp) {
-  try {
-    return String(app.getActive().getSpreadsheetTimeZone());
-  } catch {
-    return null;
+/**
+ * The zone this schedules against, and whether it is one Google recognises.
+ *
+ * A spreadsheet always has a timezone, so the fallback is for the case where
+ * the sheet cannot be read at all rather than for a person who has not chosen.
+ */
+function watchTimeZone(deps = {}) {
+  const tz = ('sheetTz' in deps ? deps.sheetTz : sheetTimeZone());
+  const now = deps.now || new Date();
+  if (tz) {
+    try {
+      formatIn(now, tz, 'H', deps.utils || utilities());
+      return { tz, ok: true };
+    } catch {
+      return { tz, ok: false };
+    }
   }
+  return { tz: ('scriptTz' in deps ? deps.scriptTz : scriptTimeZone()), ok: false };
 }
 
-/** Where to go when the answer is "not that one". */
-const TZ_FIX = 'Extensions → Apps Script → ⚙ Project Settings → Time zone';
-
 /** The hour currently set, or null. */
-function scheduledHour() {
-  const raw = readProperty(HOUR_KEY, null);
+function scheduledHour(read = readProperty) {
+  const raw = read(HOUR_KEY, null);
   return raw === null ? null : Number(raw);
+}
+
+/** The local date a run last happened on, as the sheet's timezone saw it. */
+function lastRunStamp(read = readProperty) {
+  return read(LAST_RUN_KEY, '') || '';
+}
+
+/** Today, where the spreadsheet lives. One run per one of these. */
+function localStamp(now, tz, utils) {
+  return formatIn(now, tz, 'yyyy-MM-dd', utils);
+}
+
+function localHour(now, tz, utils) {
+  return Number(formatIn(now, tz, 'H', utils));
+}
+
+/**
+ * Whether an hourly wake-up is the one that should do the work.
+ *
+ * "At or after the hour, once per local day" rather than "at the hour". Three
+ * things fall out of that which the stricter rule gets wrong: the morning the
+ * clocks go forward and the chosen hour does not exist, a trigger Google fired
+ * late, and the hour that happens twice in the autumn — the last one caught by
+ * the stamp rather than the comparison.
+ */
+function dueNow({ now, tz, hour, stamp, utils } = {}) {
+  if (hour === null || hour === undefined || Number.isNaN(Number(hour))) {
+    return { due: false, reason: 'no daily run is scheduled' };
+  }
+  let today;
+  let atHour;
+  try {
+    today = localStamp(now, tz, utils);
+    atHour = localHour(now, tz, utils);
+  } catch (err) {
+    return { due: false, reason: `cannot read the time in ${tz}`, problem: true };
+  }
+  if (stamp && stamp === today) return { due: false, reason: `already ran on ${today}`, today };
+  if (atHour < Number(hour)) {
+    return { due: false, reason: `it is ${atHour}:00 in ${tz}, waiting for ${hour}:00`, today };
+  }
+  return { due: true, today, reason: `${atHour}:00 in ${tz}` };
 }
 
 // ===== gas/diagnose.js ===================================================
@@ -4582,16 +4661,21 @@ function runCheck({ client } = {}) {
   {
     // The commonest wrong answer in a copied sheet, and a silent one: the run
     // happens, on time, in somebody else's timezone.
-    const tz = scheduleTimeZone();
-    const sheetTz = sheetTimeZone();
+    const { tz, ok } = watchTimeZone();
     const at = scheduledHour();
+    const last = lastRunStamp();
     out.say(`  daily run          ${at === null ? 'off' : `${at}:00`}`);
-    out.say(`  fires in           ${tz || 'unknown'}`);
-    if (sheetTz && tz && sheetTz !== tz) {
-      out.say(`  the sheet displays dates in ${sheetTz}, which is not the same`);
-      out.say(`  zone. Only "fires in" decides when the run happens.`);
+    out.say(`  timezone           ${tz || 'unknown'}${ok ? '' : ' (not one Google recognises)'}`);
+    out.say(`  change it at       ${TZ_FIX}`);
+    if (at !== null) out.say(`  last scheduled run ${last || 'none yet'}`);
+    // The script project has a timezone too, and it is not the one that
+    // decides. Said only when it differs, so it reads as reassurance rather
+    // than one more thing to configure.
+    const scriptTz = scriptTimeZone();
+    if (scriptTz && tz && scriptTz !== tz) {
+      out.say(`  (the script itself is set to ${scriptTz}; it wakes up hourly and`);
+      out.say(`   the run happens on ${tz} time, so that does not matter)`);
     }
-    out.say(`  wrong zone?        ${TZ_FIX}`);
   }
 
   out.say('');
@@ -4891,11 +4975,31 @@ function parseHour(text) {
  * Scheduling twice is the mistake that costs two emails every morning, and it
  * is invisible: nothing in the sheet shows how many triggers exist.
  */
-function schedule(hour, app = scriptApp()) {
+function schedule(hour, app = scriptApp(), deps = {}) {
   const removed = unschedule(app);
-  app.newTrigger(TRIGGER).timeBased().atHour(hour).everyDays(1).create();
-  scriptProperties().setProperty(HOUR_KEY, String(hour));
-  return { hour, replaced: removed };
+  // Hourly, not daily-at-an-hour: the hour a trigger fires at is the script
+  // project's, and the hour a person means is their spreadsheet's. This wakes
+  // up often enough that the second one can decide. See when.js.
+  app.newTrigger(TRIGGER).timeBased().everyHours(1).create();
+
+  const store = scriptProperties();
+  store.setProperty(HOUR_KEY, String(hour));
+
+  // If the hour has already gone today, start tomorrow. Otherwise leave the
+  // stamp clear so the first run is the one they are expecting, today.
+  const { tz, ok } = deps.zone || watchTimeZone();
+  let startsToday = true;
+  store.deleteProperty(LAST_RUN_KEY);
+  if (ok) {
+    try {
+      const now = deps.now || new Date();
+      if (localHour(now, tz) >= Number(hour)) {
+        store.setProperty(LAST_RUN_KEY, localStamp(now, tz));
+        startsToday = false;
+      }
+    } catch { /* leave it clear — a missed first day beats a missed schedule */ }
+  }
+  return { hour, replaced: removed, tz, startsToday };
 }
 
 function unschedule(app = scriptApp()) {
@@ -5003,11 +5107,11 @@ function menuNotifications() {
 }
 
 function menuSchedule() {
-  const tz = scheduleTimeZone();
-  const where = tz || 'this script\u2019s timezone';
+  const zone = watchTimeZone();
   const answer = ui().prompt('Daily run',
-    `What hour should the watch run, in ${where}? (0-23)\n\n`
-    + `If that is not your timezone, cancel and change it first:\n${TZ_FIX}\n\n`
+    `What hour should the watch run? (0-23)\n\n`
+    + `Times are ${zone.tz}, this spreadsheet\u2019s timezone.\n`
+    + `To change it: ${TZ_FIX}\n\n`
     + 'It fires within the hour you pick rather than on the minute.',
     ui().ButtonSet.OK_CANCEL);
   if (answer.getSelectedButton() !== ui().Button.OK) return;
@@ -5015,11 +5119,14 @@ function menuSchedule() {
   const { hour, problem } = parseHour(answer.getResponseText());
   if (problem) { ui().alert('Not an hour', problem, ui().ButtonSet.OK); return; }
 
-  schedule(hour);
+  const set = schedule(hour, scriptApp(), { zone });
+  const when = set.startsToday
+    ? `starting today`
+    : `starting tomorrow — ${hour}:00 has already gone there`;
   ui().alert('Scheduled',
-    `The watch will run daily around ${hour}:00 ${where}, whether or not this `
-    + 'spreadsheet is open.\n\nIt fires within that hour rather than on the minute.'
-    + `\n\nWrong timezone? ${TZ_FIX}`,
+    `The watch will run daily around ${hour}:00 ${set.tz}, ${when}.\n\n`
+    + 'It runs whether or not this spreadsheet is open, and fires within that '
+    + 'hour rather than on the minute.',
     ui().ButtonSet.OK);
 }
 
@@ -5037,8 +5144,23 @@ function menuUnschedule() {
  * log tab, which is the only place a person will look tomorrow morning.
  */
 function scheduledWatch() {
+  // Twenty-three of these a day do nothing. Deciding costs two comparisons and
+  // is deliberately ahead of opening the sheet: a wake-up that is not due
+  // should not read a spreadsheet or touch a job board.
+  const { tz } = watchTimeZone();
+  const verdict = dueNow({
+    now: new Date(), tz, hour: scheduledHour(), stamp: lastRunStamp(),
+  });
+  if (!verdict.due) return { ran: false, reason: verdict.reason };
+
+  // Stamped before the run, not after. A run that dies halfway has still had
+  // its turn today, and retrying it every hour until midnight would be worse
+  // than waiting for tomorrow.
+  scriptProperties().setProperty(LAST_RUN_KEY, verdict.today);
+
   const client = sheetClient();
-  return recordRun(client, 'watch (scheduled)', () => runWatch({ client }));
+  const result = recordRun(client, 'watch (scheduled)', () => runWatch({ client }));
+  return { ran: true, at: verdict.reason, ...result };
 }
 
 // ===== __gas.js ==========================================================

@@ -14,7 +14,7 @@ import { safeCell, safeValues } from './sheet/schema.js';
 import { memoryClient } from './sheet/memory.js';
 import { checkSlug, ADAPTERS } from './boards.js';
 import { emailPayload, discordPayload, telegramPayload } from './notify.js';
-import { scheduleTimeZone, sheetTimeZone, TZ_FIX } from './gas/when.js';
+import { scriptTimeZone, sheetTimeZone, TZ_FIX } from './gas/when.js';
 
 let pass = 0, fail = 0;
 const check = (label, ok, detail = '') => {
@@ -125,31 +125,28 @@ console.log('\n--- a posting cannot rewrite the digest ---');
       .html.includes('https://boards.example/j/1'));
 }
 
-console.log('\n--- the schedule names the timezone that governs it ---');
+console.log('\n--- the schedule is the spreadsheet\'s business, not the script\'s ---');
 {
-  // A trigger fires in the SCRIPT project's timezone. The spreadsheet has its
-  // own, and a copied sheet carries both over from whoever built the template,
-  // so for anybody outside that zone they are wrong together. Asking in the
-  // spreadsheet's would have promised 8am and delivered whatever New York was
-  // doing at the time.
-  check('the schedule reads the script timezone',
-    scheduleTimeZone({ getScriptTimeZone: () => 'Europe/Berlin' }) === 'Europe/Berlin');
-  check('and is not the spreadsheet timezone',
-    sheetTimeZone({ getActive: () => ({ getSpreadsheetTimeZone: () => 'America/New_York' }) }) === 'America/New_York');
-
-  // Naming it needs a service call that may not be there. A prompt that throws
-  // is worse than one that says "this script's timezone".
+  // Both lookups are optional: a prompt that throws because a service was not
+  // there is worse than one that says it does not know.
   check('an unavailable Session degrades rather than throws',
-    scheduleTimeZone({ getScriptTimeZone: () => { throw new Error('nope'); } }) === null);
-  check('a missing Session degrades too', scheduleTimeZone(undefined) === null);
+    scriptTimeZone({ getScriptTimeZone: () => { throw new Error('nope'); } }) === null);
+  check('a missing Session degrades too', scriptTimeZone(undefined) === null);
   check('an unreadable spreadsheet degrades too',
     sheetTimeZone({ getActive: () => { throw new Error('nope'); } }) === null);
 
-  // Somebody told their run is in the wrong zone needs to be told where to fix
-  // it, in the same breath.
-  check('the fix names Project Settings', /Project Settings/.test(TZ_FIX));
-  check('and the built file offers it where the run is scheduled',
+  // Somebody told their run is in the wrong zone is sent to a Sheets menu, not
+  // into the script editor.
+  check('the fix is a Sheets setting', /File . Settings/.test(TZ_FIX));
+  check('and not the script project settings', !/Project Settings/.test(TZ_FIX));
+  check('the built file offers it where the run is scheduled',
     readFileSync(new URL('../Code.gs', import.meta.url), 'utf8').includes(TZ_FIX));
+
+  // The trigger must be hourly. Daily-at-an-hour is the bug: that hour is the
+  // script project's, which nobody sets and every copy inherits.
+  const gs = readFileSync(new URL('../Code.gs', import.meta.url), 'utf8');
+  check('the trigger wakes up hourly', /everyHours\(1\)/.test(gs));
+  check('and never pins an hour to the script clock', !/\.atHour\(/.test(gs));
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);
