@@ -46,12 +46,12 @@ Note - if you're not signed into a Google account at the time, you won't be able
 
 ### Harder Setup
 
-If you are here to set the sheet up yourself, one file matters:
+If you are here to set the sheet up yourself, two files matter:
 
 | | |
 | --- | --- |
 | **`Code.gs`** | **The whole tool.** Paste this into *Extensions → Apps Script* in a blank Google Sheet, save, then reload the sheet. |
-| **`appsscript.json`** | **The permissions.** Paste this over the script's manifest so it asks for four narrow scopes instead of the wide ones Apps Script guesses at. See *What it asks for*. |
+| **`appsscript.json`** | **The permissions.** Paste this over the script's manifest (appscript.json) so it asks for four narrow scopes instead of the wide ones Apps Script guesses at. See *What it asks for*. |
 
 Those two files are the whole install. Nothing else here has to be
 downloaded, installed or run.
