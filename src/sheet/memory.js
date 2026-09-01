@@ -12,7 +12,7 @@
 // exactly as it would against the API, so an ordering bug fails offline
 // rather than on someone's live sheet.
 // ---------------------------------------------------------------------------
-import { SUPPORTED_OPS } from './schema.js';
+import { SUPPORTED_OPS, safeValues } from './schema.js';
 
 /** Parses "tab!A1:D3", "tab!1:3" or "tab!A1". Rows/cols are 0-based. */
 export function parseRange(range) {
@@ -93,7 +93,7 @@ export function memoryClient(initial = {}) {
           if (tabs.has(op.tab)) throw new Error(`tab "${op.tab}" already exists`);
           tabs.set(op.tab, { gid: nextGid++, grid: [], frozenRows: op.frozenRows, widths: [], validations: [] });
         } else if (op.op === 'writeRange') {
-          write(op.range, op.values);
+          write(op.range, safeValues(op.values));
         } else if (op.op === 'formatTab') {
           const tab = need(op.tab);
           tab.widths = op.widths || [];

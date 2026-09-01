@@ -16,6 +16,8 @@
 // loads, so a test can stand one in and so importing this on Node is harmless.
 // ---------------------------------------------------------------------------
 
+import { safeValues } from '../sheet/schema.js';
+
 const app = () => {
   const found = globalThis.SpreadsheetApp;
   if (!found) throw new Error('SpreadsheetApp is not available — this runs inside a spreadsheet');
@@ -112,7 +114,10 @@ export function writeRange(ss, range, values) {
   if (needRows > sheet.getMaxRows()) sheet.insertRowsAfter(sheet.getMaxRows(), needRows - sheet.getMaxRows());
   if (needCols > sheet.getMaxColumns()) sheet.insertColumnsAfter(sheet.getMaxColumns(), needCols - sheet.getMaxColumns());
 
-  sheet.getRange(startRow, startCol, rows, cols).setValues(values);
+  // Guarded here rather than in the planner: this is the last line before a
+  // value becomes a cell, and it is the one place no future caller can route
+  // around. See safeValues — job titles are somebody else's text.
+  sheet.getRange(startRow, startCol, rows, cols).setValues(safeValues(values));
 }
 
 /** "A" -> 1, "AA" -> 27. */

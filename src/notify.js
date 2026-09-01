@@ -30,8 +30,44 @@ export const MAX_LISTED = 10;
 // POST past it, so the budget is enforced here rather than discovered there.
 const DISCORD_LIMIT = 1900;
 
+// Quotes included. These land inside href="…" attributes, and a job URL
+// carrying a double quote would otherwise close the attribute and let whoever
+// wrote the posting add their own — which is a phishing overlay in a mail that
+// arrived because you asked for it.
 const escapeHtml = (s) => String(s || '')
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+/**
+ * A link target worth rendering, or nothing.
+ *
+ * The URL comes from the board's own JSON — `absolute_url`, `hostedUrl`,
+ * `applyUrl` — so it is the poster's text like everything else. Only http and
+ * https survive: `javascript:` and `data:` are not job postings, and a digest
+ * is not the place to find out what they are.
+ */
+// Spelled out rather than left to encodeURIComponent, which does not escape
+// `!'()*` — the parenthesis that ends a Discord link target is exactly the
+// character it leaves alone, so the obvious version of this encoded nothing
+// that mattered.
+const URL_UNSAFE = {
+  '<': '%3C', '>': '%3E', '"': '%22', "'": '%27',
+  '`': '%60', '|': '%7C', '(': '%28', ')': '%29', '\\': '%5C',
+};
+
+const safeUrl = (u) => {
+  const raw = String(u || '').trim();
+  if (!/^https?:\/\//i.test(raw)) return '';
+  // Then encode whatever would end the container it gets placed in: a Discord
+  // target closes on `)` or `>`, Slack's on `|` or `>`, an HTML attribute on a
+  // quote. Encoded rather than dropped — parentheses are legal in a URL, and
+  // losing a real posting over one would be a worse bug than the one this
+  // fixes.
+  return raw.replace(/[<>"'`|()\\]/g, (c) => URL_UNSAFE[c]).replace(/\s/g, '%20');
+};
+
+/** Discord link labels close on `]`, so a title carrying one relabels the link. */
+const escapeMd = (s) => String(s || '').replace(/([\[\]])/g, '\\$1');
 
 const trim = (s, n) => {
   const text = String(s || '').trim();
@@ -70,10 +106,11 @@ export function discordPayload(records, sheetUrl) {
 
   for (const r of listed) {
     const score = Number(r.score) ? `\`${String(r.score).padStart(3)}\` ` : '';
-    const title = r.url
-      ? `[${trim(r.title, 70)}](<${r.url}>)`
-      : trim(r.title, 70);
-    lines.push(`${score}**${trim(r.company, 28)}** ${title}`);
+    const href = safeUrl(r.url);
+    const title = href
+      ? `[${escapeMd(trim(r.title, 70))}](<${href}>)`
+      : escapeMd(trim(r.title, 70));
+    lines.push(`${score}**${escapeMd(trim(r.company, 28))}** ${title}`);
     const rest = detail(r);
     if (rest) lines.push(`      ${rest}`);
   }
@@ -98,7 +135,8 @@ export function slackPayload(records, sheetUrl) {
 
   for (const r of listed) {
     const score = Number(r.score) ? `\`${String(r.score).padStart(3)}\` ` : '';
-    const title = r.url ? `<${r.url}|${trim(r.title, 70)}>` : trim(r.title, 70);
+    const slackUrl = safeUrl(r.url);
+    const title = slackUrl ? `<${slackUrl}|${trim(r.title, 70)}>` : trim(r.title, 70);
     const rest = detail(r);
     lines.push(`${score}*${trim(r.company, 28)}* ${title}${rest ? ` — ${rest}` : ''}`);
   }
@@ -121,14 +159,15 @@ export function telegramPayload(records, sheetUrl, chatId) {
     const score = Number(r.score) ? `<code>${String(r.score).padStart(3)}</code> ` : '';
     const title = escapeHtml(trim(r.title, 70));
     lines.push(`${score}<b>${escapeHtml(trim(r.company, 28))}</b>`);
-    lines.push(r.url ? `<a href="${escapeHtml(r.url)}">${title}</a>` : title);
+    const href = safeUrl(r.url);
+    lines.push(href ? `<a href="${escapeHtml(href)}">${title}</a>` : title);
     const rest = detail(r);
     if (rest) lines.push(escapeHtml(rest));
     lines.push('');
   }
 
   if (overflow > 0) lines.push(`<i>+${overflow} more in the sheet</i>`);
-  if (sheetUrl) lines.push(`<a href="${escapeHtml(sheetUrl)}">Open the sheet →</a>`);
+  if (safeUrl(sheetUrl)) lines.push(`<a href="${escapeHtml(safeUrl(sheetUrl))}">Open the sheet →</a>`);
 
   return {
     chat_id: chatId,
@@ -150,7 +189,8 @@ export function emailPayload(records, sheetUrl, to) {
 
   const rows = listed.map((r) => {
     const title = escapeHtml(trim(r.title, 90));
-    const link = r.url ? `<a href="${escapeHtml(r.url)}" style="color:#1a56db;text-decoration:none">${title}</a>` : title;
+    const href = safeUrl(r.url);
+    const link = href ? `<a href="${escapeHtml(href)}" style="color:#1a56db;text-decoration:none">${title}</a>` : title;
     const rest = escapeHtml(detail(r, ' &middot; '));
     return `<tr>
       <td style="padding:10px 12px 10px 0;vertical-align:top;color:#6b7280;font-variant-numeric:tabular-nums">${Number(r.score) ? r.score : ''}</td>
@@ -166,7 +206,7 @@ export function emailPayload(records, sheetUrl, to) {
     <p style="font-size:17px;font-weight:600;margin:0 0 4px">${headline(ranked.length)}</p>
     <table style="border-collapse:collapse;width:100%">${rows}</table>
     ${overflow > 0 ? `<p style="color:#6b7280">+${overflow} more in the sheet</p>` : ''}
-    ${sheetUrl ? `<p><a href="${escapeHtml(sheetUrl)}" style="color:#1a56db">Open the sheet →</a></p>` : ''}
+    ${safeUrl(sheetUrl) ? `<p><a href="${escapeHtml(safeUrl(sheetUrl))}" style="color:#1a56db">Open the sheet →</a></p>` : ''}
   </div>`;
 
   return { to, subject: `${headline(ranked.length)}`, html: body };

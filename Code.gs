@@ -168,12 +168,34 @@ function leverRemote(j) {
   return type === 'remote';
 }
 
+/**
+ * A board slug is a name, and names look like this.
+ *
+ * Every adapter interpolates the slug straight into a URL, and Recruitee puts
+ * it in the host: `https://${slug}.recruitee.com`. A slug of `evil.example/x?`
+ * therefore does not address Recruitee at all — it sends the request wherever
+ * the slug says, and the answer lands in the sheet as though a board had given
+ * it. Checked rather than escaped, because a real slug has never needed a
+ * character outside this set: all 352 in the shipped catalogue pass.
+ */
+const SLUG = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+
+function checkSlug(slug) {
+  const value = String(slug ?? '').trim();
+  if (!value) throw new Error('no slug — put the board name in the Slug column');
+  if (!SLUG.test(value)) {
+    throw new Error(`"${value}" is not a board name — letters, digits, dot, dash and underscore only`);
+  }
+  return value;
+}
+
 const ADAPTERS = {
   greenhouse: {
     label: 'Greenhouse',
     board: (slug) => `https://boards.greenhouse.io/${slug}`,
     url: (slug) => `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`,
-    fetchJobs(slug, opts) {
+    fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = getJSON(this.url(slug), opts);
       if (!Array.isArray(data.jobs)) throw new Error('unexpected shape');
       return data.jobs.map((j) => ({
@@ -204,7 +226,8 @@ const ADAPTERS = {
     label: 'Lever',
     board: (slug) => `https://jobs.lever.co/${slug}`,
     url: (slug) => `https://api.lever.co/v0/postings/${slug}?mode=json`,
-    fetchJobs(slug, opts) {
+    fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = getJSON(this.url(slug), opts);
       if (!Array.isArray(data)) throw new Error('unexpected shape');
       return data.map((j) => ({
@@ -224,7 +247,8 @@ const ADAPTERS = {
     label: 'Ashby',
     board: (slug) => `https://jobs.ashbyhq.com/${slug}`,
     url: (slug) => `https://api.ashbyhq.com/posting-api/job-board/${slug}?includeCompensation=true`,
-    fetchJobs(slug, opts) {
+    fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = getJSON(this.url(slug), opts);
       if (!Array.isArray(data.jobs)) throw new Error('unexpected shape');
       return data.jobs.map((j) => ({
@@ -244,7 +268,8 @@ const ADAPTERS = {
     label: 'Workable',
     board: (slug) => `https://apply.workable.com/${slug}`,
     url: (slug) => `https://apply.workable.com/api/v1/widget/accounts/${slug}?details=true`,
-    fetchJobs(slug, opts) {
+    fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = getJSON(this.url(slug), opts);
       if (!Array.isArray(data.jobs)) throw new Error('unexpected shape');
       return data.jobs.map((j) => ({
@@ -264,7 +289,8 @@ const ADAPTERS = {
     label: 'SmartRecruiters',
     board: (slug) => `https://jobs.smartrecruiters.com/${slug}`,
     url: (slug) => `https://api.smartrecruiters.com/v1/companies/${slug}/postings?limit=100`,
-    fetchJobs(slug, opts) {
+    fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = getJSON(this.url(slug), opts);
       if (!Array.isArray(data.content)) throw new Error('unexpected shape');
       return data.content.map((j) => ({
@@ -287,7 +313,8 @@ const ADAPTERS = {
     label: 'Recruitee',
     board: (slug) => `https://${slug}.recruitee.com`,
     url: (slug) => `https://${slug}.recruitee.com/api/offers/`,
-    fetchJobs(slug, opts) {
+    fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = getJSON(this.url(slug), opts);
       if (!Array.isArray(data.offers)) throw new Error('unexpected shape');
       return data.offers.map((j) => ({
@@ -631,6 +658,38 @@ const headers = (tab) => tab.columns.map((c) => c.header);
  * company name, the rule's pattern. Everything after the last of those is
  * grid, not data.
  */
+/**
+ * A value that cannot become a formula when it lands in a cell.
+ *
+ * Everything on the matches tab is text somebody else wrote: a job title, a
+ * location, a company name, all lifted from a public job board. `setValues`
+ * evaluates a string beginning `=` as a formula, so a posting titled
+ * `=IMPORTXML("https://…"&A1,"//a")` becomes a live formula in the sheet of
+ * whoever watched that board — and IMPORTXML fetches on its own, with no click,
+ * carrying whatever it was pointed at. Nothing here ever writes a formula on
+ * purpose, so a leading formula character is always someone else's idea.
+ *
+ * The apostrophe is Sheets' own force-to-text prefix: it is consumed on the way
+ * in and does not come back out on a read, so a guarded value still compares
+ * equal to the posting it came from and no row reports a change it did not
+ * make.
+ */
+const FORMULA_LEAD = /^[=+\-@\t\r]/;
+
+function safeCell(value) {
+  const text = String(value ?? '');
+  if (!FORMULA_LEAD.test(text)) return text;
+  // A negative number is a number. Quoting it would turn a salary floor into
+  // text and break every comparison downstream.
+  if (text.trim() !== '' && Number.isFinite(Number(text))) return text;
+  return `'${text}`;
+}
+
+/** The same, over a grid — what every write to a real sheet goes through. */
+function safeValues(rows = []) {
+  return (rows || []).map((row) => (row || []).map(safeCell));
+}
+
 function usedRows(bodyRows = [], keyIndex = 0) {
   let last = 0;
   bodyRows.forEach((row, i) => {
@@ -2470,8 +2529,44 @@ const MAX_LISTED = 10;
 // POST past it, so the budget is enforced here rather than discovered there.
 const DISCORD_LIMIT = 1900;
 
+// Quotes included. These land inside href="…" attributes, and a job URL
+// carrying a double quote would otherwise close the attribute and let whoever
+// wrote the posting add their own — which is a phishing overlay in a mail that
+// arrived because you asked for it.
 const escapeHtml = (s) => String(s || '')
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+/**
+ * A link target worth rendering, or nothing.
+ *
+ * The URL comes from the board's own JSON — `absolute_url`, `hostedUrl`,
+ * `applyUrl` — so it is the poster's text like everything else. Only http and
+ * https survive: `javascript:` and `data:` are not job postings, and a digest
+ * is not the place to find out what they are.
+ */
+// Spelled out rather than left to encodeURIComponent, which does not escape
+// `!'()*` — the parenthesis that ends a Discord link target is exactly the
+// character it leaves alone, so the obvious version of this encoded nothing
+// that mattered.
+const URL_UNSAFE = {
+  '<': '%3C', '>': '%3E', '"': '%22', "'": '%27',
+  '`': '%60', '|': '%7C', '(': '%28', ')': '%29', '\\': '%5C',
+};
+
+const safeUrl = (u) => {
+  const raw = String(u || '').trim();
+  if (!/^https?:\/\//i.test(raw)) return '';
+  // Then encode whatever would end the container it gets placed in: a Discord
+  // target closes on `)` or `>`, Slack's on `|` or `>`, an HTML attribute on a
+  // quote. Encoded rather than dropped — parentheses are legal in a URL, and
+  // losing a real posting over one would be a worse bug than the one this
+  // fixes.
+  return raw.replace(/[<>"'`|()\\]/g, (c) => URL_UNSAFE[c]).replace(/\s/g, '%20');
+};
+
+/** Discord link labels close on `]`, so a title carrying one relabels the link. */
+const escapeMd = (s) => String(s || '').replace(/([\[\]])/g, '\\$1');
 
 const trim = (s, n) => {
   const text = String(s || '').trim();
@@ -2510,10 +2605,11 @@ function discordPayload(records, sheetUrl) {
 
   for (const r of listed) {
     const score = Number(r.score) ? `\`${String(r.score).padStart(3)}\` ` : '';
-    const title = r.url
-      ? `[${trim(r.title, 70)}](<${r.url}>)`
-      : trim(r.title, 70);
-    lines.push(`${score}**${trim(r.company, 28)}** ${title}`);
+    const href = safeUrl(r.url);
+    const title = href
+      ? `[${escapeMd(trim(r.title, 70))}](<${href}>)`
+      : escapeMd(trim(r.title, 70));
+    lines.push(`${score}**${escapeMd(trim(r.company, 28))}** ${title}`);
     const rest = detail(r);
     if (rest) lines.push(`      ${rest}`);
   }
@@ -2538,7 +2634,8 @@ function slackPayload(records, sheetUrl) {
 
   for (const r of listed) {
     const score = Number(r.score) ? `\`${String(r.score).padStart(3)}\` ` : '';
-    const title = r.url ? `<${r.url}|${trim(r.title, 70)}>` : trim(r.title, 70);
+    const slackUrl = safeUrl(r.url);
+    const title = slackUrl ? `<${slackUrl}|${trim(r.title, 70)}>` : trim(r.title, 70);
     const rest = detail(r);
     lines.push(`${score}*${trim(r.company, 28)}* ${title}${rest ? ` — ${rest}` : ''}`);
   }
@@ -2561,14 +2658,15 @@ function telegramPayload(records, sheetUrl, chatId) {
     const score = Number(r.score) ? `<code>${String(r.score).padStart(3)}</code> ` : '';
     const title = escapeHtml(trim(r.title, 70));
     lines.push(`${score}<b>${escapeHtml(trim(r.company, 28))}</b>`);
-    lines.push(r.url ? `<a href="${escapeHtml(r.url)}">${title}</a>` : title);
+    const href = safeUrl(r.url);
+    lines.push(href ? `<a href="${escapeHtml(href)}">${title}</a>` : title);
     const rest = detail(r);
     if (rest) lines.push(escapeHtml(rest));
     lines.push('');
   }
 
   if (overflow > 0) lines.push(`<i>+${overflow} more in the sheet</i>`);
-  if (sheetUrl) lines.push(`<a href="${escapeHtml(sheetUrl)}">Open the sheet →</a>`);
+  if (safeUrl(sheetUrl)) lines.push(`<a href="${escapeHtml(safeUrl(sheetUrl))}">Open the sheet →</a>`);
 
   return {
     chat_id: chatId,
@@ -2590,7 +2688,8 @@ function emailPayload(records, sheetUrl, to) {
 
   const rows = listed.map((r) => {
     const title = escapeHtml(trim(r.title, 90));
-    const link = r.url ? `<a href="${escapeHtml(r.url)}" style="color:#1a56db;text-decoration:none">${title}</a>` : title;
+    const href = safeUrl(r.url);
+    const link = href ? `<a href="${escapeHtml(href)}" style="color:#1a56db;text-decoration:none">${title}</a>` : title;
     const rest = escapeHtml(detail(r, ' &middot; '));
     return `<tr>
       <td style="padding:10px 12px 10px 0;vertical-align:top;color:#6b7280;font-variant-numeric:tabular-nums">${Number(r.score) ? r.score : ''}</td>
@@ -2606,7 +2705,7 @@ function emailPayload(records, sheetUrl, to) {
     <p style="font-size:17px;font-weight:600;margin:0 0 4px">${headline(ranked.length)}</p>
     <table style="border-collapse:collapse;width:100%">${rows}</table>
     ${overflow > 0 ? `<p style="color:#6b7280">+${overflow} more in the sheet</p>` : ''}
-    ${sheetUrl ? `<p><a href="${escapeHtml(sheetUrl)}" style="color:#1a56db">Open the sheet →</a></p>` : ''}
+    ${safeUrl(sheetUrl) ? `<p><a href="${escapeHtml(safeUrl(sheetUrl))}" style="color:#1a56db">Open the sheet →</a></p>` : ''}
   </div>`;
 
   return { to, subject: `${headline(ranked.length)}`, html: body };
@@ -3543,6 +3642,7 @@ function bootstrapSheet(client, { dryRun = false, reformat = false } = {}) {
 // loads, so a test can stand one in and so importing this on Node is harmless.
 // ---------------------------------------------------------------------------
 
+
 const app = () => {
   const found = globalThis.SpreadsheetApp;
   if (!found) throw new Error('SpreadsheetApp is not available — this runs inside a spreadsheet');
@@ -3639,7 +3739,10 @@ function writeRange(ss, range, values) {
   if (needRows > sheet.getMaxRows()) sheet.insertRowsAfter(sheet.getMaxRows(), needRows - sheet.getMaxRows());
   if (needCols > sheet.getMaxColumns()) sheet.insertColumnsAfter(sheet.getMaxColumns(), needCols - sheet.getMaxColumns());
 
-  sheet.getRange(startRow, startCol, rows, cols).setValues(values);
+  // Guarded here rather than in the planner: this is the last line before a
+  // value becomes a cell, and it is the one place no future caller can route
+  // around. See safeValues — job titles are somebody else's text.
+  sheet.getRange(startRow, startCol, rows, cols).setValues(safeValues(values));
 }
 
 /** "A" -> 1, "AA" -> 27. */

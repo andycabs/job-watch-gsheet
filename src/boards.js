@@ -160,12 +160,34 @@ function leverRemote(j) {
   return type === 'remote';
 }
 
+/**
+ * A board slug is a name, and names look like this.
+ *
+ * Every adapter interpolates the slug straight into a URL, and Recruitee puts
+ * it in the host: `https://${slug}.recruitee.com`. A slug of `evil.example/x?`
+ * therefore does not address Recruitee at all — it sends the request wherever
+ * the slug says, and the answer lands in the sheet as though a board had given
+ * it. Checked rather than escaped, because a real slug has never needed a
+ * character outside this set: all 352 in the shipped catalogue pass.
+ */
+const SLUG = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+
+export function checkSlug(slug) {
+  const value = String(slug ?? '').trim();
+  if (!value) throw new Error('no slug — put the board name in the Slug column');
+  if (!SLUG.test(value)) {
+    throw new Error(`"${value}" is not a board name — letters, digits, dot, dash and underscore only`);
+  }
+  return value;
+}
+
 export const ADAPTERS = {
   greenhouse: {
     label: 'Greenhouse',
     board: (slug) => `https://boards.greenhouse.io/${slug}`,
     url: (slug) => `https://boards-api.greenhouse.io/v1/boards/${slug}/jobs?content=true`,
-    async fetchJobs(slug, opts) {
+    async fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = await getJSON(this.url(slug), opts);
       if (!Array.isArray(data.jobs)) throw new Error('unexpected shape');
       return data.jobs.map((j) => ({
@@ -196,7 +218,8 @@ export const ADAPTERS = {
     label: 'Lever',
     board: (slug) => `https://jobs.lever.co/${slug}`,
     url: (slug) => `https://api.lever.co/v0/postings/${slug}?mode=json`,
-    async fetchJobs(slug, opts) {
+    async fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = await getJSON(this.url(slug), opts);
       if (!Array.isArray(data)) throw new Error('unexpected shape');
       return data.map((j) => ({
@@ -216,7 +239,8 @@ export const ADAPTERS = {
     label: 'Ashby',
     board: (slug) => `https://jobs.ashbyhq.com/${slug}`,
     url: (slug) => `https://api.ashbyhq.com/posting-api/job-board/${slug}?includeCompensation=true`,
-    async fetchJobs(slug, opts) {
+    async fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = await getJSON(this.url(slug), opts);
       if (!Array.isArray(data.jobs)) throw new Error('unexpected shape');
       return data.jobs.map((j) => ({
@@ -236,7 +260,8 @@ export const ADAPTERS = {
     label: 'Workable',
     board: (slug) => `https://apply.workable.com/${slug}`,
     url: (slug) => `https://apply.workable.com/api/v1/widget/accounts/${slug}?details=true`,
-    async fetchJobs(slug, opts) {
+    async fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = await getJSON(this.url(slug), opts);
       if (!Array.isArray(data.jobs)) throw new Error('unexpected shape');
       return data.jobs.map((j) => ({
@@ -256,7 +281,8 @@ export const ADAPTERS = {
     label: 'SmartRecruiters',
     board: (slug) => `https://jobs.smartrecruiters.com/${slug}`,
     url: (slug) => `https://api.smartrecruiters.com/v1/companies/${slug}/postings?limit=100`,
-    async fetchJobs(slug, opts) {
+    async fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = await getJSON(this.url(slug), opts);
       if (!Array.isArray(data.content)) throw new Error('unexpected shape');
       return data.content.map((j) => ({
@@ -279,7 +305,8 @@ export const ADAPTERS = {
     label: 'Recruitee',
     board: (slug) => `https://${slug}.recruitee.com`,
     url: (slug) => `https://${slug}.recruitee.com/api/offers/`,
-    async fetchJobs(slug, opts) {
+    async fetchJobs(rawSlug, opts) {
+      const slug = checkSlug(rawSlug);
       const data = await getJSON(this.url(slug), opts);
       if (!Array.isArray(data.offers)) throw new Error('unexpected shape');
       return data.offers.map((j) => ({
