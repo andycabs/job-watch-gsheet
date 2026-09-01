@@ -16,11 +16,11 @@
 import { runWatch, runSetup, runDirectory, runFirstRun, templateNames, recordRun } from './run.js';
 import { runCheck, runSuggest, runLearn, runDiscover } from './diagnose.js';
 import { parseDestination, currentDestination, setDestination } from './notify.js';
-import { scriptProperties, readProperty } from './props.js';
+import { scriptProperties } from './props.js';
+import { HOUR_KEY, scheduledHour, scheduleTimeZone, TZ_FIX } from './when.js';
 import { sheetClient } from './sheet.js';
 
 const MENU = 'Job watch';
-const HOUR_KEY = 'WATCH_HOUR';
 const TRIGGER = 'scheduledWatch';
 
 const ui = () => globalThis.SpreadsheetApp.getUi();
@@ -74,12 +74,6 @@ export function unschedule(app = scriptApp()) {
     if (trigger.getHandlerFunction() === TRIGGER) { app.deleteTrigger(trigger); removed++; }
   }
   return removed;
-}
-
-/** The hour currently set, or null. */
-export function scheduledHour() {
-  const raw = readProperty(HOUR_KEY, null);
-  return raw === null ? null : Number(raw);
 }
 
 // --- what the menu items do -------------------------------------------------
@@ -179,9 +173,11 @@ export function menuNotifications() {
 }
 
 export function menuSchedule() {
-  const tz = globalThis.SpreadsheetApp.getActive().getSpreadsheetTimeZone();
+  const tz = scheduleTimeZone();
+  const where = tz || 'this script\u2019s timezone';
   const answer = ui().prompt('Daily run',
-    `What hour should the watch run, in ${tz}? (0-23)\n\n`
+    `What hour should the watch run, in ${where}? (0-23)\n\n`
+    + `If that is not your timezone, cancel and change it first:\n${TZ_FIX}\n\n`
     + 'It fires within the hour you pick rather than on the minute.',
     ui().ButtonSet.OK_CANCEL);
   if (answer.getSelectedButton() !== ui().Button.OK) return;
@@ -191,8 +187,9 @@ export function menuSchedule() {
 
   schedule(hour);
   ui().alert('Scheduled',
-    `The watch will run daily around ${hour}:00 ${tz}, whether or not this `
-    + 'spreadsheet is open.\n\nIt fires within that hour rather than on the minute.',
+    `The watch will run daily around ${hour}:00 ${where}, whether or not this `
+    + 'spreadsheet is open.\n\nIt fires within that hour rather than on the minute.'
+    + `\n\nWrong timezone? ${TZ_FIX}`,
     ui().ButtonSet.OK);
 }
 

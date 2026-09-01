@@ -4467,6 +4467,61 @@ function salaryLeaning(kept = [], passed = []) {
   };
 }
 
+// ===== gas/when.js =======================================================
+// SPDX-License-Identifier: GPL-3.0-or-later
+// ---------------------------------------------------------------------------
+// When the run happens.
+//
+// Its own file because two callers need it and they already point at each
+// other: the menu schedules, the check reports, and the menu imports the
+// check. The bundler refuses an import cycle rather than guessing an order,
+// which is how this ended up here rather than in either of them.
+// ---------------------------------------------------------------------------
+
+const HOUR_KEY = 'WATCH_HOUR';
+
+/**
+ * The timezone a scheduled run actually fires in.
+ *
+ * Not the spreadsheet's. A time-driven trigger goes by the *script project's*
+ * timezone — the `timeZone` in appsscript.json — and the two are separate
+ * settings that a copied sheet carries over from whoever made the template.
+ * Someone in Berlin copying a sheet built in New York gets both set to New
+ * York, and a prompt that asked in the spreadsheet's timezone would have
+ * promised 8am and delivered 2pm.
+ *
+ * Named rather than computed. Converting between the two zones looks like the
+ * obliging thing to do and is a trap: they observe daylight saving on
+ * different dates, so an offset worked out in January is wrong for three weeks
+ * in March. One timezone that is right beats two that agree twice a year.
+ */
+function scheduleTimeZone(session = globalThis.Session) {
+  try {
+    const tz = session && session.getScriptTimeZone();
+    return tz ? String(tz) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** The spreadsheet's own, which governs how dates display but not the trigger. */
+function sheetTimeZone(app = globalThis.SpreadsheetApp) {
+  try {
+    return String(app.getActive().getSpreadsheetTimeZone());
+  } catch {
+    return null;
+  }
+}
+
+/** Where to go when the answer is "not that one". */
+const TZ_FIX = 'Extensions → Apps Script → ⚙ Project Settings → Time zone';
+
+/** The hour currently set, or null. */
+function scheduledHour() {
+  const raw = readProperty(HOUR_KEY, null);
+  return raw === null ? null : Number(raw);
+}
+
 // ===== gas/diagnose.js ===================================================
 // SPDX-License-Identifier: GPL-3.0-or-later
 // ---------------------------------------------------------------------------
@@ -4482,6 +4537,7 @@ function salaryLeaning(kept = [], passed = []) {
 // where it can be read afterwards. That is the whole reason the log tab was
 // built, and it matters more here than it did on the command line.
 // ---------------------------------------------------------------------------
+
 
 
 
@@ -4519,6 +4575,23 @@ function runCheck({ client } = {}) {
   for (const kind of ['title', 'body', 'exclude']) {
     const list = config.rules[kind] || [];
     out.say(`  ${kind.padEnd(9)} ${list.length ? list.map((p) => p.label || p.source).join(', ') : '(none)'}`);
+  }
+
+  out.say('');
+  out.say('When it runs');
+  {
+    // The commonest wrong answer in a copied sheet, and a silent one: the run
+    // happens, on time, in somebody else's timezone.
+    const tz = scheduleTimeZone();
+    const sheetTz = sheetTimeZone();
+    const at = scheduledHour();
+    out.say(`  daily run          ${at === null ? 'off' : `${at}:00`}`);
+    out.say(`  fires in           ${tz || 'unknown'}`);
+    if (sheetTz && tz && sheetTz !== tz) {
+      out.say(`  the sheet displays dates in ${sheetTz}, which is not the same`);
+      out.say(`  zone. Only "fires in" decides when the run happens.`);
+    }
+    out.say(`  wrong zone?        ${TZ_FIX}`);
   }
 
   out.say('');
@@ -4776,8 +4849,8 @@ function runDiscover({ client, fetchImpl = gasFetch, sleep = gasSleep } = {}) {
 
 
 
+
 const MENU = 'Job watch';
-const HOUR_KEY = 'WATCH_HOUR';
 const TRIGGER = 'scheduledWatch';
 
 const ui = () => globalThis.SpreadsheetApp.getUi();
@@ -4831,12 +4904,6 @@ function unschedule(app = scriptApp()) {
     if (trigger.getHandlerFunction() === TRIGGER) { app.deleteTrigger(trigger); removed++; }
   }
   return removed;
-}
-
-/** The hour currently set, or null. */
-function scheduledHour() {
-  const raw = readProperty(HOUR_KEY, null);
-  return raw === null ? null : Number(raw);
 }
 
 // --- what the menu items do -------------------------------------------------
@@ -4936,9 +5003,11 @@ function menuNotifications() {
 }
 
 function menuSchedule() {
-  const tz = globalThis.SpreadsheetApp.getActive().getSpreadsheetTimeZone();
+  const tz = scheduleTimeZone();
+  const where = tz || 'this script\u2019s timezone';
   const answer = ui().prompt('Daily run',
-    `What hour should the watch run, in ${tz}? (0-23)\n\n`
+    `What hour should the watch run, in ${where}? (0-23)\n\n`
+    + `If that is not your timezone, cancel and change it first:\n${TZ_FIX}\n\n`
     + 'It fires within the hour you pick rather than on the minute.',
     ui().ButtonSet.OK_CANCEL);
   if (answer.getSelectedButton() !== ui().Button.OK) return;
@@ -4948,8 +5017,9 @@ function menuSchedule() {
 
   schedule(hour);
   ui().alert('Scheduled',
-    `The watch will run daily around ${hour}:00 ${tz}, whether or not this `
-    + 'spreadsheet is open.\n\nIt fires within that hour rather than on the minute.',
+    `The watch will run daily around ${hour}:00 ${where}, whether or not this `
+    + 'spreadsheet is open.\n\nIt fires within that hour rather than on the minute.'
+    + `\n\nWrong timezone? ${TZ_FIX}`,
     ui().ButtonSet.OK);
 }
 

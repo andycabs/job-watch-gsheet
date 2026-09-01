@@ -24,6 +24,7 @@ import { splitByVerdict, leaningPhrases, companyLeanings, salaryLeaning, MINIMUM
 import { probeOrder, planDiscoveryWrites } from '../probe.js';
 import { transcript, REQUEST_DELAY_MS } from './run.js';
 import { sheetClient } from './sheet.js';
+import { scheduleTimeZone, sheetTimeZone, scheduledHour, TZ_FIX } from './when.js';
 import { gasFetch, gasSleep } from './fetch.js';
 
 /** Reads the sheet back and says what it understood. Writes nothing. */
@@ -50,6 +51,23 @@ export function runCheck({ client } = {}) {
   for (const kind of ['title', 'body', 'exclude']) {
     const list = config.rules[kind] || [];
     out.say(`  ${kind.padEnd(9)} ${list.length ? list.map((p) => p.label || p.source).join(', ') : '(none)'}`);
+  }
+
+  out.say('');
+  out.say('When it runs');
+  {
+    // The commonest wrong answer in a copied sheet, and a silent one: the run
+    // happens, on time, in somebody else's timezone.
+    const tz = scheduleTimeZone();
+    const sheetTz = sheetTimeZone();
+    const at = scheduledHour();
+    out.say(`  daily run          ${at === null ? 'off' : `${at}:00`}`);
+    out.say(`  fires in           ${tz || 'unknown'}`);
+    if (sheetTz && tz && sheetTz !== tz) {
+      out.say(`  the sheet displays dates in ${sheetTz}, which is not the same`);
+      out.say(`  zone. Only "fires in" decides when the run happens.`);
+    }
+    out.say(`  wrong zone?        ${TZ_FIX}`);
   }
 
   out.say('');

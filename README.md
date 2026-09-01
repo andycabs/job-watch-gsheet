@@ -84,12 +84,18 @@ cannot read any. The warning that the app is unverified is Google saying
 nobody has reviewed a script that belongs to you, which is true of every
 script anyone writes for themselves.
 
-**3. Click *Start here — set everything up*.** Pick the starter rules closest
+**3. Set your timezone.** *Extensions → Apps Script → ⚙ Project Settings →
+Time zone*. A copy carries the timezone of the sheet it was copied from, so
+until you change this a daily run fires on somebody else's clock. Nothing else
+in the tool depends on it, and you can come back to it before you schedule
+anything.
+
+**4. Click *Start here — set everything up*.** Pick the starter rules closest
 to what you do — `software-engineering`, `gtm-revops`, `product-design`,
 `data`, or `none` to write your own. It builds the tabs, loads the rules,
 fills the catalogue, and tells you what to do next.
 
-That's it. There is no fourth step.
+That's it. There is no fifth step.
 
 ---
 
@@ -229,7 +235,7 @@ The "weight" options are how the app scores different job openings for you.
 | **Check my configuration** | Prints what your sheet says, as understood. Writes nothing |
 | **What am I missing?** | Phrases recurring in postings no rule matched |
 | **What have I been passing on?** | What your own Status choices say about your rules |
-| **Schedule the daily run…** | Sets the hour, in your spreadsheet's timezone |
+| **Schedule the daily run…** | Sets the hour, in the script's timezone |
 | **Stop the daily run** | Turns it off |
 | **Send me a digest…** | Email or Discord, or nothing |
 | **Add anything missing (after an update)** | Adds tabs, columns and settings a newer version introduced |
@@ -249,10 +255,16 @@ the new results that you have not seen before.
 *What about a daily scheduled run?*
 
 Nothing runs on a schedule until you say so. **Schedule the daily run…** asks
-for an hour and sets it in your spreadsheet's own timezone, so it follows
-daylight saving and the hour you pick stays the hour you get. It fires within
-that hour rather than on the minute, and it runs whether or not the sheet is
-open.
+for an hour and sets it in the script's timezone, which it names in the prompt.
+It follows daylight saving, so the hour you pick stays the hour you get. It
+fires within that hour rather than on the minute, and it runs whether or not
+the sheet is open.
+
+**Check the timezone it names is yours.** A script has its own timezone,
+separate from the one the spreadsheet displays dates in, and a copy inherits
+both from the sheet it was copied from. Change it at *Extensions → Apps Script
+→ ⚙ Project Settings → Time zone*; **Check my configuration** reports which
+one your runs will use.
 
 ---
 
@@ -351,8 +363,9 @@ manifest is missing or has been overwritten. To put it back:
    manifest file in the editor**
 2. Back in *Editor*, open `appsscript.json`
 3. Copy the `oauthScopes` block from this repository's `appsscript.json` into
-   it, leaving your own `timeZone` alone — that is what the daily run is
-   scheduled against
+   it, **leaving your own `timeZone` alone** — that is what the daily run is
+   scheduled against, and the value in this repository is only the one it
+   happened to be built with
 4. **Save**, then reload the sheet
 
 Google re-asks for consent when the scopes change, so expect one more prompt —

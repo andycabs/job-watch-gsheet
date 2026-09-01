@@ -8,11 +8,13 @@
 // can post to. This file is the list of things that text was able to do, each
 // one written after finding it rather than before.
 // ---------------------------------------------------------------------------
+import { readFileSync } from 'node:fs';
 import { buildRecord } from './sync.js';
 import { safeCell, safeValues } from './sheet/schema.js';
 import { memoryClient } from './sheet/memory.js';
 import { checkSlug, ADAPTERS } from './boards.js';
 import { emailPayload, discordPayload, telegramPayload } from './notify.js';
+import { scheduleTimeZone, sheetTimeZone, TZ_FIX } from './gas/when.js';
 
 let pass = 0, fail = 0;
 const check = (label, ok, detail = '') => {
@@ -121,6 +123,33 @@ console.log('\n--- a posting cannot rewrite the digest ---');
   check('a real https job link still survives',
     emailPayload([{ ...records[0], url: 'https://boards.example/j/1' }], '', 'me@example.com')
       .html.includes('https://boards.example/j/1'));
+}
+
+console.log('\n--- the schedule names the timezone that governs it ---');
+{
+  // A trigger fires in the SCRIPT project's timezone. The spreadsheet has its
+  // own, and a copied sheet carries both over from whoever built the template,
+  // so for anybody outside that zone they are wrong together. Asking in the
+  // spreadsheet's would have promised 8am and delivered whatever New York was
+  // doing at the time.
+  check('the schedule reads the script timezone',
+    scheduleTimeZone({ getScriptTimeZone: () => 'Europe/Berlin' }) === 'Europe/Berlin');
+  check('and is not the spreadsheet timezone',
+    sheetTimeZone({ getActive: () => ({ getSpreadsheetTimeZone: () => 'America/New_York' }) }) === 'America/New_York');
+
+  // Naming it needs a service call that may not be there. A prompt that throws
+  // is worse than one that says "this script's timezone".
+  check('an unavailable Session degrades rather than throws',
+    scheduleTimeZone({ getScriptTimeZone: () => { throw new Error('nope'); } }) === null);
+  check('a missing Session degrades too', scheduleTimeZone(undefined) === null);
+  check('an unreadable spreadsheet degrades too',
+    sheetTimeZone({ getActive: () => { throw new Error('nope'); } }) === null);
+
+  // Somebody told their run is in the wrong zone needs to be told where to fix
+  // it, in the same breath.
+  check('the fix names Project Settings', /Project Settings/.test(TZ_FIX));
+  check('and the built file offers it where the run is scheduled',
+    readFileSync(new URL('../Code.gs', import.meta.url), 'utf8').includes(TZ_FIX));
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);
