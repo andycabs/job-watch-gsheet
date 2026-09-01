@@ -2,23 +2,25 @@
 // ---------------------------------------------------------------------------
 // When the run happens.
 //
-// A time-driven trigger fires in the *script project's* timezone, which is a
-// setting buried in Project Settings and copied from whoever built the
-// template. Asking somebody to go and change it there — to make a daily run
-// happen at the hour they asked for — is a setup step for a thing they have
-// already told us, since the spreadsheet has a timezone of its own that they
-// set in Sheets like any other document property.
+// A time-driven trigger fires on the *script project's* clock — a setting
+// inside the Apps Script editor that nobody sets and every copy inherits from
+// the sheet it was copied from. The hour a person means is their
+// spreadsheet's, which they set in Sheets like any other document property.
 //
-// So the trigger is not the schedule. The trigger fires every hour and this
-// decides whether it is time, by asking what hour it currently is in the
-// spreadsheet's timezone. Twenty-three of those wake up, compare two numbers
-// and stop.
+// So the schedule is not "every day at 8". It is one single-shot trigger armed
+// for an exact instant, worked out by asking Google when 8am next happens in
+// the spreadsheet's timezone. An instant has no timezone to get wrong. When it
+// fires it arms the next one, so the answer is recomputed daily and daylight
+// saving is picked up the day it happens rather than approximated.
 //
-// The reason to prefer it over converting between the two zones — the obvious
-// fix — is daylight saving. Zones do not change on the same dates, so an
-// offset worked out in January is wrong for three weeks in March. Asking
-// Google what time it is *now*, in a named zone, is right every day of the
-// year including the two that are weird.
+// The alternative — waking hourly and checking the clock — worked and cost
+// twenty-four executions a day to deliver one, each of which opened the
+// spreadsheet to ask what timezone it was in. One a day does the same job.
+//
+// What a chain of single-shots risks is stopping: if an execution never
+// happens, nothing arms the next. Two things guard that. The next trigger is
+// armed *before* the watch runs, so a failing run cannot break the chain; and
+// opening the sheet repairs a schedule that has no trigger behind it.
 //
 // Its own file because two callers need it and they already point at each
 // other: the menu schedules, the check reports, and the menu imports the
@@ -105,29 +107,48 @@ export function localHour(now, tz, utils) {
 }
 
 /**
- * Whether an hourly wake-up is the one that should do the work.
+ * The next instant at which it is `hour` o'clock in `tz`.
  *
- * "At or after the hour, once per local day" rather than "at the hour". Three
- * things fall out of that which the stricter rule gets wrong: the morning the
- * clocks go forward and the chosen hour does not exist, a trigger Google fired
- * late, and the hour that happens twice in the autumn — the last one caught by
- * the stamp rather than the comparison.
+ * Built by asking rather than by arithmetic: format "what day is it there",
+ * then parse "that day at that hour, there" back into an instant. Google's own
+ * timezone database answers both halves, so the two mornings a year when the
+ * offset moves are handled by the same code as every other morning.
+ *
+ * Returns a Date, which is an absolute moment. A trigger armed for one does
+ * not care what timezone the script project thinks it is in.
  */
-export function dueNow({ now, tz, hour, stamp, utils } = {}) {
-  if (hour === null || hour === undefined || Number.isNaN(Number(hour))) {
-    return { due: false, reason: 'no daily run is scheduled' };
+export function nextRunAt(now, tz, hour, utils = utilities()) {
+  const h = String(Number(hour)).padStart(2, '0');
+  const on = (day) => utils.parseDate(`${day} ${h}:00:00`, tz, 'yyyy-MM-dd HH:mm:ss');
+
+  let when = on(localStamp(now, tz, utils));
+  if (when.getTime() > now.getTime()) return when;
+
+  // Today's has gone. Tomorrow, named in the spreadsheet's own calendar — a
+  // day there is 23 or 25 hours twice a year, so the date is asked for rather
+  // than assumed.
+  const nextDay = localStamp(new Date(now.getTime() + 24 * 60 * 60 * 1000), tz, utils);
+  when = on(nextDay);
+  // A clock that jumped forward can land the parsed time before `now` even on
+  // the following day; step a day at a time until it is genuinely ahead.
+  for (let i = 0; i < 3 && when.getTime() <= now.getTime(); i++) {
+    when = on(localStamp(new Date(when.getTime() + 24 * 60 * 60 * 1000), tz, utils));
   }
-  let today;
-  let atHour;
+  return when;
+}
+
+/**
+ * Whether a run has already happened today, where the spreadsheet lives.
+ *
+ * A single-shot trigger fires once, so this is not what stops a double run in
+ * the ordinary case — repairing a chain is. It costs one comparison and saves
+ * a duplicate digest, which is the failure people notice.
+ */
+export function alreadyRanToday({ now, tz, stamp, utils } = {}) {
+  if (!stamp) return false;
   try {
-    today = localStamp(now, tz, utils);
-    atHour = localHour(now, tz, utils);
-  } catch (err) {
-    return { due: false, reason: `cannot read the time in ${tz}`, problem: true };
+    return stamp === localStamp(now, tz, utils);
+  } catch {
+    return false;
   }
-  if (stamp && stamp === today) return { due: false, reason: `already ran on ${today}`, today };
-  if (atHour < Number(hour)) {
-    return { due: false, reason: `it is ${atHour}:00 in ${tz}, waiting for ${hour}:00`, today };
-  }
-  return { due: true, today, reason: `${atHour}:00 in ${tz}` };
 }

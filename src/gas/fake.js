@@ -162,18 +162,20 @@ export function installFakes({ tabs = {}, timeZone = 'America/New_York', fetch: 
       if (i >= 0) triggers.splice(i, 1);
     },
     newTrigger: (handler) => {
-      const spec = { handler, hour: null, days: null, hours: null };
+      const spec = { handler, hour: null, days: null, hours: null, at: null };
       const builder = {
         timeBased: () => builder,
         atHour: (h) => { spec.hour = h; return builder; },
         everyDays: (d) => { spec.days = d; return builder; },
         everyHours: (h) => { spec.hours = h; return builder; },
+        at: (d) => { spec.at = d; return builder; },
         create: () => {
           const trigger = {
             getHandlerFunction: () => spec.handler,
             hour: spec.hour,
             days: spec.days,
             hours: spec.hours,
+            at: spec.at,
           };
           triggers.push(trigger);
           return trigger;
@@ -193,6 +195,27 @@ export function installFakes({ tabs = {}, timeZone = 'America/New_York', fetch: 
   // agree with the code on every day of the year except the two that matter.
   globalThis.Utilities = {
     sleep: (ms) => slept.push(ms),
+    // The other half of the timezone database: a wall-clock time in a named
+    // zone, back to the instant it names. Converged rather than calculated,
+    // because the offset that applies is the one at the answer, not the one at
+    // the guess — which is the whole difficulty on the two mornings a year.
+    parseDate: (text, tz, _fmt) => {
+      const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2}):(\d{2})$/.exec(String(text));
+      if (!m) throw new Error(`cannot parse ${text}`);
+      const want = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
+      let guess = want;
+      for (let i = 0; i < 3; i++) {
+        const p = new Intl.DateTimeFormat('en-CA', {
+          timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',
+          hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+        }).formatToParts(new Date(guess)).reduce((o, x) => (o[x.type] = x.value, o), {});
+        const seen = Date.UTC(+p.year, +p.month - 1, +p.day,
+          p.hour === '24' ? 0 : +p.hour, +p.minute, +p.second);
+        if (seen === want) break;
+        guess += want - seen;
+      }
+      return new Date(guess);
+    },
     formatDate: (date, tz, pattern) => {
       const parts = new Intl.DateTimeFormat('en-CA', {
         timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',

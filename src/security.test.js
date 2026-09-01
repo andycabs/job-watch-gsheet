@@ -142,11 +142,13 @@ console.log('\n--- the schedule is the spreadsheet\'s business, not the script\'
   check('the built file offers it where the run is scheduled',
     readFileSync(new URL('../Code.gs', import.meta.url), 'utf8').includes(TZ_FIX));
 
-  // The trigger must be hourly. Daily-at-an-hour is the bug: that hour is the
-  // script project's, which nobody sets and every copy inherits.
+  // The trigger is armed for an instant. Both of the alternatives pin the run
+  // to the script project's clock, which nobody sets and every copy inherits
+  // from the sheet it came from.
   const gs = readFileSync(new URL('../Code.gs', import.meta.url), 'utf8');
-  check('the trigger wakes up hourly', /everyHours\(1\)/.test(gs));
+  check('the trigger is armed for a moment', /timeBased\(\)\.at\(/.test(gs));
   check('and never pins an hour to the script clock', !/\.atHour\(/.test(gs));
+  check('nor falls back to polling', !/everyHours\(/.test(gs));
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);

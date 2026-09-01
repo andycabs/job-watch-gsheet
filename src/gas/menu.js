@@ -19,7 +19,7 @@ import { parseDestination, currentDestination, setDestination } from './notify.j
 import { scriptProperties } from './props.js';
 import {
   HOUR_KEY, LAST_RUN_KEY, TZ_FIX, watchTimeZone, scheduledHour,
-  lastRunStamp, dueNow, localHour, localStamp,
+  lastRunStamp, nextRunAt, alreadyRanToday, localStamp,
 } from './when.js';
 import { sheetClient } from './sheet.js';
 
@@ -30,6 +30,9 @@ const ui = () => globalThis.SpreadsheetApp.getUi();
 const scriptApp = () => globalThis.ScriptApp;
 
 export function onOpen() {
+  // Free, and the only moment anybody is here to benefit from it.
+  try { repairSchedule(); } catch { /* a menu that fails to draw is worse */ }
+
   ui().createMenu(MENU)
     .addItem('Start here — set everything up', 'menuFirstRun')
     .addSeparator()
@@ -66,29 +69,31 @@ export function parseHour(text) {
  */
 export function schedule(hour, app = scriptApp(), deps = {}) {
   const removed = unschedule(app);
-  // Hourly, not daily-at-an-hour: the hour a trigger fires at is the script
-  // project's, and the hour a person means is their spreadsheet's. This wakes
-  // up often enough that the second one can decide. See when.js.
-  app.newTrigger(TRIGGER).timeBased().everyHours(1).create();
+  const { tz } = deps.zone || watchTimeZone();
+  const now = deps.now || new Date();
+  const at = nextRunAt(now, tz, hour);
 
-  const store = scriptProperties();
-  store.setProperty(HOUR_KEY, String(hour));
+  // One shot, at a moment rather than at an hour. See when.js.
+  app.newTrigger(TRIGGER).timeBased().at(at).create();
+  scriptProperties().setProperty(HOUR_KEY, String(hour));
+  return { hour, replaced: removed, tz, at };
+}
 
-  // If the hour has already gone today, start tomorrow. Otherwise leave the
-  // stamp clear so the first run is the one they are expecting, today.
-  const { tz, ok } = deps.zone || watchTimeZone();
-  let startsToday = true;
-  store.deleteProperty(LAST_RUN_KEY);
-  if (ok) {
-    try {
-      const now = deps.now || new Date();
-      if (localHour(now, tz) >= Number(hour)) {
-        store.setProperty(LAST_RUN_KEY, localStamp(now, tz));
-        startsToday = false;
-      }
-    } catch { /* leave it clear — a missed first day beats a missed schedule */ }
-  }
-  return { hour, replaced: removed, tz, startsToday };
+/**
+ * Puts back a trigger that a schedule says should exist.
+ *
+ * The chain of single-shots stops if an execution never happens — a quota
+ * exhausted, an authorisation withdrawn and restored. Opening the sheet is the
+ * moment to notice, because it is free and because a person opening the sheet
+ * is the one who would otherwise wonder why nothing arrived.
+ */
+export function repairSchedule(app = scriptApp()) {
+  const hour = scheduledHour();
+  if (hour === null) return { repaired: false, reason: 'nothing scheduled' };
+  const live = app.getProjectTriggers().some((t) => t.getHandlerFunction() === TRIGGER);
+  if (live) return { repaired: false, reason: 'already armed' };
+  const set = schedule(hour, app);
+  return { repaired: true, hour, at: set.at };
 }
 
 export function unschedule(app = scriptApp()) {
@@ -233,21 +238,21 @@ export function menuUnschedule() {
  * log tab, which is the only place a person will look tomorrow morning.
  */
 export function scheduledWatch() {
-  // Twenty-three of these a day do nothing. Deciding costs two comparisons and
-  // is deliberately ahead of opening the sheet: a wake-up that is not due
-  // should not read a spreadsheet or touch a job board.
+  // Armed for tomorrow first. A run that throws — a board down, a quota spent
+  // — must not be the reason there is no run the day after.
   const { tz } = watchTimeZone();
-  const verdict = dueNow({
-    now: new Date(), tz, hour: scheduledHour(), stamp: lastRunStamp(),
-  });
-  if (!verdict.due) return { ran: false, reason: verdict.reason };
+  const hour = scheduledHour();
+  if (hour !== null) {
+    try { schedule(hour); } catch { /* the repair on open is the backstop */ }
+  }
 
-  // Stamped before the run, not after. A run that dies halfway has still had
-  // its turn today, and retrying it every hour until midnight would be worse
-  // than waiting for tomorrow.
-  scriptProperties().setProperty(LAST_RUN_KEY, verdict.today);
+  const now = new Date();
+  if (alreadyRanToday({ now, tz, stamp: lastRunStamp() })) {
+    return { ran: false, reason: 'already ran today' };
+  }
+  try { scriptProperties().setProperty(LAST_RUN_KEY, localStamp(now, tz)); } catch { /* not worth failing over */ }
 
   const client = sheetClient();
   const result = recordRun(client, 'watch (scheduled)', () => runWatch({ client }));
-  return { ran: true, at: verdict.reason, ...result };
+  return { ran: true, ...result };
 }

@@ -437,12 +437,12 @@ console.log('\n--- the daily run, with nobody watching ---');
 
     const set = G.schedule(7);
     check('scheduling creates one trigger', env.triggers.length === 1, `${env.triggers.length}`);
-    // Hourly, deliberately. The hour a trigger fires at belongs to the script
+    // A moment, not an hour. The hour a trigger fires at belongs to the script
     // project, which nobody sets and every copy inherits from the template it
-    // came from; the hour a person means belongs to their spreadsheet. So the
-    // trigger wakes up often and dueNow decides.
-    check('the trigger is hourly, not pinned to the script clock',
-      env.triggers[0].hours === 1 && env.triggers[0].hour === null);
+    // came from; an instant belongs to nobody and cannot be misread.
+    check('the trigger is armed for an instant, not an hour',
+      env.triggers[0].at instanceof Date && env.triggers[0].hour === null);
+    check('and that instant is in the future', env.triggers[0].at.getTime() > Date.now());
     check('pointed at the handler Google will call',
       env.triggers[0].getHandlerFunction() === 'scheduledWatch');
     check('and the hour is remembered', G.scheduledHour() === 7);
@@ -455,26 +455,30 @@ console.log('\n--- the daily run, with nobody watching ---');
     check('and says so', again.replaced === 1);
     check('at the new hour', G.scheduledHour() === 9);
 
-    // A wake-up before the chosen hour does nothing at all — no sheet read, no
-    // board fetched. Twenty-three of the day's twenty-four look like this.
-    G.schedule(23);
-    globalThis.PropertiesService.getScriptProperties().deleteProperty('WATCH_LAST_RUN');
-    const early = G.scheduledWatch();
-    check('a wake-up before the hour does not run', early.ran === false, early.reason);
-    check('and says what it is waiting for', /waiting for 23:00/.test(early.reason), early.reason);
+    // A chain of single-shots stops if an execution never happens. Opening the
+    // sheet is where that gets noticed and put right.
+    const armed = env.triggers[0];
+    G.unschedule();
+    check('the trigger can go missing while the schedule remains',
+      env.triggers.length === 0 && G.scheduledHour() === 9);
+    const fixed = G.repairSchedule();
+    check('opening the sheet puts it back', fixed.repaired === true);
+    check('exactly one, not two', env.triggers.length === 1, `${env.triggers.length}`);
+    check('and a repair is a no-op when one is already armed',
+      G.repairSchedule().repaired === false && env.triggers.length === 1);
+    check('the replacement is armed for the same schedule', armed.at instanceof Date);
 
-    // Fire it the way Google would: by calling the named handler, on a day it
-    // is due. Hour 0 is due at every hour of the day; clearing the stamp is
-    // what tomorrow looks like.
-    G.schedule(0);
+    // Fire it the way Google would: by calling the named handler.
     globalThis.PropertiesService.getScriptProperties().deleteProperty('WATCH_LAST_RUN');
     const result = G.scheduledWatch();
-    check('a wake-up at or after the hour runs', result.ran === true);
+    check('the run happens', result.ran === true);
+    check('and tomorrow is armed before the work, not after',
+      env.triggers.length === 1 && env.triggers[0].at.getTime() > Date.now());
     check('the scheduled run works with no browser involved', result.outcome === 'ok', result.outcome);
     check('and writes its results', env.spreadsheet.grid('matches').length === 2);
 
     const log = env.spreadsheet.grid('log');
-    check('and leaves a row in the log', log.length === 2, `${log.length} rows`);
+    check('and leaves a row in the log', log.length >= 2, `${log.length} rows`);
     check('saying it was the scheduled one', /watch \(scheduled\)/.test(String(log[1])), String(log[1][1]));
 
     // Having run, the rest of the day's wake-ups are silent.

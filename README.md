@@ -254,24 +254,28 @@ under *File → Settings → Time zone*, which is where you would look for it. I
 that setting is wrong, change it there; nothing else needs touching, and
 **Check my configuration** tells you which timezone your runs will use.
 
-It follows daylight saving, so the hour you pick stays the hour you get, and
-it runs whether or not the sheet is open. It fires within that hour rather
-than on the minute, and once a day: a run that is late — because a wake-up was
-delayed, or because the clocks went forward over the hour you chose — still
-happens rather than being skipped.
+It follows daylight saving, so the hour you pick stays the hour you get, and it
+runs whether or not the sheet is open — once a day, at that hour, wherever you
+are.
 
 <details>
 <summary>Why it works that way</summary>
 
-A Google trigger fires on the *script project's* clock, which is a separate
-setting inside the Apps Script editor that nobody sets and every copy inherits
-from the sheet it was copied from. Rather than send you there, the trigger wakes
-up hourly and asks what time it is where your spreadsheet lives. Twenty-three
-of those compare two numbers and stop.
+A Google trigger fires on the *script project's* clock — a separate setting
+inside the Apps Script editor that nobody sets and every copy inherits from the
+sheet it was copied from. Rather than send you there, the schedule is a single
+trigger armed for an exact moment, worked out by asking Google when your hour
+next comes round in your spreadsheet's timezone. A moment has no timezone to
+get wrong. When it fires it arms the next one, so daylight saving is picked up
+on the day it happens.
 
-The tidier-looking fix — work out the offset between the two zones and shift the
+The tidier-looking fix — store the offset between the two zones and shift the
 hour — is wrong twice a year: zones don't change on the same dates, so an
-offset calculated in January is off for three weeks in March.
+offset calculated in January is an hour out for three weeks in March.
+
+That leaves one thing to guard. A chain of one-shot triggers stops if an
+execution never happens, so the next one is armed *before* the watch runs, and
+opening the sheet puts back a trigger that has gone missing.
 
 </details>
 

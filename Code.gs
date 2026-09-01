@@ -4472,23 +4472,25 @@ function salaryLeaning(kept = [], passed = []) {
 // ---------------------------------------------------------------------------
 // When the run happens.
 //
-// A time-driven trigger fires in the *script project's* timezone, which is a
-// setting buried in Project Settings and copied from whoever built the
-// template. Asking somebody to go and change it there — to make a daily run
-// happen at the hour they asked for — is a setup step for a thing they have
-// already told us, since the spreadsheet has a timezone of its own that they
-// set in Sheets like any other document property.
+// A time-driven trigger fires on the *script project's* clock — a setting
+// inside the Apps Script editor that nobody sets and every copy inherits from
+// the sheet it was copied from. The hour a person means is their
+// spreadsheet's, which they set in Sheets like any other document property.
 //
-// So the trigger is not the schedule. The trigger fires every hour and this
-// decides whether it is time, by asking what hour it currently is in the
-// spreadsheet's timezone. Twenty-three of those wake up, compare two numbers
-// and stop.
+// So the schedule is not "every day at 8". It is one single-shot trigger armed
+// for an exact instant, worked out by asking Google when 8am next happens in
+// the spreadsheet's timezone. An instant has no timezone to get wrong. When it
+// fires it arms the next one, so the answer is recomputed daily and daylight
+// saving is picked up the day it happens rather than approximated.
 //
-// The reason to prefer it over converting between the two zones — the obvious
-// fix — is daylight saving. Zones do not change on the same dates, so an
-// offset worked out in January is wrong for three weeks in March. Asking
-// Google what time it is *now*, in a named zone, is right every day of the
-// year including the two that are weird.
+// The alternative — waking hourly and checking the clock — worked and cost
+// twenty-four executions a day to deliver one, each of which opened the
+// spreadsheet to ask what timezone it was in. One a day does the same job.
+//
+// What a chain of single-shots risks is stopping: if an execution never
+// happens, nothing arms the next. Two things guard that. The next trigger is
+// armed *before* the watch runs, so a failing run cannot break the chain; and
+// opening the sheet repairs a schedule that has no trigger behind it.
 //
 // Its own file because two callers need it and they already point at each
 // other: the menu schedules, the check reports, and the menu imports the
@@ -4574,31 +4576,50 @@ function localHour(now, tz, utils) {
 }
 
 /**
- * Whether an hourly wake-up is the one that should do the work.
+ * The next instant at which it is `hour` o'clock in `tz`.
  *
- * "At or after the hour, once per local day" rather than "at the hour". Three
- * things fall out of that which the stricter rule gets wrong: the morning the
- * clocks go forward and the chosen hour does not exist, a trigger Google fired
- * late, and the hour that happens twice in the autumn — the last one caught by
- * the stamp rather than the comparison.
+ * Built by asking rather than by arithmetic: format "what day is it there",
+ * then parse "that day at that hour, there" back into an instant. Google's own
+ * timezone database answers both halves, so the two mornings a year when the
+ * offset moves are handled by the same code as every other morning.
+ *
+ * Returns a Date, which is an absolute moment. A trigger armed for one does
+ * not care what timezone the script project thinks it is in.
  */
-function dueNow({ now, tz, hour, stamp, utils } = {}) {
-  if (hour === null || hour === undefined || Number.isNaN(Number(hour))) {
-    return { due: false, reason: 'no daily run is scheduled' };
+function nextRunAt(now, tz, hour, utils = utilities()) {
+  const h = String(Number(hour)).padStart(2, '0');
+  const on = (day) => utils.parseDate(`${day} ${h}:00:00`, tz, 'yyyy-MM-dd HH:mm:ss');
+
+  let when = on(localStamp(now, tz, utils));
+  if (when.getTime() > now.getTime()) return when;
+
+  // Today's has gone. Tomorrow, named in the spreadsheet's own calendar — a
+  // day there is 23 or 25 hours twice a year, so the date is asked for rather
+  // than assumed.
+  const nextDay = localStamp(new Date(now.getTime() + 24 * 60 * 60 * 1000), tz, utils);
+  when = on(nextDay);
+  // A clock that jumped forward can land the parsed time before `now` even on
+  // the following day; step a day at a time until it is genuinely ahead.
+  for (let i = 0; i < 3 && when.getTime() <= now.getTime(); i++) {
+    when = on(localStamp(new Date(when.getTime() + 24 * 60 * 60 * 1000), tz, utils));
   }
-  let today;
-  let atHour;
+  return when;
+}
+
+/**
+ * Whether a run has already happened today, where the spreadsheet lives.
+ *
+ * A single-shot trigger fires once, so this is not what stops a double run in
+ * the ordinary case — repairing a chain is. It costs one comparison and saves
+ * a duplicate digest, which is the failure people notice.
+ */
+function alreadyRanToday({ now, tz, stamp, utils } = {}) {
+  if (!stamp) return false;
   try {
-    today = localStamp(now, tz, utils);
-    atHour = localHour(now, tz, utils);
-  } catch (err) {
-    return { due: false, reason: `cannot read the time in ${tz}`, problem: true };
+    return stamp === localStamp(now, tz, utils);
+  } catch {
+    return false;
   }
-  if (stamp && stamp === today) return { due: false, reason: `already ran on ${today}`, today };
-  if (atHour < Number(hour)) {
-    return { due: false, reason: `it is ${atHour}:00 in ${tz}, waiting for ${hour}:00`, today };
-  }
-  return { due: true, today, reason: `${atHour}:00 in ${tz}` };
 }
 
 // ===== gas/diagnose.js ===================================================
@@ -4941,6 +4962,9 @@ const ui = () => globalThis.SpreadsheetApp.getUi();
 const scriptApp = () => globalThis.ScriptApp;
 
 function onOpen() {
+  // Free, and the only moment anybody is here to benefit from it.
+  try { repairSchedule(); } catch { /* a menu that fails to draw is worse */ }
+
   ui().createMenu(MENU)
     .addItem('Start here — set everything up', 'menuFirstRun')
     .addSeparator()
@@ -4977,29 +5001,31 @@ function parseHour(text) {
  */
 function schedule(hour, app = scriptApp(), deps = {}) {
   const removed = unschedule(app);
-  // Hourly, not daily-at-an-hour: the hour a trigger fires at is the script
-  // project's, and the hour a person means is their spreadsheet's. This wakes
-  // up often enough that the second one can decide. See when.js.
-  app.newTrigger(TRIGGER).timeBased().everyHours(1).create();
+  const { tz } = deps.zone || watchTimeZone();
+  const now = deps.now || new Date();
+  const at = nextRunAt(now, tz, hour);
 
-  const store = scriptProperties();
-  store.setProperty(HOUR_KEY, String(hour));
+  // One shot, at a moment rather than at an hour. See when.js.
+  app.newTrigger(TRIGGER).timeBased().at(at).create();
+  scriptProperties().setProperty(HOUR_KEY, String(hour));
+  return { hour, replaced: removed, tz, at };
+}
 
-  // If the hour has already gone today, start tomorrow. Otherwise leave the
-  // stamp clear so the first run is the one they are expecting, today.
-  const { tz, ok } = deps.zone || watchTimeZone();
-  let startsToday = true;
-  store.deleteProperty(LAST_RUN_KEY);
-  if (ok) {
-    try {
-      const now = deps.now || new Date();
-      if (localHour(now, tz) >= Number(hour)) {
-        store.setProperty(LAST_RUN_KEY, localStamp(now, tz));
-        startsToday = false;
-      }
-    } catch { /* leave it clear — a missed first day beats a missed schedule */ }
-  }
-  return { hour, replaced: removed, tz, startsToday };
+/**
+ * Puts back a trigger that a schedule says should exist.
+ *
+ * The chain of single-shots stops if an execution never happens — a quota
+ * exhausted, an authorisation withdrawn and restored. Opening the sheet is the
+ * moment to notice, because it is free and because a person opening the sheet
+ * is the one who would otherwise wonder why nothing arrived.
+ */
+function repairSchedule(app = scriptApp()) {
+  const hour = scheduledHour();
+  if (hour === null) return { repaired: false, reason: 'nothing scheduled' };
+  const live = app.getProjectTriggers().some((t) => t.getHandlerFunction() === TRIGGER);
+  if (live) return { repaired: false, reason: 'already armed' };
+  const set = schedule(hour, app);
+  return { repaired: true, hour, at: set.at };
 }
 
 function unschedule(app = scriptApp()) {
@@ -5144,23 +5170,23 @@ function menuUnschedule() {
  * log tab, which is the only place a person will look tomorrow morning.
  */
 function scheduledWatch() {
-  // Twenty-three of these a day do nothing. Deciding costs two comparisons and
-  // is deliberately ahead of opening the sheet: a wake-up that is not due
-  // should not read a spreadsheet or touch a job board.
+  // Armed for tomorrow first. A run that throws — a board down, a quota spent
+  // — must not be the reason there is no run the day after.
   const { tz } = watchTimeZone();
-  const verdict = dueNow({
-    now: new Date(), tz, hour: scheduledHour(), stamp: lastRunStamp(),
-  });
-  if (!verdict.due) return { ran: false, reason: verdict.reason };
+  const hour = scheduledHour();
+  if (hour !== null) {
+    try { schedule(hour); } catch { /* the repair on open is the backstop */ }
+  }
 
-  // Stamped before the run, not after. A run that dies halfway has still had
-  // its turn today, and retrying it every hour until midnight would be worse
-  // than waiting for tomorrow.
-  scriptProperties().setProperty(LAST_RUN_KEY, verdict.today);
+  const now = new Date();
+  if (alreadyRanToday({ now, tz, stamp: lastRunStamp() })) {
+    return { ran: false, reason: 'already ran today' };
+  }
+  try { scriptProperties().setProperty(LAST_RUN_KEY, localStamp(now, tz)); } catch { /* not worth failing over */ }
 
   const client = sheetClient();
   const result = recordRun(client, 'watch (scheduled)', () => runWatch({ client }));
-  return { ran: true, at: verdict.reason, ...result };
+  return { ran: true, ...result };
 }
 
 // ===== __gas.js ==========================================================

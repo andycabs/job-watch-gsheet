@@ -55,7 +55,7 @@ export const EXPORTED = [
   'parseHour', 'schedule', 'unschedule', 'scheduledHour',
   'runSetup', 'menuSetup', 'runDirectory', 'menuDirectory', 'catalogueUrl',
   'runTemplate', 'runFirstRun', 'templateNames', 'menuFirstRun',
-  'runCheck', 'runSuggest', 'runLearn', 'runDiscover', 'sendDigest',
+  'repairSchedule', 'runCheck', 'runSuggest', 'runLearn', 'runDiscover', 'sendDigest',
   'parseDestination', 'currentDestination', 'setDestination', 'menuNotifications',
   'menuCheck', 'menuSuggest', 'menuLearn', 'menuDiscover',
 ];
