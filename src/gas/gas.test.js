@@ -468,7 +468,20 @@ console.log('\n--- the daily run, with nobody watching ---');
       G.repairSchedule().repaired === false && env.triggers.length === 1);
     check('the replacement is armed for the same schedule', armed.at instanceof Date);
 
+    // A copy made before the schedule became a single-shot is carrying a daily
+    // trigger pinned to an hour on the script project's clock. Pasting new code
+    // over old must not leave somebody to notice that themselves.
+    G.unschedule();
+    globalThis.ScriptApp.newTrigger('scheduledWatch').timeBased().atHour(8).everyDays(1).create();
+    globalThis.PropertiesService.getScriptProperties().setProperty('WATCH_HOUR', '8');
+    globalThis.PropertiesService.getScriptProperties().deleteProperty('WATCH_LAST_RUN');
+    G.scheduledWatch();
+    check('an old daily trigger converts itself on its next fire',
+      env.triggers.length === 1 && env.triggers[0].days === null, `${env.triggers.length}`);
+    check('into one armed for a moment', env.triggers[0].at instanceof Date);
+
     // Fire it the way Google would: by calling the named handler.
+    G.schedule(9);
     globalThis.PropertiesService.getScriptProperties().deleteProperty('WATCH_LAST_RUN');
     const result = G.scheduledWatch();
     check('the run happens', result.ran === true);

@@ -382,6 +382,11 @@ Your copy carries its own code, so a newer version arrives by hand:
 3. **Save** — Apps Script does not save on its own
 4. Run **Add anything missing (after an update)**
 
+A daily run you had already scheduled keeps working and needs nothing done to
+it: the trigger converts itself to the newer kind the next time it fires. That
+one run still happens at the old time; every run after it is on your
+spreadsheet's clock.
+
 ### The manifest
 
 If the permission prompt asks for more than the four lines in *What it asks

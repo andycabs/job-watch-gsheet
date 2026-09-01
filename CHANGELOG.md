@@ -16,7 +16,7 @@ watcher, that means:
   need to run `setup` in `apply` mode to add what's new.
 - **Patch** — fixes only. Always safe to take.
 
-## 2.0.0 — 2026-08-31
+## 2.0.0 — 2026-09-01
 
 The whole tool is now a Google Sheet. There is no repository to clone, no web
 app to deploy, no credentials to copy, and no GitHub account.
@@ -32,14 +32,47 @@ app to deploy, no credentials to copy, and no GitHub account.
 ### Running it
 
 - A daily run is a trigger the script owns. It fires whether or not the sheet
-  is open, in the spreadsheet's timezone, so it follows daylight saving. It
+  is open, at your hour **in the spreadsheet's timezone** — the one under *File
+  → Settings → Time zone* — so there is nothing to set in the script editor. It
   does not switch itself off after sixty days of quiet, which the previous
   schedule did.
+- The schedule is one single-shot trigger armed for an exact moment, which arms
+  the next when it fires. A moment has no timezone to misread, and recomputing
+  daily means daylight saving is picked up on the day rather than approximated
+  from a stored offset. A copy carrying the older daily trigger converts itself
+  on that trigger's next fire; there is nothing to redo.
 - Digests go to email or Discord, set from the menu rather than from a
   properties screen nobody opens.
 - The 352 companies travel inside the file, so a first run works with no
   network beyond the job boards themselves. A refresh from upstream is an
   improvement on that, never a precondition.
+
+### What it asks for
+
+- The manifest pins four scopes: this spreadsheet only, outbound requests, send
+  mail, and run on a schedule. Left to itself Apps Script infers them by
+  scanning for service names, cannot follow the `globalThis` the bundler emits,
+  and errs wide — which is why the consent screen used to ask for every
+  spreadsheet in the account. Pinned scopes are a ceiling Google enforces.
+- No `GmailApp` and no `DriveApp` anywhere: nothing can read a message or reach
+  another file. `SECURITY.md` lists every host the program can contact, and the
+  build is reproducible, so the claim is checkable rather than promised.
+
+### What a job posting cannot do
+
+Everything on the matches tab is text somebody else wrote. Four things it could
+do, and no longer can:
+
+- **Become a formula.** `setValues` evaluates a leading `=`, so a posting
+  titled `=IMPORTXML(...)` became a live formula in the sheet of whoever
+  watched that board — and IMPORTXML fetches with no click. Values are now
+  quoted with Sheets' own force-to-text prefix at the last line before a cell.
+- **Break out of the digest.** The mail escaper did not cover quotes, and sat
+  inside an `href` attribute.
+- **Choose the host.** Recruitee builds `https://<slug>.recruitee.com`, so an
+  unchecked slug addressed wherever it liked. Slugs are validated in all six
+  adapters; all 352 catalogue entries pass.
+- **Relabel a link.** A title carrying `](` rewrote the Discord link it sat in.
 
 ### Under it
 
