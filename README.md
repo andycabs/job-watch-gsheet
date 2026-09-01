@@ -50,11 +50,27 @@ If you are here to set the sheet up yourself, two files matter:
 
 | | |
 | --- | --- |
-| **`Code.gs`** | **The whole tool.** Paste this into *Extensions → Apps Script* in a blank Google Sheet, save, then reload the sheet. |
-| **`appsscript.json`** | **The permissions.** Paste this over the script's manifest (appsscript.json) so it asks for four narrow scopes instead of the wide ones Apps Script guesses at. See *What it asks for*. |
+| **`Code.gs`** | **The whole tool** — every line of the program. |
+| **`appsscript.json`** | **The permissions** — the four narrow scopes it runs under. |
 
-Those two files are the whole install. Nothing else here has to be
-downloaded, installed or run.
+Those two files are the whole install. Nothing else here has to be downloaded,
+installed or run. In a blank Google Sheet:
+
+1. *Extensions → Apps Script*
+2. Select everything in `Code.gs`, paste this repository's `Code.gs` over it
+3. **⚙ Project Settings** in the left sidebar, tick **Show `appsscript.json`
+   manifest file in the editor** — it exists already, it is just hidden
+4. Back in **`< >` Editor**, open `appsscript.json` and paste this repository's
+   version over it, **keeping your own `timeZone`** — that is the timezone your
+   daily run happens in
+5. **Save** — Apps Script does not save on its own
+6. Reload the spreadsheet; a **Job watch** menu appears next to Help
+
+Step 4 is worth doing rather than skipping. Without it the script still works:
+Apps Script works out the permissions itself, and errs wide — it will ask for
+access to every spreadsheet in your account rather than this one. The manifest
+is what makes the consent screen match what the code actually does. See *What
+it asks for*.
 
 The rest is what that file is built from, kept here so it can be read, checked
 and rebuilt:
