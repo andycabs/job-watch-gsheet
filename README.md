@@ -131,6 +131,23 @@ and the reason the permissions are worth reading rather than clicking past.
 *Seeing a wider prompt than the table above?* Then the manifest is missing —
 see *Updating* for how to put it back.
 
+### Where it can reach
+
+The whole list, and there is nothing else: the six job boards, whichever digest
+channel you set, and GitHub for the company catalogue when you ask it to
+refresh. No analytics, no telemetry, no server belonging to anybody who wrote
+this — your rules, your companies and your results never leave your
+spreadsheet. Search `Code.gs` for `http` and you have the list.
+
+`SECURITY.md` has the full account: what to do if you find a problem, what is
+known and accepted, and how to check that the `Code.gs` you pasted really is
+the code in this repository.
+
+**One thing to know about sharing.** A script inside a spreadsheet belongs to
+that spreadsheet, so anyone you give **edit** access to your copy can open the
+script, read it, and read your digest destination. Share as **Viewer** unless
+you mean to hand somebody that.
+
 ---
 
 ## Tabs overview

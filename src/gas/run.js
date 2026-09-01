@@ -199,7 +199,7 @@ export function runSetup({ client, reformat = false } = {}) {
  * their own list without editing generated code.
  */
 export const CATALOGUE_URL =
-  'https://raw.githubusercontent.com/andycabs/job-watch/main/data/directory.json';
+  'https://raw.githubusercontent.com/andycabs/job-watch-gsheet/main/data/directory.json';
 
 /** A link back to this spreadsheet, for the digest to point at. */
 export function spreadsheetUrl() {

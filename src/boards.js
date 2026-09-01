@@ -14,7 +14,10 @@
 
 export const DEFAULT_TIMEOUT_MS = 20000;
 
-const UA = 'job-watch (job board monitor; +https://github.com/andycabs/job-watch)';
+// The URL is the point: it is how an operator who sees these requests finds
+// out what is making them, and whether to mind. It has to resolve, so it
+// names the public repository rather than the private one this grew out of.
+const UA = 'job-watch (job board monitor; +https://github.com/andycabs/job-watch-gsheet)';
 
 // `fetchImpl` is injectable so an adapter can be run against a captured
 // payload. Without it the mapping from a board's JSON to our shape was the
