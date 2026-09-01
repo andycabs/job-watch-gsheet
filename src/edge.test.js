@@ -405,6 +405,79 @@ console.log('\n=== running out of room, and running twice ===');
 console.log('\n=== the repository contains what the code needs ===');
 
 // ===========================================================================
+// ===========================================================================
+console.log('\n=== the script asks for no more than it uses ===');
+// ===========================================================================
+{
+  // A person authorising this is handing over access to their Google account,
+  // so the manifest pins the scopes rather than letting Apps Script infer
+  // them — inference is a static scan, and this file reaches Google's
+  // services through `globalThis`, which the scan cannot follow, so it gives
+  // up and grants the wide default. Pinned scopes are a ceiling Google
+  // enforces: a call outside them fails. That is only worth something if the
+  // list stays in step with the code, which is what this checks.
+  const gs = readFileSync(new URL('../Code.gs', import.meta.url), 'utf8');
+  const manifest = JSON.parse(readFileSync(new URL('../appsscript.json', import.meta.url), 'utf8'));
+  const scopes = manifest.oauthScopes || [];
+
+  // Strip comments before looking for service names, or the prose naming the
+  // services this deliberately avoids reads as a use of them. And match the
+  // bare identifier rather than `Service.method`: these are reached through
+  // `globalThis.ScriptApp`, with nothing after the name. Getting that wrong
+  // is how a scope stays granted after the code that needed it is gone.
+  const code = gs
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .split('\n').filter((l) => !/^\s*\/\//.test(l)).join('\n');
+  const uses = (service) => new RegExp(`\\b${service}\\b`).test(code);
+
+  // Every service the built file touches, and the one scope it needs.
+  const NEEDED = {
+    SpreadsheetApp: 'https://www.googleapis.com/auth/spreadsheets.currentonly',
+    UrlFetchApp: 'https://www.googleapis.com/auth/script.external_request',
+    ScriptApp: 'https://www.googleapis.com/auth/script.scriptapp',
+    MailApp: 'https://www.googleapis.com/auth/script.send_mail',
+  };
+  // Services that would widen the consent screen a long way. None of these
+  // should ever appear: reading a person's other files or their mail is not
+  // something a job watch has any business doing.
+  const FORBIDDEN = ['DriveApp', 'GmailApp', 'CalendarApp', 'ContactsApp', 'DocumentApp', 'AdminDirectory'];
+
+  check('the manifest pins its scopes', scopes.length > 0);
+
+  for (const [service, scope] of Object.entries(NEEDED)) {
+    if (uses(service)) {
+      check(`${service} is used, so ${scope.split('/').pop()} is granted`, scopes.includes(scope));
+    } else {
+      check(`${service} is unused, so ${scope.split('/').pop()} is not granted`, !scopes.includes(scope),
+        'drop the scope or the code that needed it');
+    }
+  }
+
+  for (const service of FORBIDDEN) {
+    check(`nothing reaches for ${service}`, !uses(service),
+      'this would widen what a person has to authorise');
+  }
+
+  // The narrow spreadsheet scope only holds while the script stays inside its
+  // own container. Opening another workbook by id needs the wide one, and
+  // would silently fail against this manifest.
+  check('no other spreadsheet is opened by id or url',
+    !/(openById|openByUrl)\b/.test(code));
+  check('the wide spreadsheet scope is not requested',
+    !scopes.includes('https://www.googleapis.com/auth/spreadsheets'));
+  check('no Drive scope is requested',
+    !scopes.some((s) => s.includes('/auth/drive')));
+  check('no Gmail read scope is requested',
+    !scopes.some((s) => s === 'https://mail.google.com/' || s.includes('/auth/gmail')));
+
+  // The README tells people what they are agreeing to. If it does not name a
+  // scope the manifest asks for, somebody is being surprised at the prompt.
+  const readme = readFileSync(new URL('../README.md', import.meta.url), 'utf8');
+  for (const scope of scopes) {
+    check(`the README accounts for ${scope.split('/').pop()}`, readme.includes(scope));
+  }
+}
+
 console.log('\n=== the README describes the menu the sheet actually has ===');
 // ===========================================================================
 {

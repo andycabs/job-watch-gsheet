@@ -50,7 +50,11 @@ If you are here to set the sheet up yourself, one file matters:
 
 | | |
 | --- | --- |
-| **`Code.gs`** | **The whole tool.** Paste this into *Extensions → Apps Script* in a blank Google Sheet, save, then reload the sheet. Nothing else in this repository has to be downloaded, installed or run. |
+| **`Code.gs`** | **The whole tool.** Paste this into *Extensions → Apps Script* in a blank Google Sheet, save, then reload the sheet. |
+| **`appsscript.json`** | **The permissions.** Paste this over the script's manifest so it asks for four narrow scopes instead of the wide ones Apps Script guesses at. See *What it asks for*. |
+
+Those two files are the whole install. Nothing else here has to be
+downloaded, installed or run.
 
 The rest is what that file is built from, kept here so it can be read, checked
 and rebuilt:
@@ -73,11 +77,12 @@ result. Editing `Code.gs` by hand means the next build overwrites you.
 *File → Make a copy*. The whole tool comes with it.
 
 **2. Open the menu.** Reload the copy and a **Job watch** menu appears next to
-Help. The first thing you click will ask for permission — to read and write
-this spreadsheet, to fetch job boards, to send you mail, and to run on a
-schedule. It is asking on behalf of the script sitting inside your own copy,
-which is why the warning says the app is unverified: nobody has reviewed a
-script that belongs to you.
+Help. The first thing you click will ask for permission. Read *What it asks
+for* below before you agree — the short version is that it can touch this one
+spreadsheet and nothing else in your account, and that it can send mail but
+cannot read any. The warning that the app is unverified is Google saying
+nobody has reviewed a script that belongs to you, which is true of every
+script anyone writes for themselves.
 
 **3. Click *Start here — set everything up*.** Pick the starter rules closest
 to what you do — `software-engineering`, `gtm-revops`, `product-design`,
@@ -85,6 +90,46 @@ to what you do — `software-engineering`, `gtm-revops`, `product-design`,
 fills the catalogue, and tells you what to do next.
 
 That's it. There is no fourth step.
+
+---
+
+## What it asks for
+
+Authorising a script means handing it part of your Google account, so here is
+the whole of what this one gets. The four lines below are pinned in the
+script's manifest, which means Google *enforces* them: a call to anything
+outside this list fails, whatever the code tries.
+
+| Google shows you | What it is | What it is not |
+| --- | --- | --- |
+| See, edit, create and delete **only the specific spreadsheet** you use with this app | `spreadsheets.currentonly` — the copy the script lives in | Not your other sheets. The script has no way to name another workbook. |
+| **Connect to an external service** | `script.external_request` — fetching the job boards | Nothing is sent anywhere. The requests are plain public reads of career pages. |
+| **Send email as you** | `script.send_mail` — the digest, to the address you give it | **Not inbox access.** Reading mail is a different permission (`GmailApp`), and this script does not contain it. |
+| **Run when you are not present** | `script.scriptapp` — the daily scheduled run | Only the schedule you set from the menu, and *Stop the daily run* removes it. |
+
+The scopes, if you want to check them against the manifest yourself:
+
+```
+https://www.googleapis.com/auth/spreadsheets.currentonly
+https://www.googleapis.com/auth/script.external_request
+https://www.googleapis.com/auth/script.send_mail
+https://www.googleapis.com/auth/script.scriptapp
+```
+
+Two things worth being clear about, because they are the reason a wide prompt
+would be worth worrying about elsewhere and is not here:
+
+**There is no other party.** The script runs inside your copy, under your
+account, on your data. It is not talking to a server anyone operates. Nobody
+who wrote it, distributed it or copied it can see your sheet, your rules or
+your results, because there is nowhere for that to go.
+
+**You can read every line before you agree.** *Extensions → Apps Script* shows
+the entire program. That is a stronger guarantee than any job site gives you,
+and the reason the permissions are worth reading rather than clicking past.
+
+*Seeing a wider prompt than the table above?* Then the manifest is missing —
+see *Updating* for how to put it back.
 
 ---
 
@@ -278,6 +323,23 @@ Your copy carries its own code, so a newer version arrives by hand:
 2. In your sheet, *Extensions → Apps Script*, select everything, paste over it
 3. **Save** — Apps Script does not save on its own
 4. Run **Add anything missing (after an update)**
+
+### The manifest
+
+If the permission prompt asks for more than the four lines in *What it asks
+for* — most visibly *all* your spreadsheets rather than this one — the
+manifest is missing or has been overwritten. To put it back:
+
+1. In the Apps Script editor, *Project Settings*, tick **Show `appsscript.json`
+   manifest file in the editor**
+2. Back in *Editor*, open `appsscript.json`
+3. Copy the `oauthScopes` block from this repository's `appsscript.json` into
+   it, leaving your own `timeZone` alone — that is what the daily run is
+   scheduled against
+4. **Save**, then reload the sheet
+
+Google re-asks for consent when the scopes change, so expect one more prompt —
+a narrower one.
 
 Your tabs, rules, companies and history are untouched. The version you are
 running is written into the `What ran` column of every log row.
