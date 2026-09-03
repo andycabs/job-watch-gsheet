@@ -4195,7 +4195,7 @@ function runFirstRun(templateId, { client, fetchImpl = gasFetch } = {}) {
     out.say('');
     out.say('  Open the directory tab and tick Add beside any company you would');
     out.say('  work for. Or type names into the companies tab and run');
-    out.say('  "Find boards for new companies".');
+    out.say('  "Look up the companies I added".');
     out.say('');
     out.say('  Then run the watch.');
     return {
@@ -4660,7 +4660,7 @@ function runCheck({ client } = {}) {
   if (!audit.ok) {
     out.say('Sheet structure');
     for (const problem of audit.problems) out.say(`  ${problem}`);
-    out.say('  Run "Set up the workbook" to add anything missing.');
+    out.say('  Run "Add new tabs and columns (after an update)" to fix this.');
     out.say('');
   }
 
@@ -4968,19 +4968,19 @@ function onOpen() {
   ui().createMenu(MENU)
     .addItem('Start here — set everything up', 'menuFirstRun')
     .addSeparator()
-    .addItem('Run the watch now', 'menuWatch')
-    .addItem('Find boards for new companies', 'menuDiscover')
-    .addItem('Refresh the company catalogue', 'menuDirectory')
+    .addItem('Find new jobs now', 'menuWatch')
+    .addItem('Look up the companies I added', 'menuDiscover')
+    .addItem('Update the company directory', 'menuDirectory')
     .addSeparator()
-    .addItem('Check my configuration', 'menuCheck')
-    .addItem('What am I missing?', 'menuSuggest')
-    .addItem('What have I been passing on?', 'menuLearn')
+    .addItem('Check my setup', 'menuCheck')
+    .addItem('Suggest keywords I’m missing', 'menuSuggest')
+    .addItem('What my Status choices say', 'menuLearn')
     .addSeparator()
-    .addItem('Schedule the daily run…', 'menuSchedule')
-    .addItem('Stop the daily run', 'menuUnschedule')
-    .addItem('Send me a digest…', 'menuNotifications')
+    .addItem('Run this every day…', 'menuSchedule')
+    .addItem('Stop running every day', 'menuUnschedule')
+    .addItem('Where to send new matches…', 'menuNotifications')
     .addSeparator()
-    .addItem('Add anything missing (after an update)', 'menuSetup')
+    .addItem('Add new tabs and columns (after an update)', 'menuSetup')
     .addToUi();
 }
 
@@ -5092,7 +5092,7 @@ function diagnostic(what, fn, title) {
 
 const menuCheck = diagnostic('check', runCheck, 'Your configuration');
 const menuSuggest = diagnostic('suggest', runSuggest, 'What you are missing');
-const menuLearn = diagnostic('learn', runLearn, 'What you have been passing on');
+const menuLearn = diagnostic('learn', runLearn, 'What my Status choices say');
 const menuDiscover = diagnostic('discover', runDiscover, 'Finding boards');
 
 /**
@@ -5108,7 +5108,7 @@ function menuNotifications() {
     : now.kind === 'email' ? `Digests currently go to ${now.value}.`
       : 'Digests currently go to a Discord channel.';
 
-  const answer = ui().prompt('Send me a digest',
+  const answer = ui().prompt('Where to send new matches',
     `${where}\n\n`
     + 'Paste an email address, or a Discord webhook URL.\n'
     + 'Leave it empty to stop sending anything.\n\n'

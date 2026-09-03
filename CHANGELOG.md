@@ -43,6 +43,12 @@ app to deploy, no credentials to copy, and no GitHub account.
   on that trigger's next fire; there is nothing to redo.
 - Digests go to email or Discord, set from the menu rather than from a
   properties screen nobody opens.
+- The menu says what each item does in the words the sheet uses. "The watch"
+  was a word for this program that appeared nowhere a person could see; the
+  menu offered to refresh a "catalogue" and filled a tab called `directory`;
+  and "missing" meant job postings in one item and spreadsheet columns in
+  another, four apart. A message also sent people to "Set up the workbook", an
+  item that had not existed for some time.
 - The 352 companies travel inside the file, so a first run works with no
   network beyond the job boards themselves. A refresh from upstream is an
   improvement on that, never a precondition.

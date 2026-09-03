@@ -36,7 +36,7 @@ export function runCheck({ client } = {}) {
   if (!audit.ok) {
     out.say('Sheet structure');
     for (const problem of audit.problems) out.say(`  ${problem}`);
-    out.say('  Run "Set up the workbook" to add anything missing.');
+    out.say('  Run "Add new tabs and columns (after an update)" to fix this.');
     out.say('');
   }
 

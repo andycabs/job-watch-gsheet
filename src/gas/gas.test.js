@@ -610,8 +610,11 @@ console.log('\n--- the menu Google will build ---');
     const labels = items.map(([label]) => label);
     check('only one item is about setting up',
       labels.filter((l) => /^Set|set everything/i.test(l)).length <= 1, labels.join(' | '));
-    check('and digests are reachable from the menu',
-      labels.some((l) => /digest/i.test(l)), labels.join(' | '));
+    // By the function it points at, not by a word in the label. Checking for
+    // "digest" made this a test of the wording rather than of the menu, and it
+    // failed the moment the wording got clearer.
+    check('and notifications are reachable from the menu',
+      items.some(([, fn]) => fn === 'menuNotifications'), labels.join(' | '));
     check('every item points at a function that exists',
       items.every(([, fn]) => typeof G[fn] === 'function'),
       items.map(([, fn]) => fn).join(', '));

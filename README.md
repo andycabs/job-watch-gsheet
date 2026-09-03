@@ -78,7 +78,7 @@ and rebuilt:
 | | |
 | --- | --- |
 | `src/` | The engine — job board adapters, matching, scoring, the sheet client — plus its tests. `npm run build` flattens it into `Code.gs`. |
-| `data/` | The company catalogue: 352 employers with a verified board, and a record of the ones that were checked and didn't have one. |
+| `data/` | The company directory: 352 employers with a verified board, and a record of the ones that were checked and didn't have one. |
 | `templates/` | The starter rule sets *Start here* offers — the titles and keywords a role tends to use. |
 | `build/` | Scratch output from `npm run build`. Not committed. |
 
@@ -121,7 +121,7 @@ outside this list fails, whatever the code tries.
 | See, edit, create and delete **only the specific spreadsheet** you use with this app | `spreadsheets.currentonly` — the copy the script lives in | Not your other sheets. The script has no way to name another workbook. |
 | **Connect to an external service** | `script.external_request` — fetching the job boards | Nothing is sent anywhere. The requests are plain public reads of career pages. |
 | **Send email as you** | `script.send_mail` — the digest, to the address you give it | **Not inbox access.** Reading mail is a different permission (`GmailApp`), and this script does not contain it. |
-| **Run when you are not present** | `script.scriptapp` — the daily scheduled run | Only the schedule you set from the menu, and *Stop the daily run* removes it. |
+| **Run when you are not present** | `script.scriptapp` — the daily scheduled run | Only the schedule you set from the menu, and *Stop running every day* removes it. |
 
 The scopes, if you want to check them against the manifest yourself:
 
@@ -189,8 +189,8 @@ Now that you're set up, let's go to the companies tab and figure out what compan
 **Start with the companies you already know.** Before opening the catalogue,
 type some names into the `companies` tab off the top of your head — where
 your friends work, your employer's competitors, the vendors you deal with,
-anyone whose product you like. Leave ATS and Slug blank and run **Find boards
-for new companies**; it works out where each one posts.
+anyone whose product you like. Leave ATS and Slug blank and run **Look up the
+companies I added**; it works out where each one posts.
 
 Expect around half to resolve. The largest employers run recruiting systems
 this can't read, and it will tell you which ones.
@@ -209,7 +209,7 @@ yours.
 Once you have some companies in the Companies section that are found, and, optionally, some other companies chosen
 from the directory, now you need to set your preferences and settings.
 
-Once you've gotten this part done, you can just straight-up run the watch by going to the job watch menu > **Run the watch now**.
+Once you've gotten this part done, you can run it straight away from the menu: **Find new jobs now**.
 
 ### Rules tab
 
@@ -238,37 +238,37 @@ The "weight" options are how the app scores different job openings for you.
 
 | Item | What it does |
 | --- | --- |
-| **Start here — set everything up** | Tabs, starter rules, the catalogue, in one go. Safe to re-run |
-| **Run the watch now** | The daily run, on demand |
-| **Find boards for new companies** | Resolves companies you typed in by hand |
-| **Refresh the company catalogue** | Updates the list and follows anything newly ticked |
-| **Check my configuration** | Prints what your sheet says, as understood. Writes nothing |
-| **What am I missing?** | Phrases recurring in postings no rule matched |
-| **What have I been passing on?** | What your own Status choices say about your rules |
-| **Schedule the daily run…** | Sets the hour, in this spreadsheet's timezone |
-| **Stop the daily run** | Turns it off |
-| **Send me a digest…** | Email or Discord, or nothing |
-| **Add anything missing (after an update)** | Adds tabs, columns and settings a newer version introduced |
+| **Start here — set everything up** | Tabs, starter rules, the directory, in one go. Safe to re-run |
+| **Find new jobs now** | The daily run, on demand |
+| **Look up the companies I added** | Works out where the companies you typed in post their jobs |
+| **Update the company directory** | Refreshes the list and follows anything newly ticked |
+| **Check my setup** | Prints what your sheet says, as understood. Writes nothing |
+| **Suggest keywords I’m missing** | Phrases recurring in postings no rule matched |
+| **What my Status choices say** | What marking things Interested or Passed says about your rules |
+| **Run this every day…** | Sets the hour, in this spreadsheet's timezone |
+| **Stop running every day** | Turns it off |
+| **Where to send new matches…** | Email or Discord, or nothing |
+| **Add new tabs and columns (after an update)** | Adds anything a newer version introduced |
 
-**What am I missing?** is the one worth knowing. "No matches" has half a dozen
-indistinguishable causes — rules too narrow, a location filter, a salary floor,
-an exclusion firing wide, a board with nothing on it — and it names which,
-instead of leaving you to guess.
+**Suggest keywords I’m missing** is the one worth knowing. "No matches" has
+half a dozen indistinguishable causes — rules too narrow, a location filter, a
+salary floor, an exclusion firing wide, a board with nothing on it — and it
+names which, instead of leaving you to guess.
 
 ---
 
 ## When it runs
 
-You can make it run whenever you want by going to the menu and selecting **Run the watch now**. The results you'll get will be only
+You can make it run whenever you want by going to the menu and selecting **Find new jobs now**. The results you'll get will be only
 the new results that you have not seen before.
 
 *What about a daily scheduled run?*
 
-Nothing runs on a schedule until you say so. **Schedule the daily run…** asks
+Nothing runs on a schedule until you say so. **Run this every day…** asks
 for an hour and runs at that hour **in this spreadsheet's timezone** — the one
 under *File → Settings → Time zone*, which is where you would look for it. If
 that setting is wrong, change it there; nothing else needs touching, and
-**Check my configuration** tells you which timezone your runs will use.
+**Check my setup** tells you which timezone your runs will use.
 
 It follows daylight saving, so the hour you pick stays the hour you get, and it
 runs whether or not the sheet is open — once a day, at that hour, wherever you
@@ -299,7 +299,7 @@ opening the sheet puts back a trigger that has gone missing.
 
 ## Digests
 
-**Send me a digest…** takes an email address or a Discord webhook URL, and
+**Where to send new matches…** takes an email address or a Discord webhook URL, and
 works out which is which. Leave it empty to stop.
 
 A digest goes out after a run that found something new, best first. Nothing is
@@ -380,7 +380,7 @@ Your copy carries its own code, so a newer version arrives by hand:
 1. Get the latest `Code.gs` from the top of this repository
 2. In your sheet, *Extensions → Apps Script*, select everything, paste over it
 3. **Save** — Apps Script does not save on its own
-4. Run **Add anything missing (after an update)**
+4. Run **Add new tabs and columns (after an update)**
 
 A daily run you had already scheduled keeps working and needs nothing done to
 it: the trigger converts itself to the newer kind the next time it fires. That
@@ -408,7 +408,7 @@ a narrower one.
 Your tabs, rules, companies and history are untouched. The version you are
 running is written into the `What ran` column of every log row.
 
-The company catalogue updates on its own: **Refresh the company catalogue**
+The directory updates on its own: **Update the company directory**
 fetches the current list, and falls back to the one built into your copy if it
 cannot reach it.
 

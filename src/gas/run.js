@@ -373,7 +373,7 @@ export function runFirstRun(templateId, { client, fetchImpl = gasFetch } = {}) {
     out.say('');
     out.say('  Open the directory tab and tick Add beside any company you would');
     out.say('  work for. Or type names into the companies tab and run');
-    out.say('  "Find boards for new companies".');
+    out.say('  "Look up the companies I added".');
     out.say('');
     out.say('  Then run the watch.');
     return {
