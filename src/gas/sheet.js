@@ -135,6 +135,13 @@ export function formatTab(ss, op) {
   if (op.frozenRows) sheet.setFrozenRows(op.frozenRows);
   (op.widths || []).forEach((w, i) => sheet.setColumnWidth(i + 1, w));
 
+  // On the header cell, so it is there when somebody clicks the column they
+  // are puzzled by. Set before validation so a tab that fails halfway still
+  // explains itself.
+  for (const n of op.notes || []) {
+    sheet.getRange(1, n.column + 1).setNote(String(n.text || ''));
+  }
+
   for (const v of op.validations || []) {
     const range = sheet.getRange(2, v.column + 1, Math.max(sheet.getMaxRows() - 1, 1), 1);
     const builder = app().newDataValidation();

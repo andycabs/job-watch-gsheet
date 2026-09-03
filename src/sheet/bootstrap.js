@@ -93,6 +93,14 @@ export function planBootstrap(state = {}) {
           .map((c, i) => (c.validation ? { column: i, ...c.validation } : null))
           .filter(Boolean),
         protections: protectedBlocks(tab),
+        // The help text was written, and then went nowhere: describeTabs()
+        // rendered it for a caller that never existed, and nothing put it in
+        // front of anybody. A note on the header is where somebody looks when
+        // they wonder what a column is for — which is the moment they are
+        // wondering, rather than whenever they next read a README.
+        notes: tab.columns
+          .map((c, i) => (c.help ? { column: i, text: `${c.header}\n\n${c.help}` } : null))
+          .filter(Boolean),
         frozenRows: tab.frozenRows,
       });
       if (existing.has(name)) reformatted.push(name);
@@ -156,20 +164,6 @@ function describe(created, seeded, headered = [], extended = []) {
     parts.push(`added ${e.columns.join(', ')} to ${e.tab}`);
   }
   return parts.join('; ');
-}
-
-/**
- * Human-readable setup instructions, generated from the schema so the docs
- * can't drift from the actual columns.
- */
-export function describeTabs() {
-  return TAB_NAMES.map((name) => {
-    const tab = TABS[name];
-    const cols = tab.columns
-      .map((c) => (c.help ? `  ${c.header} — ${c.help}` : `  ${c.header}`))
-      .join('\n');
-    return `${tab.name}\n  ${tab.purpose}\n${cols}`;
-  }).join('\n\n');
 }
 
 /**

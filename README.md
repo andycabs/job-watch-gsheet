@@ -213,6 +213,22 @@ Once you've gotten this part done, you can run it straight away from the menu: *
 
 ### Rules tab
 
+**Every column header carries a note** — click one and it tells you what that
+column is for. The four `Kind` values are the part worth reading:
+
+| Kind | What it does |
+| --- | --- |
+| `title` | Look for this in the job title. The strongest signal. |
+| `body` | Look for this in the job description. Weaker — a posting can mention a tool in passing. |
+| `exclude` | Never show a job whose title matches this, however well it scores otherwise. |
+| `title-hint` | A safety catch on your `body` rules: a body rule only counts if the title **also** matches one of these. **On its own it finds nothing.** |
+
+`title-hint` is the one that catches people out. A `body` rule for `salesforce`
+would otherwise match a Customer Support role that mentions the tool once. Add
+a `title-hint` for `operations|systems|revenue` and that stops, while *Marketing
+Systems Manager* still counts. Leave title-hints out entirely and body rules
+count on their own.
+
 The `rules` tab is a list of patterns. A plain phrase matches whole words in
 order, so `staff engineer` will **not** match "Staff Software Engineer". Wrap a
 pattern in slashes for a regular expression when you want the wider net.

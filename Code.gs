@@ -380,18 +380,36 @@ const TABS = {
       col('active', 'Active', USER, {
         width: 70,
         validation: { type: 'boolean' },
-        help: 'FALSE turns a rule off without deleting it. Blank counts as on.',
+        help: 'Untick to turn a rule off without losing it. A blank counts as on.',
       }),
       col('kind', 'Kind', USER, {
         width: 110,
         validation: { type: 'list', values: ['title', 'body', 'exclude', 'title-hint'] },
-        help: 'title = strong signal · body = weaker signal from the description · exclude = never show · title-hint = gate for body rules',
+        // Written out rather than abbreviated because this is the column
+        // people ask about, and "gate for body rules" answers nobody who did
+        // not already know. title-hint especially: on its own it finds
+        // nothing, which is a surprising thing for a rule to do.
+        help: [
+          'What this rule does. Four kinds:',
+          'title — look for this in the job title. The strongest signal.',
+          'body — look for this in the job description. Weaker, because a posting can mention a tool in passing.',
+          'exclude — never show a job whose title matches this, however well it scores otherwise.',
+          'title-hint — a safety catch on your body rules: a body rule only counts if the title ALSO matches one of these. On its own it finds nothing. Leave them out entirely and body rules count on their own.',
+        ].join('\n'),
       }),
       col('pattern', 'Pattern', USER, {
         width: 320,
-        help: 'A phrase like "staff engineer" matches whole words. Wrap in slashes for a regex.',
+        help: [
+          'What to look for.',
+          'A plain phrase matches whole words in order, so "staff engineer" does not match "Staff Software Engineer".',
+          'Wrap it in slashes for a regular expression when you want a wider net: /staff.*engineer/',
+          'Case never matters.',
+        ].join('\n'),
       }),
-      col('note', 'Note', USER, { width: 260, help: 'Yours. Why you added this rule.' }),
+      col('note', 'Note', USER, {
+        width: 260,
+        help: 'Yours to use however you like. Nothing reads it. A line on why you added a rule is worth having when you come back to it in a month.',
+      }),
     ],
     seed: [
       { active: 'TRUE', kind: 'title', pattern: 'staff engineer', note: 'Example — edit or delete' },
@@ -3430,6 +3448,14 @@ function planBootstrap(state = {}) {
           .map((c, i) => (c.validation ? { column: i, ...c.validation } : null))
           .filter(Boolean),
         protections: protectedBlocks(tab),
+        // The help text was written, and then went nowhere: describeTabs()
+        // rendered it for a caller that never existed, and nothing put it in
+        // front of anybody. A note on the header is where somebody looks when
+        // they wonder what a column is for — which is the moment they are
+        // wondering, rather than whenever they next read a README.
+        notes: tab.columns
+          .map((c, i) => (c.help ? { column: i, text: `${c.header}\n\n${c.help}` } : null))
+          .filter(Boolean),
         frozenRows: tab.frozenRows,
       });
       if (existing.has(name)) reformatted.push(name);
@@ -3493,20 +3519,6 @@ function describe(created, seeded, headered = [], extended = []) {
     parts.push(`added ${e.columns.join(', ')} to ${e.tab}`);
   }
   return parts.join('; ');
-}
-
-/**
- * Human-readable setup instructions, generated from the schema so the docs
- * can't drift from the actual columns.
- */
-function describeTabs() {
-  return TAB_NAMES.map((name) => {
-    const tab = TABS[name];
-    const cols = tab.columns
-      .map((c) => (c.help ? `  ${c.header} — ${c.help}` : `  ${c.header}`))
-      .join('\n');
-    return `${tab.name}\n  ${tab.purpose}\n${cols}`;
-  }).join('\n\n');
 }
 
 /**
@@ -3762,6 +3774,13 @@ function formatTab(ss, op) {
 
   if (op.frozenRows) sheet.setFrozenRows(op.frozenRows);
   (op.widths || []).forEach((w, i) => sheet.setColumnWidth(i + 1, w));
+
+  // On the header cell, so it is there when somebody clicks the column they
+  // are puzzled by. Set before validation so a tab that fails halfway still
+  // explains itself.
+  for (const n of op.notes || []) {
+    sheet.getRange(1, n.column + 1).setNote(String(n.text || ''));
+  }
 
   for (const v of op.validations || []) {
     const range = sheet.getRange(2, v.column + 1, Math.max(sheet.getMaxRows() - 1, 1), 1);

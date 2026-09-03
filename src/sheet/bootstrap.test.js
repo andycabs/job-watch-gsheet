@@ -9,7 +9,7 @@ import {
   TABS, TAB_NAMES, colLetter, headers, userColumns, scriptColumns,
   scriptRange, assertUserColumnsFirst, seedRow, protectedBlocks, USER, SCRIPT,
 } from './schema.js';
-import { planBootstrap, auditSheet, describeTabs } from './bootstrap.js';
+import { planBootstrap, auditSheet, } from './bootstrap.js';
 
 let pass = 0, fail = 0;
 const check = (label, ok, detail = '') => {
@@ -204,13 +204,31 @@ console.log('\n--- audit ---');
   check('and names what is missing', missingCol.problems.some((p) => p.includes('Score')), missingCol.problems[0]);
 }
 
-// --- generated docs --------------------------------------------------------
-console.log('\n--- documentation ---');
+// --- the help reaches the sheet -------------------------------------------
+console.log('\n--- column help ---');
 {
-  const doc = describeTabs();
-  check('documents every tab', TAB_NAMES.every((n) => doc.includes(n)));
-  check('includes column help text', doc.includes('regex'), 'rules Pattern help');
-  check('explains the key column is internal', doc.includes('Do not edit'));
+  // It used to exist only in the schema, rendered by a function with no
+  // callers. A person wondering what a column was for had nowhere to look,
+  // which is how "what is title-hint?" became a question somebody had to ask.
+  const plan = planBootstrap({ existingTabs: [], reformat: true });
+  const formats = plan.operations.filter((o) => o.op === 'formatTab');
+  check('every tab is formatted', formats.length === TAB_NAMES.length, `${formats.length}`);
+
+  const notes = formats.flatMap((o) => o.notes || []);
+  check('columns carry notes', notes.length > 0, `${notes.length}`);
+  check('each note names its column and explains it',
+    notes.every((n) => typeof n.column === 'number' && String(n.text).includes('\n')));
+
+  const rules = formats.find((o) => o.tab === 'rules');
+  const kind = (rules.notes || []).find((n) => /^Kind\n/.test(n.text));
+  check('the Kind column explains itself', Boolean(kind));
+  check('including all four kinds',
+    ['title —', 'body —', 'exclude —', 'title-hint —'].every((k) => kind.text.includes(k)));
+  // The one that surprises people: a rule that matches nothing on its own.
+  check('and says title-hint finds nothing alone', /on its own it finds nothing/i.test(kind.text));
+  // The column most likely to be tidied away by somebody being helpful.
+  check('the internal key column warns people off',
+    notes.some((n) => /Do not edit/i.test(n.text)));
 }
 
 // --- protecting what nobody should be typing into ---------------------------

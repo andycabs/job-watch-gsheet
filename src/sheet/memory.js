@@ -98,6 +98,7 @@ export function memoryClient(initial = {}) {
           const tab = need(op.tab);
           tab.widths = op.widths || [];
           tab.validations = op.validations || [];
+          tab.notes = op.notes || [];
           tab.frozenRows = op.frozenRows;
         }
       }

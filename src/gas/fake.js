@@ -50,6 +50,11 @@ class FakeRange {
     }
     return out;
   }
+  setNote(text) {
+    this.sheet.notes[`${this.row},${this.col}`] = String(text);
+    return this;
+  }
+
   setValues(values) {
     values.forEach((row, r) => {
       const target = (this.sheet.grid[this.row - 1 + r] ||= []);
@@ -70,6 +75,7 @@ class FakeSheet {
     this.frozenRows = 0;
     this.widths = {};
     this.validations = [];
+    this.notes = {};
   }
   getName() { return this.name; }
   getSheetId() { return this.gid; }

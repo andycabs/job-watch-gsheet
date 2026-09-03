@@ -80,6 +80,14 @@ do, and no longer can:
   adapters; all 352 catalogue entries pass.
 - **Relabel a link.** A title carrying `](` rewrote the Discord link it sat in.
 
+### The sheet explains itself
+
+- Every column header carries a note saying what the column is for. The help
+  text existed all along and reached nobody: it was rendered by a function with
+  no callers, so somebody wondering what a column did had nowhere to look.
+- `title-hint` in particular now says the surprising part out loud — it gates
+  your `body` rules and finds nothing on its own.
+
 ### Under it
 
 - One engine, two runtimes: the matching, scoring and parsing are the same
